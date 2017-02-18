@@ -1,0 +1,311 @@
+﻿<Window x:Class="SomeToolsForWork.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SomeToolsForWork"
+        mc:Ignorable="d"
+        Title="SomeTools" Height="670" Width="1000" Loaded="MainWindow_OnLoaded" Icon="tool14.png" FontFamily="微软雅黑">
+    <Grid ShowGridLines="False" UseLayoutRounding="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"></ColumnDefinition>
+            <ColumnDefinition MinWidth="100"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Height="25" VerticalAlignment="Top" FontSize="15">
+            <MenuItem Header="文件">
+                <MenuItem Header="退出" Click="program_exit"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="帮助">
+                <MenuItem Header="关于" Click="open_About"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <ScrollViewer Grid.Column="0" Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <ListBox x:Name="ListBox0" FontSize="18" SelectionChanged="ListBox_OnSelectionChanged">
+                <ListBoxItem>进制转换</ListBoxItem>
+                <ListBoxItem>浮点数与十六进制转换</ListBoxItem>
+                <ListBoxItem>计算加速时间</ListBoxItem>
+                <ListBoxItem>计算位移时间</ListBoxItem>
+                <ListBoxItem>脉冲和单元换算关系</ListBoxItem>
+                <ListBoxItem>错误码查询</ListBoxItem>
+                <ListBoxItem>状态机查询</ListBoxItem>
+                <ListBoxItem>装置与Modbus地址转换</ListBoxItem>
+            </ListBox>
+        </ScrollViewer>
+        <ScrollViewer Grid.Column="1" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid x:Name="grid0" ShowGridLines="False" Visibility="Hidden">
+                    <Grid.RowDefinitions>
+                        <RowDefinition MaxHeight="100" MinHeight="0"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MaxWidth="30" MinWidth="0"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition ></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="Label1_1" Grid.Row="1" Grid.Column="1" Content="十进制" FontSize="20" HorizontalAlignment="Center" Margin="5" VerticalAlignment="Center"/>
+                    <Label x:Name="Label1_2" Grid.Row="2" Grid.Column="1" Content="十六进制" FontSize="20" HorizontalAlignment="Center" Margin="5" VerticalAlignment="Center"/>
+                    <Label x:Name="Label1_3" Grid.Row="3" Grid.Column="1" Content="二进制" FontSize="20" HorizontalAlignment="Center" Margin="5" VerticalAlignment="Center"/>
+                    <TextBox x:Name="TextBox1_1" Grid.Row="1" Grid.Column="2" Margin="5" FontSize="20" TextChanged="DecText_Change" BorderBrush="DeepSkyBlue"></TextBox>
+                    <TextBox x:Name="TextBox1_2" Grid.Row="2" Grid.Column="2" Margin="5" FontSize="20" TextChanged="HexText_Change" BorderBrush="DeepSkyBlue"></TextBox>
+                    <TextBox x:Name="TextBox1_3" Grid.Row="3" Grid.Column="2" Margin="5" FontSize="20" TextChanged="BinText_Change" BorderBrush="DeepSkyBlue"></TextBox>
+                    <Label x:Name="Label1_4" Grid.Row="0" Grid.Column="2" Content="Error" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="Red" Visibility="Hidden"></Label>
+                </Grid>
+                <Grid x:Name="grid1" ShowGridLines="False" Visibility="Hidden">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition ></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <RadioButton x:Name="RadioButton2_1" Content="REAL" FontSize="20" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" Margin="5" Padding="0" VerticalAlignment="Center" IsChecked="True"/>
+                        <RadioButton x:Name="RadioButton2_2" Content="LREAL" FontSize="20" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" Margin="5" Padding="0" VerticalAlignment="Center"/>
+                    </Grid>
+                    <Grid Grid.Column="2" Grid.Row="1" Grid.RowSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <RadioButton x:Name="RadioButton2_3" Content="十进制" FontSize="20" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" Margin="5"  VerticalAlignment="Center" IsChecked="True"/>
+                        <RadioButton x:Name="RadioButton2_4" Content="十六进制" FontSize="20" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" Margin="5"  VerticalAlignment="Center"/>
+                    </Grid>
+                    <TextBox x:Name="TextBox2_1" Grid.Column="3" Grid.Row="3" FontSize="20" Margin="5" BorderBrush="Aqua" AcceptsReturn="False"/>
+                    <TextBox x:Name="TextBox2_2" Grid.Column="3" Grid.Row="4" FontSize="20" Margin="5" BorderBrush="Aqua" IsReadOnly="True"/>
+                    <Button x:Name="Button2_1" Content="转换" FontSize="18" Grid.Column="3" Grid.Row="5" MaxHeight="40" MaxWidth="100" MinWidth="50" MinHeight="20" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" IsDefault="True" Click="Button2_1_OnClick"></Button>
+                </Grid>
+                <Grid x:Name="grid2" ShowGridLines="False" Visibility="Hidden">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="50"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="50"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="1" Grid.Row="1" Content="起始速度" FontSize="20"></Label>
+                    <Label Grid.Column="1" Grid.Row="2" Content="最大目标速度" FontSize="20"></Label>
+                    <Label Grid.Column="1" Grid.Row="3" Content="加速度" FontSize="20"></Label>
+                    <Label Grid.Column="1" Grid.Row="4" Content="加加速度" FontSize="20"></Label>
+                    <TextBox x:Name="TextBox3_1" Grid.Column="2" Grid.Row="1" Margin="5" FontSize="20"></TextBox>
+                    <TextBox x:Name="TextBox3_2" Grid.Column="2" Grid.Row="2" Margin="5" FontSize="20"></TextBox>
+                    <TextBox x:Name="TextBox3_3" Grid.Column="2" Grid.Row="3" Margin="5" FontSize="20"></TextBox>
+                    <TextBox x:Name="TextBox3_4" Grid.Column="2" Grid.Row="4" Margin="5" FontSize="20"></TextBox>
+                    <Label Grid.Column="4" Grid.Row="1" Content="总时间" FontSize="20"></Label>
+                    <Label Grid.Column="4" Grid.Row="2" Content="第一段时间" FontSize="20"></Label>
+                    <Label Grid.Column="4" Grid.Row="3" Content="第二段时间" FontSize="20"></Label>
+                    <Label Grid.Column="4" Grid.Row="4" Content="第三段时间" FontSize="20"></Label>
+                    <TextBox x:Name="TextBox3_5" Grid.Column="5" Grid.Row="1" Margin="5" FontSize="20" IsReadOnly="True"></TextBox>
+                    <TextBox x:Name="TextBox3_6" Grid.Column="5" Grid.Row="2" Margin="5" FontSize="20" IsReadOnly="True"></TextBox>
+                    <TextBox x:Name="TextBox3_7" Grid.Column="5" Grid.Row="3" Margin="5" FontSize="20" IsReadOnly="True"></TextBox>
+                    <TextBox x:Name="TextBox3_8" Grid.Column="5" Grid.Row="4" Margin="5" FontSize="20" IsReadOnly="True"></TextBox>
+                    <Button x:Name="Button3_1" Grid.Column="2" Grid.Row="5" Content="计算" FontSize="20" MaxHeight="50" MaxWidth="100" VerticalAlignment="Top" HorizontalAlignment="Stretch" MinWidth="30" MinHeight="25"></Button>
+                </Grid>
+                <Grid x:Name="grid3" Visibility="Hidden">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="20"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Content="起始位置" FontSize="20" Grid.Column="1" Grid.Row="1" ></Label>
+                    <Label Content="目标位置" FontSize="20" Grid.Column="1" Grid.Row="2" ></Label>
+                    <Label Content="起始速度" FontSize="20" Grid.Column="1" Grid.Row="3" ></Label>
+                    <Label Content="最大速度" FontSize="20" Grid.Column="1" Grid.Row="4" ></Label>
+                    <Label Content="结束速度" FontSize="20" Grid.Column="1" Grid.Row="5" ></Label>
+                    <Label Content="加速度" FontSize="20" Grid.Column="1" Grid.Row="6" ></Label>
+                    <Label Content="减速度" FontSize="20" Grid.Column="1" Grid.Row="7" ></Label>
+                    <Label Content="加加速度" FontSize="20" Grid.Column="1" Grid.Row="8" ></Label>
+                    <Label Content="总时间" FontSize="20" Grid.Column="4" Grid.Row="1" ></Label>
+                    <Label Content="T1" FontSize="20" Grid.Column="4" Grid.Row="2" ></Label>
+                    <Label Content="T2" FontSize="20" Grid.Column="4" Grid.Row="3" ></Label>
+                    <Label Content="T3" FontSize="20" Grid.Column="4" Grid.Row="4" ></Label>
+                    <Label Content="T4" FontSize="20" Grid.Column="4" Grid.Row="5" ></Label>
+                    <Label Content="T5" FontSize="20" Grid.Column="4" Grid.Row="6" ></Label>
+                    <Label Content="T6" FontSize="20" Grid.Column="4" Grid.Row="7" ></Label>
+                    <Label Content="T7" FontSize="20" Grid.Column="4" Grid.Row="8" ></Label>
+                    <Label Content="D1" FontSize="20" Grid.Column="6" Grid.Row="2" ></Label>
+                    <Label Content="D2" FontSize="20" Grid.Column="6" Grid.Row="3" ></Label>
+                    <Label Content="D3" FontSize="20" Grid.Column="6" Grid.Row="4" ></Label>
+                    <Label Content="D4" FontSize="20" Grid.Column="6" Grid.Row="5" ></Label>
+                    <Label Content="D5" FontSize="20" Grid.Column="6" Grid.Row="6" ></Label>
+                    <Label Content="D6" FontSize="20" Grid.Column="6" Grid.Row="7" ></Label>
+                    <Label Content="D7" FontSize="20" Grid.Column="6" Grid.Row="8" ></Label>
+                    <TextBox x:Name="TextBox4_1" Grid.Column="2" Grid.Row="1" Margin="5" FontSize="20" ></TextBox>
+                    <TextBox x:Name="TextBox4_2" Grid.Column="2" Grid.Row="2" Margin="5" FontSize="20" ></TextBox>
+                    <TextBox x:Name="TextBox4_3" Grid.Column="2" Grid.Row="3" Margin="5" FontSize="20" ></TextBox>
+                    <TextBox x:Name="TextBox4_4" Grid.Column="2" Grid.Row="4" Margin="5" FontSize="20" ></TextBox>
+                    <TextBox x:Name="TextBox4_5" Grid.Column="2" Grid.Row="5" Margin="5" FontSize="20" ></TextBox>
+                    <TextBox x:Name="TextBox4_6" Grid.Column="2" Grid.Row="6" Margin="5" FontSize="20" ></TextBox>
+                    <TextBox x:Name="TextBox4_7" Grid.Column="2" Grid.Row="7" Margin="5" FontSize="20" ></TextBox>
+                    <TextBox x:Name="TextBox4_8" Grid.Column="2" Grid.Row="8" Margin="5" FontSize="20" ></TextBox>
+                    <TextBox x:Name="TextBox4_11" Grid.Column="5" Grid.Row="1" Margin="5" FontSize="20"  IsReadOnly="True"></TextBox>
+                    <TextBox x:Name="TextBox4_12" Grid.Column="5" Grid.Row="2" Margin="5" FontSize="20"  IsReadOnly="True"></TextBox>
+                    <TextBox x:Name="TextBox4_13" Grid.Column="5" Grid.Row="3" Margin="5" FontSize="20"  IsReadOnly="True"></TextBox>
+                    <TextBox x:Name="TextBox4_14" Grid.Column="5" Grid.Row="4" Margin="5" FontSize="20"  IsReadOnly="True"></TextBox>
+                    <TextBox x:Name="TextBox4_15" Grid.Column="5" Grid.Row="5" Margin="5" FontSize="20"  IsReadOnly="True"></TextBox>
+                    <TextBox x:Name="TextBox4_16" Grid.Column="5" Grid.Row="6" Margin="5" FontSize="20"  IsReadOnly="True"></TextBox>
+                    <TextBox x:Name="TextBox4_17" Grid.Column="5" Grid.Row="7" Margin="5" FontSize="20"  IsReadOnly="True"></TextBox>
+                    <TextBox x:Name="TextBox4_18" Grid.Column="5" Grid.Row="8" Margin="5" FontSize="20"  IsReadOnly="True"></TextBox>
+                    <TextBox x:Name="TextBox4_22" Grid.Column="7" Grid.Row="2" Margin="5" FontSize="20"  IsReadOnly="True"></TextBox>
+                    <TextBox x:Name="TextBox4_23" Grid.Column="7" Grid.Row="3" Margin="5" FontSize="20"  IsReadOnly="True"></TextBox>
+                    <TextBox x:Name="TextBox4_24" Grid.Column="7" Grid.Row="4" Margin="5" FontSize="20"  IsReadOnly="True"></TextBox>
+                    <TextBox x:Name="TextBox4_25" Grid.Column="7" Grid.Row="5" Margin="5" FontSize="20"  IsReadOnly="True"></TextBox>
+                    <TextBox x:Name="TextBox4_26" Grid.Column="7" Grid.Row="6" Margin="5" FontSize="20"  IsReadOnly="True"></TextBox>
+                    <TextBox x:Name="TextBox4_27" Grid.Column="7" Grid.Row="7" Margin="5" FontSize="20"  IsReadOnly="True"></TextBox>
+                    <TextBox x:Name="TextBox4_28" Grid.Column="7" Grid.Row="8" Margin="5" FontSize="20"  IsReadOnly="True"></TextBox>
+                    <Button x:Name="Button4_1" Content="计算" FontSize="20" Grid.Column="2" Grid.Row="9"  MinHeight="22" MinWidth="50" MaxHeight="50" MaxWidth="100" VerticalAlignment="Top" HorizontalAlignment="Stretch"></Button>
+                </Grid>
+                <Grid x:Name="grid4" Visibility="Hidden">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition ></ColumnDefinition>
+                        <ColumnDefinition Width="20"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition ></ColumnDefinition>
+                        <ColumnDefinition Width="20"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="85"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.ColumnSpan="6" Grid.Row="0" Margin="5">
+                        <Label.Background>
+                            <ImageBrush ImageSource="law.png" AlignmentX="Center" AlignmentY="Center" Stretch="Uniform"/>
+                        </Label.Background>
+                    </Label>
+                    <Label Content="机构导程" FontSize="20" Grid.Column="1" Grid.Row="2"></Label>
+                    <Label Content="齿轮箱输入" FontSize="20" Grid.Column="1" Grid.Row="3"></Label>
+                    <Label Content="齿轮箱输出" FontSize="20" Grid.Column="1" Grid.Row="4"></Label>
+                    <Label Content="设置速度" FontSize="20" Grid.Column="1" Grid.Row="6"></Label>
+                    <Label Content="电机转速(r/min)" FontSize="20" Grid.Column="1" Grid.Row="7"></Label>
+                    <Label Content="电机转速(r/s)" FontSize="20" Grid.Column="1" Grid.Row="8"></Label>
+                    <Label Content="电机转速(r/min)" FontSize="20" Grid.Column="4" Grid.Row="6"></Label>
+                    <Label Content="单元数" FontSize="20" Grid.Column="4" Grid.Row="7"></Label>
+                    <TextBox x:Name="TextBox5_1" Grid.Column="2" Grid.Row="2" FontSize="20" Margin="5"></TextBox>
+                    <TextBox x:Name="TextBox5_2" Grid.Column="2" Grid.Row="3" FontSize="20" Margin="5"></TextBox>
+                    <TextBox x:Name="TextBox5_3" Grid.Column="2" Grid.Row="4" FontSize="20" Margin="5"></TextBox>
+                    <TextBox x:Name="TextBox5_4" Grid.Column="2" Grid.Row="6" FontSize="20" Margin="5"></TextBox>
+                    <TextBox x:Name="TextBox5_5" Grid.Column="2" Grid.Row="7" FontSize="20" Margin="5" IsReadOnly="True"></TextBox>
+                    <TextBox x:Name="TextBox5_6" Grid.Column="2" Grid.Row="8" FontSize="20" Margin="5" IsReadOnly="True"></TextBox>
+                    <TextBox x:Name="TextBox5_7" Grid.Column="5" Grid.Row="6" FontSize="20" Margin="5"></TextBox>
+                    <TextBox x:Name="TextBox5_8" Grid.Column="5" Grid.Row="7" FontSize="20" Margin="5" IsReadOnly="True"></TextBox>
+
+                    <Button x:Name="Button5_1" Content="计算" FontSize="20" Grid.Column="2" Grid.Row="9" MinHeight="25" MaxHeight="50" MinWidth="80" MaxWidth="200" HorizontalAlignment="Center" VerticalAlignment="Top"></Button >
+                </Grid>
+                <Grid x:Name="grid5" Visibility="Hidden">
+                </Grid>
+                <Grid x:Name="grid6" Visibility="Hidden">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="80"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Content="State" FontSize="20" Grid.Column="1" Grid.Row="1"></Label>
+                    <TextBox x:Name="TextBox7_1" FontSize="20" Grid.Column="2" Grid.Row="1" Margin="5"></TextBox>
+                    <TextBox x:Name="TextBox7_2" FontSize="20" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2" Margin="5,5,80,5" IsReadOnly="True"></TextBox>
+                </Grid>
+                <Grid x:Name="grid7">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="30"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Content="内部装置地址" FontSize="20" Grid.Column="2" Grid.Row="1"></Label>
+                    <Label Content="Modbus地址" FontSize="20" Grid.Column="4" Grid.Row="1"></Label>
+                    <ComboBox x:Name="ComboBox8_1" Grid.Column="1" Grid.Row="2" FontSize="20" Width="80" Margin="5">
+                        <ComboBoxItem Content="MW"></ComboBoxItem>
+                        <ComboBoxItem Content="IW"></ComboBoxItem>
+                        <ComboBoxItem Content="QW"></ComboBoxItem>
+                    </ComboBox>
+                    <TextBox x:Name="TextBox8_1" Grid.Column="2" Grid.Row="2" FontSize="20" Margin="5"></TextBox>
+                    <TextBox x:Name="TextBox8_2" Grid.Column="4" Grid.Row="2" FontSize="20" Margin="5" IsReadOnly="True"></TextBox>
+                    
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Window>
