@@ -37,7 +37,7 @@
         </ScrollViewer>
         <ScrollViewer Grid.Column="1" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
             <Grid>
-                <Grid x:Name="grid0" ShowGridLines="False" Visibility="Hidden">
+                <Grid x:Name="grid0" Visibility="Hidden">
                     <Grid.RowDefinitions>
                         <RowDefinition MaxHeight="100" MinHeight="0"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
@@ -59,7 +59,7 @@
                     <TextBox x:Name="TextBox1_3" Grid.Row="3" Grid.Column="2" Margin="5" FontSize="20" TextChanged="BinText_Change" BorderBrush="DeepSkyBlue"></TextBox>
                     <Label x:Name="Label1_4" Grid.Row="0" Grid.Column="2" Content="Error" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="Red" Visibility="Hidden"></Label>
                 </Grid>
-                <Grid x:Name="grid1" ShowGridLines="False" Visibility="Hidden">
+                <Grid x:Name="grid1" Visibility="Hidden">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="100"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
@@ -101,7 +101,7 @@
                     <TextBox x:Name="TextBox2_2" Grid.Column="3" Grid.Row="4" FontSize="20" Margin="5" BorderBrush="Aqua" IsReadOnly="True"/>
                     <Button x:Name="Button2_1" Content="转换" FontSize="18" Grid.Column="3" Grid.Row="5" MaxHeight="40" MaxWidth="100" MinWidth="50" MinHeight="20" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" IsDefault="True" Click="Button2_1_OnClick"></Button>
                 </Grid>
-                <Grid x:Name="grid2" ShowGridLines="False" Visibility="Hidden">
+                <Grid x:Name="grid2" Visibility="Hidden">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -124,7 +124,7 @@
                     <Label Grid.Column="1" Grid.Row="2" Content="最大目标速度" FontSize="20"></Label>
                     <Label Grid.Column="1" Grid.Row="3" Content="加速度" FontSize="20"></Label>
                     <Label Grid.Column="1" Grid.Row="4" Content="加加速度" FontSize="20"></Label>
-                    <TextBox x:Name="TextBox3_1" Grid.Column="2" Grid.Row="1" Margin="5" FontSize="20"></TextBox>
+                    <TextBox x:Name="TextBox3_1" Grid.Column="2" Grid.Row="1" Margin="5" FontSize="20" AcceptsReturn="False"></TextBox>
                     <TextBox x:Name="TextBox3_2" Grid.Column="2" Grid.Row="2" Margin="5" FontSize="20"></TextBox>
                     <TextBox x:Name="TextBox3_3" Grid.Column="2" Grid.Row="3" Margin="5" FontSize="20"></TextBox>
                     <TextBox x:Name="TextBox3_4" Grid.Column="2" Grid.Row="4" Margin="5" FontSize="20"></TextBox>
@@ -136,7 +136,7 @@
                     <TextBox x:Name="TextBox3_6" Grid.Column="5" Grid.Row="2" Margin="5" FontSize="20" IsReadOnly="True"></TextBox>
                     <TextBox x:Name="TextBox3_7" Grid.Column="5" Grid.Row="3" Margin="5" FontSize="20" IsReadOnly="True"></TextBox>
                     <TextBox x:Name="TextBox3_8" Grid.Column="5" Grid.Row="4" Margin="5" FontSize="20" IsReadOnly="True"></TextBox>
-                    <Button x:Name="Button3_1" Grid.Column="2" Grid.Row="5" Content="计算" FontSize="20" MaxHeight="50" MaxWidth="100" VerticalAlignment="Top" HorizontalAlignment="Stretch" MinWidth="30" MinHeight="25"></Button>
+                    <Button x:Name="Button3_1" Grid.Column="2" Grid.Row="5" Content="计算" FontSize="20" MaxHeight="50" MaxWidth="100" VerticalAlignment="Top" HorizontalAlignment="Stretch" MinWidth="30" MinHeight="25" Click="Cal_mc_movevelocity" IsDefault="True"></Button>
                 </Grid>
                 <Grid x:Name="grid3" Visibility="Hidden">
                     <Grid.ColumnDefinitions>
@@ -209,7 +209,7 @@
                     <TextBox x:Name="TextBox4_26" Grid.Column="7" Grid.Row="6" Margin="5" FontSize="20"  IsReadOnly="True"></TextBox>
                     <TextBox x:Name="TextBox4_27" Grid.Column="7" Grid.Row="7" Margin="5" FontSize="20"  IsReadOnly="True"></TextBox>
                     <TextBox x:Name="TextBox4_28" Grid.Column="7" Grid.Row="8" Margin="5" FontSize="20"  IsReadOnly="True"></TextBox>
-                    <Button x:Name="Button4_1" Content="计算" FontSize="20" Grid.Column="2" Grid.Row="9"  MinHeight="22" MinWidth="50" MaxHeight="50" MaxWidth="100" VerticalAlignment="Top" HorizontalAlignment="Stretch"></Button>
+                    <Button x:Name="Button4_1" Content="计算" FontSize="20" Grid.Column="2" Grid.Row="9"  MinHeight="22" MinWidth="50" MaxHeight="50" MaxWidth="100" VerticalAlignment="Top" HorizontalAlignment="Stretch" IsDefault="True" Click="Cal_mc_moverelative"></Button>
                 </Grid>
                 <Grid x:Name="grid4" Visibility="Hidden">
                     <Grid.ColumnDefinitions>
@@ -250,13 +250,13 @@
                     <TextBox x:Name="TextBox5_1" Grid.Column="2" Grid.Row="2" FontSize="20" Margin="5"></TextBox>
                     <TextBox x:Name="TextBox5_2" Grid.Column="2" Grid.Row="3" FontSize="20" Margin="5"></TextBox>
                     <TextBox x:Name="TextBox5_3" Grid.Column="2" Grid.Row="4" FontSize="20" Margin="5"></TextBox>
-                    <TextBox x:Name="TextBox5_4" Grid.Column="2" Grid.Row="6" FontSize="20" Margin="5"></TextBox>
+                    <TextBox x:Name="TextBox5_4" Grid.Column="2" Grid.Row="6" FontSize="20" Margin="5" AcceptsReturn="False" Text="0"></TextBox>
                     <TextBox x:Name="TextBox5_5" Grid.Column="2" Grid.Row="7" FontSize="20" Margin="5" IsReadOnly="True"></TextBox>
                     <TextBox x:Name="TextBox5_6" Grid.Column="2" Grid.Row="8" FontSize="20" Margin="5" IsReadOnly="True"></TextBox>
-                    <TextBox x:Name="TextBox5_7" Grid.Column="5" Grid.Row="6" FontSize="20" Margin="5"></TextBox>
+                    <TextBox x:Name="TextBox5_7" Grid.Column="5" Grid.Row="6" FontSize="20" Margin="5" AcceptsReturn="False" Text="0"></TextBox>
                     <TextBox x:Name="TextBox5_8" Grid.Column="5" Grid.Row="7" FontSize="20" Margin="5" IsReadOnly="True"></TextBox>
 
-                    <Button x:Name="Button5_1" Content="计算" FontSize="20" Grid.Column="2" Grid.Row="9" MinHeight="25" MaxHeight="50" MinWidth="80" MaxWidth="200" HorizontalAlignment="Center" VerticalAlignment="Top"></Button >
+                    <Button x:Name="Button5_1" Content="计算" FontSize="20" Grid.Column="2" Grid.Row="9" MinHeight="25" MaxHeight="50" MinWidth="80" MaxWidth="200" HorizontalAlignment="Center" VerticalAlignment="Top" IsDefault="True" Click="Cal_motionvel"></Button >
                 </Grid>
                 <Grid x:Name="grid5" Visibility="Hidden">
                 </Grid>
@@ -274,10 +274,10 @@
                         <RowDefinition Height="80"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Label Content="State" FontSize="20" Grid.Column="1" Grid.Row="1"></Label>
-                    <TextBox x:Name="TextBox7_1" FontSize="20" Grid.Column="2" Grid.Row="1" Margin="5"></TextBox>
+                    <TextBox x:Name="TextBox7_1" FontSize="20" Grid.Column="2" Grid.Row="1" Margin="5" TextChanged="motionstatesearch"></TextBox>
                     <TextBox x:Name="TextBox7_2" FontSize="20" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2" Margin="5,5,80,5" IsReadOnly="True"></TextBox>
                 </Grid>
-                <Grid x:Name="grid7">
+                <Grid x:Name="grid7" Visibility="Visible">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="80"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -290,8 +290,8 @@
                         <RowDefinition Height="100"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <Label Content="内部装置地址" FontSize="20" Grid.Column="2" Grid.Row="1"></Label>
@@ -301,9 +301,24 @@
                         <ComboBoxItem Content="IW"></ComboBoxItem>
                         <ComboBoxItem Content="QW"></ComboBoxItem>
                     </ComboBox>
-                    <TextBox x:Name="TextBox8_1" Grid.Column="2" Grid.Row="2" FontSize="20" Margin="5"></TextBox>
+                    <TextBox x:Name="TextBox8_1" Grid.Column="2" Grid.Row="2" FontSize="20" Margin="5" Text="0"></TextBox>
                     <TextBox x:Name="TextBox8_2" Grid.Column="4" Grid.Row="2" FontSize="20" Margin="5" IsReadOnly="True"></TextBox>
-                    
+                    <ComboBox x:Name="ComboBox8_2" Grid.Column="1" Grid.Row="3" FontSize="20" Width="80" Margin="5">
+                        <ComboBoxItem Content="IX"></ComboBoxItem>
+                        <ComboBoxItem Content="QX"></ComboBoxItem>
+                    </ComboBox>
+                    <Grid Grid.Column="2" Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="TextBox8_3" FontSize="20" Grid.Column="0" Margin="5" Text="0"></TextBox>
+                        <Label Content="." FontSize="20" Grid.Column="1" VerticalAlignment="Bottom"></Label>
+                        <TextBox x:Name="TextBox8_4" FontSize="20" Grid.Column="2" Margin="5" Text="0"></TextBox>
+                    </Grid>
+                    <TextBox x:Name="TextBox8_5" Grid.Column="4" Grid.Row="3" FontSize="20" Margin="5" IsReadOnly="True"></TextBox>
+                    <Button x:Name="Button8_1" Content="计算" FontSize="20" Grid.Column="2" Grid.Row="4" Margin="5" MaxHeight="50" MinHeight="25" MinWidth="75" MaxWidth="100" IsDefault="True" Click="Cal_modbus"></Button>
                 </Grid>
             </Grid>
         </ScrollViewer>
