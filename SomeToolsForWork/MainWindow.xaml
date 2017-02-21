@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SomeToolsForWork"
         mc:Ignorable="d"
-        Title="SomeTools" Height="670" Width="1000" Loaded="MainWindow_OnLoaded" Icon="tool14.png" FontFamily="微软雅黑">
+        Title="SomeTools" Height="500" Width="800" Loaded="MainWindow_OnLoaded" Icon="tool14.png" FontFamily="微软雅黑">
     <Grid ShowGridLines="False" UseLayoutRounding="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="220"></ColumnDefinition>
@@ -39,7 +39,7 @@
             <Grid>
                 <Grid x:Name="grid0" Visibility="Hidden">
                     <Grid.RowDefinitions>
-                        <RowDefinition MaxHeight="100" MinHeight="0"></RowDefinition>
+                        <RowDefinition MaxHeight="10" MinHeight="0"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
@@ -47,7 +47,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition MaxWidth="30" MinWidth="0"></ColumnDefinition>
+                        <ColumnDefinition MaxWidth="10" MinWidth="0"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition ></ColumnDefinition>
                     </Grid.ColumnDefinitions>
@@ -61,7 +61,7 @@
                 </Grid>
                 <Grid x:Name="grid1" Visibility="Hidden">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="100"></RowDefinition>
+                        <RowDefinition Height="10"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
@@ -70,7 +70,7 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="80"></ColumnDefinition>
+                        <ColumnDefinition Width="10"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition ></ColumnDefinition>
@@ -103,7 +103,7 @@
                 </Grid>
                 <Grid x:Name="grid2" Visibility="Hidden">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="10"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition Width="50"></ColumnDefinition>
@@ -112,7 +112,7 @@
                         <ColumnDefinition Width="50"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="80"></RowDefinition>
+                        <RowDefinition Height="10"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
@@ -140,7 +140,7 @@
                 </Grid>
                 <Grid x:Name="grid3" Visibility="Hidden">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="80"></ColumnDefinition>
+                        <ColumnDefinition Width="10"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition Width="20"></ColumnDefinition>
@@ -151,7 +151,7 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="100"></RowDefinition>
+                        <RowDefinition Height="10"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
@@ -213,7 +213,7 @@
                 </Grid>
                 <Grid x:Name="grid4" Visibility="Hidden">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="10"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition ></ColumnDefinition>
                         <ColumnDefinition Width="20"></ColumnDefinition>
@@ -223,7 +223,7 @@
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="85"></RowDefinition>
-                        <RowDefinition Height="20"></RowDefinition>
+                        <RowDefinition Height="10"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
@@ -262,13 +262,13 @@
                 </Grid>
                 <Grid x:Name="grid6" Visibility="Hidden">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="80"></ColumnDefinition>
+                        <ColumnDefinition Width="10"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="100"></RowDefinition>
+                        <RowDefinition Height="10"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition></RowDefinition>
                         <RowDefinition Height="80"></RowDefinition>
@@ -277,9 +277,9 @@
                     <TextBox x:Name="TextBox7_1" FontSize="20" Grid.Column="2" Grid.Row="1" Margin="5" TextChanged="motionstatesearch"></TextBox>
                     <TextBox x:Name="TextBox7_2" FontSize="20" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2" Margin="5,5,80,5" IsReadOnly="True"></TextBox>
                 </Grid>
-                <Grid x:Name="grid7" Visibility="Visible">
+                <Grid x:Name="grid7" Visibility="Hidden">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="80"></ColumnDefinition>
+                        <ColumnDefinition Width="10"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition Width="30"></ColumnDefinition>
@@ -287,7 +287,7 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="100"></RowDefinition>
+                        <RowDefinition Height="10"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
