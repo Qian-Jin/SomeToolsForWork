@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -13,8 +14,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Text;
 
-namespace SomeToolsForWork
+namespace SomeTools
 {
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
@@ -33,7 +35,7 @@ namespace SomeToolsForWork
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
-            ListBox0.SelectedIndex = 0;
+            ListBox0.SelectedIndex = 8;
             ComboBox8_1.SelectedIndex = 0;
             ComboBox8_2.SelectedIndex = 0;
         }
@@ -58,6 +60,7 @@ namespace SomeToolsForWork
                         grid5.Visibility = Visibility.Hidden;
                         grid6.Visibility = Visibility.Hidden;
                         grid7.Visibility = Visibility.Hidden;
+                        grid8.Visibility = Visibility.Hidden;
                         break;
                     case 1:
                         grid0.Visibility = Visibility.Hidden;
@@ -68,6 +71,7 @@ namespace SomeToolsForWork
                         grid5.Visibility = Visibility.Hidden;
                         grid6.Visibility = Visibility.Hidden;
                         grid7.Visibility = Visibility.Hidden;
+                        grid8.Visibility = Visibility.Hidden;
                         break;
                     case 2:
                         grid0.Visibility = Visibility.Hidden;
@@ -78,6 +82,7 @@ namespace SomeToolsForWork
                         grid5.Visibility = Visibility.Hidden;
                         grid6.Visibility = Visibility.Hidden;
                         grid7.Visibility = Visibility.Hidden;
+                        grid8.Visibility = Visibility.Hidden;
                         break;
                     case 3:
                         grid0.Visibility = Visibility.Hidden;
@@ -88,6 +93,7 @@ namespace SomeToolsForWork
                         grid5.Visibility = Visibility.Hidden;
                         grid6.Visibility = Visibility.Hidden;
                         grid7.Visibility = Visibility.Hidden;
+                        grid8.Visibility = Visibility.Hidden;
                         break;
                     case 4:
                         grid0.Visibility = Visibility.Hidden;
@@ -98,6 +104,7 @@ namespace SomeToolsForWork
                         grid5.Visibility = Visibility.Hidden;
                         grid6.Visibility = Visibility.Hidden;
                         grid7.Visibility = Visibility.Hidden;
+                        grid8.Visibility = Visibility.Hidden;
                         break;
                     case 5:
                         grid0.Visibility = Visibility.Hidden;
@@ -108,6 +115,7 @@ namespace SomeToolsForWork
                         grid5.Visibility = Visibility.Visible;
                         grid6.Visibility = Visibility.Hidden;
                         grid7.Visibility = Visibility.Hidden;
+                        grid8.Visibility = Visibility.Hidden;
                         break;
                     case 6:
                         grid0.Visibility = Visibility.Hidden;
@@ -118,6 +126,7 @@ namespace SomeToolsForWork
                         grid5.Visibility = Visibility.Hidden;
                         grid6.Visibility = Visibility.Visible;
                         grid7.Visibility = Visibility.Hidden;
+                        grid8.Visibility = Visibility.Hidden;
                         break;
                     case 7:
                         grid0.Visibility = Visibility.Hidden;
@@ -128,7 +137,20 @@ namespace SomeToolsForWork
                         grid5.Visibility = Visibility.Hidden;
                         grid6.Visibility = Visibility.Hidden;
                         grid7.Visibility = Visibility.Visible;
+                        grid8.Visibility = Visibility.Hidden;
                         break;
+                    case 8:
+                        grid0.Visibility = Visibility.Hidden;
+                        grid1.Visibility = Visibility.Hidden;
+                        grid2.Visibility = Visibility.Hidden;
+                        grid3.Visibility = Visibility.Hidden;
+                        grid4.Visibility = Visibility.Hidden;
+                        grid5.Visibility = Visibility.Hidden;
+                        grid6.Visibility = Visibility.Hidden;
+                        grid7.Visibility = Visibility.Hidden;
+                        grid8.Visibility = Visibility.Visible;
+                        break;
+
                     default:
                         grid0.Visibility = Visibility.Hidden;
                         grid1.Visibility = Visibility.Hidden;
@@ -138,6 +160,7 @@ namespace SomeToolsForWork
                         grid5.Visibility = Visibility.Hidden;
                         grid6.Visibility = Visibility.Hidden;
                         grid7.Visibility = Visibility.Hidden;
+                        grid8.Visibility = Visibility.Hidden;
                         break;
                 }
             }
@@ -619,6 +642,32 @@ namespace SomeToolsForWork
                     TextBox8_5.Text = "0x" + Convert.ToString(ixvalue + 0xA000, 16).ToUpper();
                     break;
             }
+        }
+
+        private void CreatGcode_OnClick(object sender, RoutedEventArgs e)
+        {
+            GcodeState.Content = "生成成功";
+        }
+
+        private void GcodeSave_OnClick(object sender, RoutedEventArgs e)
+        {
+            GcodeMaker.GcodeOutput();
+            GcodeState.Content = "输出成功";
+            ButtonOpenFile.Visibility = Visibility.Visible;
+            ButtonDraw.Visibility = Visibility.Visible;
+        }
+
+
+        private void OpenGcodeFile_OnClick(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"E:\TextOut\Gcode.txt");
+        }
+
+        private void DrawPic_OnClick(object sender, RoutedEventArgs e)
+        {
+            DrawPic drawPic = new DrawPic();
+            drawPic.ShowDialog();
+
         }
     }
 }
