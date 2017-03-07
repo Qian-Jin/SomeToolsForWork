@@ -1,0 +1,9 @@
+LIBRARY "AppFun"
+
+EXPORTS
+	trans_int32_float @ 1
+	trans_float_int32 @ 2
+	trans_int64_double @ 3
+	trans_double_int64 @ 4
+	cal_acc_time @ 5
+	cal_move_time @ 6

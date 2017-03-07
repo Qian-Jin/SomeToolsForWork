@@ -35,10 +35,18 @@ namespace SomeTools
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
-            ListBox0.SelectedIndex = 8;
+            ListBox0.SelectedIndex = 9;
             ComboBox8_1.SelectedIndex = 0;
             ComboBox8_2.SelectedIndex = 0;
         }
+
+        private void open_About(object sender, RoutedEventArgs e)
+        {
+            About newAboutWindow = new About();
+            newAboutWindow.Title = "关于";
+            newAboutWindow.Show();
+        }
+
 
         private void ListBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -61,6 +69,7 @@ namespace SomeTools
                         grid6.Visibility = Visibility.Hidden;
                         grid7.Visibility = Visibility.Hidden;
                         grid8.Visibility = Visibility.Hidden;
+                        grid9.Visibility = Visibility.Hidden;
                         break;
                     case 1:
                         grid0.Visibility = Visibility.Hidden;
@@ -72,6 +81,8 @@ namespace SomeTools
                         grid6.Visibility = Visibility.Hidden;
                         grid7.Visibility = Visibility.Hidden;
                         grid8.Visibility = Visibility.Hidden;
+                        grid9.Visibility = Visibility.Hidden;
+
                         break;
                     case 2:
                         grid0.Visibility = Visibility.Hidden;
@@ -83,6 +94,8 @@ namespace SomeTools
                         grid6.Visibility = Visibility.Hidden;
                         grid7.Visibility = Visibility.Hidden;
                         grid8.Visibility = Visibility.Hidden;
+                        grid9.Visibility = Visibility.Hidden;
+
                         break;
                     case 3:
                         grid0.Visibility = Visibility.Hidden;
@@ -94,6 +107,8 @@ namespace SomeTools
                         grid6.Visibility = Visibility.Hidden;
                         grid7.Visibility = Visibility.Hidden;
                         grid8.Visibility = Visibility.Hidden;
+                        grid9.Visibility = Visibility.Hidden;
+
                         break;
                     case 4:
                         grid0.Visibility = Visibility.Hidden;
@@ -105,6 +120,8 @@ namespace SomeTools
                         grid6.Visibility = Visibility.Hidden;
                         grid7.Visibility = Visibility.Hidden;
                         grid8.Visibility = Visibility.Hidden;
+                        grid9.Visibility = Visibility.Hidden;
+
                         break;
                     case 5:
                         grid0.Visibility = Visibility.Hidden;
@@ -116,6 +133,8 @@ namespace SomeTools
                         grid6.Visibility = Visibility.Hidden;
                         grid7.Visibility = Visibility.Hidden;
                         grid8.Visibility = Visibility.Hidden;
+                        grid9.Visibility = Visibility.Hidden;
+
                         break;
                     case 6:
                         grid0.Visibility = Visibility.Hidden;
@@ -127,6 +146,8 @@ namespace SomeTools
                         grid6.Visibility = Visibility.Visible;
                         grid7.Visibility = Visibility.Hidden;
                         grid8.Visibility = Visibility.Hidden;
+                        grid9.Visibility = Visibility.Hidden;
+
                         break;
                     case 7:
                         grid0.Visibility = Visibility.Hidden;
@@ -138,6 +159,8 @@ namespace SomeTools
                         grid6.Visibility = Visibility.Hidden;
                         grid7.Visibility = Visibility.Visible;
                         grid8.Visibility = Visibility.Hidden;
+                        grid9.Visibility = Visibility.Hidden;
+
                         break;
                     case 8:
                         grid0.Visibility = Visibility.Hidden;
@@ -149,8 +172,21 @@ namespace SomeTools
                         grid6.Visibility = Visibility.Hidden;
                         grid7.Visibility = Visibility.Hidden;
                         grid8.Visibility = Visibility.Visible;
-                        break;
+                        grid9.Visibility = Visibility.Hidden;
 
+                        break;
+                    case 9:
+                        grid0.Visibility = Visibility.Hidden;
+                        grid1.Visibility = Visibility.Hidden;
+                        grid2.Visibility = Visibility.Hidden;
+                        grid3.Visibility = Visibility.Hidden;
+                        grid4.Visibility = Visibility.Hidden;
+                        grid5.Visibility = Visibility.Hidden;
+                        grid6.Visibility = Visibility.Hidden;
+                        grid7.Visibility = Visibility.Hidden;
+                        grid8.Visibility = Visibility.Hidden;
+                        grid9.Visibility = Visibility.Visible;
+                        break;
                     default:
                         grid0.Visibility = Visibility.Hidden;
                         grid1.Visibility = Visibility.Hidden;
@@ -161,6 +197,8 @@ namespace SomeTools
                         grid6.Visibility = Visibility.Hidden;
                         grid7.Visibility = Visibility.Hidden;
                         grid8.Visibility = Visibility.Hidden;
+                        grid9.Visibility = Visibility.Hidden;
+
                         break;
                 }
             }
@@ -281,22 +319,22 @@ namespace SomeTools
         }
 
         //浮点数转换
-        [StructLayoutAttribute(LayoutKind.Explicit,Size = 4)]
-        public struct real_udint
-        {
-            [FieldOffsetAttribute(0)]
-            public float real;
-            [FieldOffsetAttribute(0)]
-            public Int32 udint;
-        }
-        [StructLayoutAttribute(LayoutKind.Explicit, Size = 8)]
-        public struct lreal_ulint
-        {
-            [FieldOffsetAttribute(0)]
-            public double lreal;
-            [FieldOffsetAttribute(0)]
-            public Int64 ulint;
-        }
+        [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "trans_int32_float",
+            CallingConvention = CallingConvention.Cdecl)]
+        public extern static float trans_int32_float(Int32 value);
+
+        [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "trans_float_int32",
+            CallingConvention = CallingConvention.Cdecl)]
+        public extern static Int32 trans_float_int32(float value);
+
+        [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "trans_int64_double",
+            CallingConvention = CallingConvention.Cdecl)]
+        public extern static double trans_int64_double(long value);
+
+        [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "trans_double_int64",
+            CallingConvention = CallingConvention.Cdecl)]
+        public extern static long trans_double_int64(double value);
+
         private void Button2_1_OnClick(object sender, RoutedEventArgs e)
         {
             int transmode = 0;
@@ -327,28 +365,20 @@ namespace SomeTools
             switch (transmode)
             {
                 case 1:
-                    real_udint real_udint1;
-                    real_udint1.udint = 0;
-                    real_udint1.real = (float)(Convert.ToDouble(TextBox2_1.Text));
-                    TextBox2_2.Text = Convert.ToString(real_udint1.udint, 16).ToUpper();
+                    float real = (float)(Convert.ToDouble(TextBox2_1.Text));
+                    TextBox2_2.Text = Convert.ToString(trans_float_int32(real), 16).ToUpper();
                     break;
                 case 2:
-                    real_udint real_udint2;
-                    real_udint2.real = 0.0F;
-                    real_udint2.udint = (Convert.ToInt32(TextBox2_1.Text,16));
-                    TextBox2_2.Text = Convert.ToString(real_udint2.real);
+                    Int32 udint = (Convert.ToInt32(TextBox2_1.Text, 16));
+                    TextBox2_2.Text = Convert.ToString(trans_int32_float(udint));
                     break;
                 case 3:
-                    lreal_ulint lreal_ulint1;
-                    lreal_ulint1.ulint = 0;
-                    lreal_ulint1.lreal = (Convert.ToDouble(TextBox2_1.Text));
-                    TextBox2_2.Text = Convert.ToString(lreal_ulint1.ulint, 16).ToUpper();
+                    double lreal = (Convert.ToDouble(TextBox2_1.Text));
+                    TextBox2_2.Text = Convert.ToString(trans_double_int64(lreal), 16).ToUpper();
                     break;
                 case 4:
-                    lreal_ulint lreal_ulint2;
-                    lreal_ulint2.lreal = 0.0;
-                    lreal_ulint2.ulint = (Convert.ToInt64(TextBox2_1.Text, 16));
-                    TextBox2_2.Text = Convert.ToString(lreal_ulint2.lreal);
+                    long ulint = (Convert.ToInt64(TextBox2_1.Text, 16));
+                    TextBox2_2.Text = Convert.ToString(trans_int64_double(ulint));
                     break;
                 default:
                     break;
@@ -358,12 +388,10 @@ namespace SomeTools
         }
 
 
-        private void open_About(object sender, RoutedEventArgs e)
-        {
-            About newAboutWindow = new About();
-            newAboutWindow.Title = "关于";
-            newAboutWindow.Show();
-        }
+
+        [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "cal_acc_time",
+                CallingConvention = CallingConvention.Cdecl)]
+        public extern static double cal_acc_time(double vel_start, double vel_max, double vel_acc, double vel_jerk, int what_return);
 
         private void Cal_mc_movevelocity(object sender, RoutedEventArgs e)
         {
@@ -371,34 +399,18 @@ namespace SomeTools
             double vel_max = Convert.ToDouble(TextBox3_2.Text);//最大速度
             double vel_acc = Convert.ToDouble(TextBox3_3.Text);//加速度
             double vel_jerk = Convert.ToDouble(TextBox3_4.Text);//加加速度
-
-            double del_v, v_1;
-            double vel_time, vel_t1, vel_t2, vel_t3;
-            del_v = vel_max - vel_start;
-            vel_t1 = vel_acc / vel_jerk;
-            v_1 = vel_jerk * Math.Pow(vel_t1, 2);
-            if (v_1 >= del_v)
-            {
-                vel_t1 = Math.Sqrt(del_v / vel_jerk);
-                vel_t2 = 0;
-                vel_time = 2 * vel_t1;
-                vel_t3 = vel_t1;
-                TextBox3_5.Text = Convert.ToString(vel_time);
-                TextBox3_6.Text = Convert.ToString(vel_t1);
-                TextBox3_7.Text = Convert.ToString(vel_t2);
-                TextBox3_8.Text = Convert.ToString(vel_t3);
-            }
-            else
-            {
-                vel_t2 = (del_v - v_1) / vel_acc;
-                vel_time = (del_v - v_1) / vel_acc + 2 * vel_t1;
-                vel_t3 = vel_t1;
-                TextBox3_5.Text = Convert.ToString(vel_time);
-                TextBox3_6.Text = Convert.ToString(vel_t1);
-                TextBox3_7.Text = Convert.ToString(vel_t2);
-                TextBox3_8.Text = Convert.ToString(vel_t3);
-            }
+            
+            TextBox3_5.Text = Convert.ToString(cal_acc_time(vel_start, vel_max, vel_acc, vel_jerk, 0));
+            TextBox3_6.Text = Convert.ToString(cal_acc_time(vel_start, vel_max, vel_acc, vel_jerk, 1));
+            TextBox3_7.Text = Convert.ToString(cal_acc_time(vel_start, vel_max, vel_acc, vel_jerk, 2));
+            TextBox3_8.Text = Convert.ToString(cal_acc_time(vel_start, vel_max, vel_acc, vel_jerk, 3));
         }
+
+        [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "cal_move_time",
+            CallingConvention = CallingConvention.Cdecl)]
+        public extern static double cal_move_time(double pos_start, double pos_end, double vel_start, double vel_max,
+            double vel_end, double vel_acc, double vel_dec, double vel_jerk, int what_return);
+
 
 
         private void Cal_mc_moverelative(object sender, RoutedEventArgs e)
@@ -411,94 +423,22 @@ namespace SomeTools
             double vel_acc = Convert.ToDouble(TextBox4_6.Text);//加速度
             double vel_dec = Convert.ToDouble(TextBox4_7.Text);//减速度
             double vel_jerk = Convert.ToDouble(TextBox4_8.Text);//加加速度
-            double pos_time, pos_t1, pos_t2, pos_t3, pos_t4, pos_t5, pos_t6, pos_t7;
-            double pos_d1, pos_d2, pos_d3, pos_d4, pos_d5, pos_d6, pos_d7;
-            double del_acc_vel, del_dec_vel,del_pos;
-            double pos_v1,pos_v2,pos_v3,pos_v4,pos_v5,pos_v6,pos_v7;
 
-            start:
-            del_acc_vel = vel_max - vel_start;
-            del_dec_vel = vel_max - vel_end;
-            del_pos = pos_end - pos_start;
-            pos_t1 = vel_acc / vel_jerk;
-            pos_v1 = vel_jerk * Math.Pow(pos_t1, 2);
-            if (pos_v1 > del_acc_vel)
-            {
-                //加速运动没有到达最高加速度
-                pos_t1 = Math.Sqrt(del_acc_vel / vel_jerk);
-                pos_t2 = 0;
-                pos_t3 = pos_t1;
-            }
-            else
-            {
-                //加速运动到达最高速度加速度
-                pos_t1 = 0 + pos_t1;
-                pos_t2 = (del_acc_vel - pos_v1) / vel_acc;
-                pos_t3 = pos_t1;
-            }
-
-            pos_t7 = vel_dec / vel_jerk;
-            pos_v7 = vel_jerk * Math.Pow(pos_t7, 2);
-            if (pos_v7>=del_dec_vel)
-            {
-                pos_t5 = Math.Sqrt(del_dec_vel / vel_jerk);
-                pos_t6 = 0;
-                pos_t7 = pos_t5;
-            }
-            else
-            {
-                pos_t5 = pos_t7;
-                pos_t6 = (del_dec_vel - pos_v7) / vel_dec;
-                pos_t7 = 0 + pos_t7;
-            }
-            pos_v1 = pos_start + vel_jerk * Math.Pow(pos_t1, 2) / 2;
-            pos_v2 = pos_v1 + vel_acc * pos_t2;
-            pos_v3 = pos_v2 + vel_acc * pos_t3 - vel_jerk * Math.Pow(pos_t3, 2) / 2;
-            pos_v4 = vel_max;
-            pos_v7 = vel_end + vel_jerk * Math.Pow(pos_t7, 2) / 2;
-            pos_v6 = pos_v7 + vel_dec * pos_t6;
-            pos_v5 = pos_v6 + vel_dec * pos_t5 - vel_jerk * Math.Pow(pos_t5, 2) / 2;
-
-            pos_d1 = vel_start * pos_t1 + vel_jerk * Math.Pow(pos_t1, 3) / 6;
-            pos_d2 = pos_v1 * pos_t2 + vel_acc * Math.Pow(pos_t2, 2) / 2;
-            pos_d3 = pos_v2 * pos_t3 + vel_acc * Math.Pow(pos_t3, 2) / 2 - vel_jerk * Math.Pow(pos_t3, 3) / 6;
-            pos_d7 = vel_end * pos_t7 + vel_jerk * Math.Pow(pos_t7, 3) / 6;
-            pos_d6 = pos_v7 * pos_t6 + vel_dec * Math.Pow(pos_t6, 2) / 2;
-            pos_d5 = pos_v6 * pos_t5 + vel_dec * Math.Pow(pos_t5, 2) / 2 - vel_jerk * Math.Pow(pos_t5, 3) / 6;
-            pos_d4 = del_pos - pos_d1 - pos_d2 - pos_d3 - pos_d5 - pos_d6 - pos_d7;
-            if (pos_d4 == 0.0)
-            {
-                pos_t4 = 0;
-                pos_time = pos_t1 + pos_t2 + pos_t3 + pos_t4 + pos_t5 + pos_t6 + pos_t7;
-            }
-            else
-            {
-                if (pos_d4<0)
-                {
-                    vel_max = vel_max - 0.1;
-                    goto start;
-                }
-                else
-                {
-                    pos_t4 = pos_d4 / vel_max;
-                    pos_time = pos_t1 + pos_t2 + pos_t3 + pos_t4 + pos_t5 + pos_t6 + pos_t7;
-                }
-            }
-            TextBox4_11.Text = Convert.ToString(pos_time);
-            TextBox4_12.Text = Convert.ToString(pos_t1);
-            TextBox4_13.Text = Convert.ToString(pos_t2);
-            TextBox4_14.Text = Convert.ToString(pos_t3);
-            TextBox4_15.Text = Convert.ToString(pos_t4);
-            TextBox4_16.Text = Convert.ToString(pos_t5);
-            TextBox4_17.Text = Convert.ToString(pos_t6);
-            TextBox4_18.Text = Convert.ToString(pos_t7);
-            TextBox4_22.Text = Convert.ToString(pos_d1);
-            TextBox4_23.Text = Convert.ToString(pos_d2);
-            TextBox4_24.Text = Convert.ToString(pos_d3);
-            TextBox4_25.Text = Convert.ToString(pos_d4);
-            TextBox4_26.Text = Convert.ToString(pos_d5);
-            TextBox4_27.Text = Convert.ToString(pos_d6);
-            TextBox4_28.Text = Convert.ToString(pos_d7);
+            TextBox4_11.Text = Convert.ToString(cal_move_time(pos_start, pos_end, vel_start, vel_max, vel_end, vel_acc, vel_dec, vel_jerk, 0));
+            TextBox4_12.Text = Convert.ToString(cal_move_time(pos_start, pos_end, vel_start, vel_max, vel_end, vel_acc, vel_dec, vel_jerk, 1));
+            TextBox4_13.Text = Convert.ToString(cal_move_time(pos_start, pos_end, vel_start, vel_max, vel_end, vel_acc, vel_dec, vel_jerk, 2));
+            TextBox4_14.Text = Convert.ToString(cal_move_time(pos_start, pos_end, vel_start, vel_max, vel_end, vel_acc, vel_dec, vel_jerk, 3));
+            TextBox4_15.Text = Convert.ToString(cal_move_time(pos_start, pos_end, vel_start, vel_max, vel_end, vel_acc, vel_dec, vel_jerk, 4));
+            TextBox4_16.Text = Convert.ToString(cal_move_time(pos_start, pos_end, vel_start, vel_max, vel_end, vel_acc, vel_dec, vel_jerk, 5));
+            TextBox4_17.Text = Convert.ToString(cal_move_time(pos_start, pos_end, vel_start, vel_max, vel_end, vel_acc, vel_dec, vel_jerk, 6));
+            TextBox4_18.Text = Convert.ToString(cal_move_time(pos_start, pos_end, vel_start, vel_max, vel_end, vel_acc, vel_dec, vel_jerk, 7));
+            TextBox4_22.Text = Convert.ToString(cal_move_time(pos_start, pos_end, vel_start, vel_max, vel_end, vel_acc, vel_dec, vel_jerk, 8));
+            TextBox4_23.Text = Convert.ToString(cal_move_time(pos_start, pos_end, vel_start, vel_max, vel_end, vel_acc, vel_dec, vel_jerk, 9));
+            TextBox4_24.Text = Convert.ToString(cal_move_time(pos_start, pos_end, vel_start, vel_max, vel_end, vel_acc, vel_dec, vel_jerk, 10));
+            TextBox4_25.Text = Convert.ToString(cal_move_time(pos_start, pos_end, vel_start, vel_max, vel_end, vel_acc, vel_dec, vel_jerk, 11));
+            TextBox4_26.Text = Convert.ToString(cal_move_time(pos_start, pos_end, vel_start, vel_max, vel_end, vel_acc, vel_dec, vel_jerk, 12));
+            TextBox4_27.Text = Convert.ToString(cal_move_time(pos_start, pos_end, vel_start, vel_max, vel_end, vel_acc, vel_dec, vel_jerk, 13));
+            TextBox4_28.Text = Convert.ToString(cal_move_time(pos_start, pos_end, vel_start, vel_max, vel_end, vel_acc, vel_dec, vel_jerk, 14));
 
         }
 
@@ -644,6 +584,17 @@ namespace SomeTools
             }
         }
 
+        private void OnClick_strTrans(object sender, RoutedEventArgs e)
+        {
+            TextBox_outputstr.Text = "字符串长度为: " + Convert.ToString(TextBox_inputstr.Text.Length) + " \n";
+            byte[] asciiarray = System.Text.Encoding.ASCII.GetBytes(TextBox_inputstr.Text);
+            foreach (var VARIABLE in asciiarray)
+            {
+                TextBox_outputstr.AppendText("0x" + Convert.ToString(VARIABLE, 16).ToUpper() + " \n");
+            }
+        }
+
+
         private void CreatGcode_OnClick(object sender, RoutedEventArgs e)
         {
             GcodeState.Content = "生成成功";
@@ -669,5 +620,6 @@ namespace SomeTools
             drawPic.ShowDialog();
 
         }
+
     }
 }

@@ -34,6 +34,7 @@
                 <ListBoxItem>状态机查询</ListBoxItem>
                 <ListBoxItem>装置与Modbus地址转换</ListBoxItem>
                 <ListBoxItem>G代码字符串输出</ListBoxItem>
+                <ListBoxItem>字符串长度与ASCII转换</ListBoxItem>
             </ListBox>
         </ScrollViewer>
         <ScrollViewer Grid.Column="1" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
@@ -321,7 +322,7 @@
                     <TextBox x:Name="TextBox8_5" Grid.Column="4" Grid.Row="3" FontSize="20" Margin="5" IsReadOnly="True"></TextBox>
                     <Button x:Name="Button8_1" Content="计算" FontSize="20" Grid.Column="2" Grid.Row="4" Margin="5" MaxHeight="50" MinHeight="25" MinWidth="75" MaxWidth="100" IsDefault="True" Click="Cal_modbus"></Button>
                 </Grid>
-                <Grid x:Name="grid8" Visibility="Visible">
+                <Grid x:Name="grid8" Visibility="Hidden">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"></RowDefinition>
                         <RowDefinition></RowDefinition>
@@ -342,6 +343,19 @@
                         <Button x:Name="ButtonDraw" Content="画图" Grid.Column="4" FontSize="20" Margin="5" Visibility="Hidden" Click="DrawPic_OnClick"></Button>
                     </Grid>
                     <TextBox x:Name="TextBox_GText" Grid.Row="1" Margin="5" FontSize="12"></TextBox>
+                </Grid>
+                <Grid x:Name="grid9" Visibility="Visible">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBox x:Name="TextBox_inputstr" Grid.Column="0" Grid.Row="0" Margin="5" FontSize="20" TextWrapping="NoWrap"></TextBox>
+                    <Button x:Name="Button_trans" Grid.Column="1" Grid.Row="0" Content="转换" FontSize="20" MinHeight="25" MaxHeight="50" MinWidth="60" MaxWidth="100" Margin="5" IsDefault="True" Click="OnClick_strTrans"></Button>
+                    <TextBox x:Name="TextBox_outputstr" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Margin="5" FontSize="20"></TextBox>
                 </Grid>
             </Grid>
         </ScrollViewer>
