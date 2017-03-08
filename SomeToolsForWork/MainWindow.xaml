@@ -322,7 +322,7 @@
                     <TextBox x:Name="TextBox8_5" Grid.Column="4" Grid.Row="3" FontSize="20" Margin="5" IsReadOnly="True"></TextBox>
                     <Button x:Name="Button8_1" Content="计算" FontSize="20" Grid.Column="2" Grid.Row="4" Margin="5" MaxHeight="50" MinHeight="25" MinWidth="75" MaxWidth="100" IsDefault="True" Click="Cal_modbus"></Button>
                 </Grid>
-                <Grid x:Name="grid8" Visibility="Hidden">
+                <Grid x:Name="grid8" Visibility="Visible">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"></RowDefinition>
                         <RowDefinition></RowDefinition>
@@ -336,15 +336,13 @@
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Button Content="生成" Grid.Column="0" MaxWidth="100" MinWidth="50" MaxHeight="30" MinHeight="40" Margin="5" FontSize="20" Click="CreatGcode_OnClick"></Button>
-                        <Button Content="输出" Grid.Column="1" MaxWidth="100" MinWidth="50" MaxHeight="30" MinHeight="40" Margin="5" FontSize="20" Click="GcodeSave_OnClick"></Button>
-                        <Label x:Name="GcodeState" Grid.Column="2" FontSize="20" Width="auto" Margin="5"></Label>
-                        <Button x:Name="ButtonOpenFile" Content="打开生成文件" Grid.Column="3" FontSize="20" Margin="5" Visibility="Hidden" Click="OpenGcodeFile_OnClick"></Button>
-                        <Button x:Name="ButtonDraw" Content="画图" Grid.Column="4" FontSize="20" Margin="5" Visibility="Hidden" Click="DrawPic_OnClick"></Button>
+                        <Button Content="生成并输出" Grid.Column="1" MaxWidth="200" MinWidth="120" MaxHeight="30" MinHeight="40" Margin="5" FontSize="20" Click="GcodeSave_OnClick"></Button>
+                        <Button x:Name="ButtonOpenFile" Content="打开生成文件" Grid.Column="2" FontSize="20" Margin="5" Visibility="Hidden" Click="OpenGcodeFile_OnClick"></Button>
+                        <Button x:Name="ButtonDraw" Content="画图" Grid.Column="3" FontSize="20" Margin="5" Visibility="Hidden" Click="DrawPic_OnClick"></Button>
                     </Grid>
-                    <TextBox x:Name="TextBox_GText" Grid.Row="1" Margin="5" FontSize="12"></TextBox>
+                    <TextBox x:Name="TextBox_GText" Grid.Row="1" Margin="5" FontSize="12" IsReadOnly="True"></TextBox>
                 </Grid>
-                <Grid x:Name="grid9" Visibility="Visible">
+                <Grid x:Name="grid9" Visibility="Hidden">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>

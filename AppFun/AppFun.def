@@ -7,3 +7,5 @@ EXPORTS
 	trans_double_int64 @ 4
 	cal_acc_time @ 5
 	cal_move_time @ 6
+	gcodefileoutput @ 7
+	outfunction @ 8

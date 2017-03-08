@@ -99,7 +99,6 @@
     <Compile Include="DrawPic.xaml.cs">
       <DependentUpon>DrawPic.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GcodeMaker.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -155,12 +154,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AppFun\AppFun.vcxproj">
-      <Project>{fca1050f-57e0-4f70-8fc5-48ff51c36457}</Project>
-      <Name>AppFun</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

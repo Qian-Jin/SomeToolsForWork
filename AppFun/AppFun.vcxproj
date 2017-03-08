@@ -152,10 +152,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Gcode.cpp" />
+    <ClCompile Include="GcodeFun.cpp" />
     <ClCompile Include="motion.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Gcode.h" />
+    <ClInclude Include="GcodeFun.h" />
     <ClInclude Include="motion.h" />
+    <ClInclude Include="spline.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AppFun.def" />

@@ -14,7 +14,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Text;
 
 namespace SomeTools
 {
@@ -35,7 +34,7 @@ namespace SomeTools
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
-            ListBox0.SelectedIndex = 9;
+            ListBox0.SelectedIndex = 8;
             ComboBox8_1.SelectedIndex = 0;
             ComboBox8_2.SelectedIndex = 0;
         }
@@ -410,9 +409,6 @@ namespace SomeTools
             CallingConvention = CallingConvention.Cdecl)]
         public extern static double cal_move_time(double pos_start, double pos_end, double vel_start, double vel_max,
             double vel_end, double vel_acc, double vel_dec, double vel_jerk, int what_return);
-
-
-
         private void Cal_mc_moverelative(object sender, RoutedEventArgs e)
         {
             double pos_start = Convert.ToDouble(TextBox4_1.Text);//起始位置
@@ -595,15 +591,15 @@ namespace SomeTools
         }
 
 
-        private void CreatGcode_OnClick(object sender, RoutedEventArgs e)
-        {
-            GcodeState.Content = "生成成功";
-        }
+
+        [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "gcodefileoutput",CallingConvention = CallingConvention.Cdecl)]
+        public extern static void gcodefileoutput();
 
         private void GcodeSave_OnClick(object sender, RoutedEventArgs e)
         {
-            GcodeMaker.GcodeOutput();
-            GcodeState.Content = "输出成功";
+            gcodefileoutput();
+            TextBox_GText.Text = "生成成功，文件位于E:\\TextOut\\G_code.txt\n具体文件如下：\n";
+            TextBox_GText.AppendText(File.ReadAllText("E:\\TextOut\\G_code.txt"));
             ButtonOpenFile.Visibility = Visibility.Visible;
             ButtonDraw.Visibility = Visibility.Visible;
         }
@@ -617,7 +613,7 @@ namespace SomeTools
         private void DrawPic_OnClick(object sender, RoutedEventArgs e)
         {
             DrawPic drawPic = new DrawPic();
-            drawPic.ShowDialog();
+            drawPic.Show();
 
         }
 

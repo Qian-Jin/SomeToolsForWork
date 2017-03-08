@@ -18,9 +18,24 @@
     <ClCompile Include="motion.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Gcode.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="GcodeFun.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="motion.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Gcode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GcodeFun.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="spline.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
