@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SomeToolsForWork"
         mc:Ignorable="d"
-        Title="SomeTools" Height="500" Width="800" Loaded="MainWindow_OnLoaded" Icon="tool14.png" FontFamily="微软雅黑">
+        Title="SomeTools" Height="500" Width="800" Loaded="MainWindow_OnLoaded" Icon="tool14.png" FontFamily="微软雅黑" Closed="MainWindow_OnClosed">
     <Grid ShowGridLines="False" UseLayoutRounding="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="220"></ColumnDefinition>
@@ -23,6 +23,7 @@
                 <MenuItem Header="关于" Click="open_About"></MenuItem>
             </MenuItem>
         </Menu>
+        <Label x:Name="Timer" Grid.Column="1" HorizontalAlignment="Right" VerticalContentAlignment="Top" VerticalAlignment="Top" FontSize="10" ></Label>
         <ScrollViewer Grid.Column="0" Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <ListBox x:Name="ListBox0" FontSize="18" SelectionChanged="ListBox_OnSelectionChanged">
                 <ListBoxItem>进制转换</ListBoxItem>
@@ -35,6 +36,8 @@
                 <ListBoxItem>装置与Modbus地址转换</ListBoxItem>
                 <ListBoxItem>G代码字符串输出</ListBoxItem>
                 <ListBoxItem>字符串长度与ASCII转换</ListBoxItem>
+                <ListBoxItem>Modbus串口通讯</ListBoxItem>
+                <ListBoxItem>ModbusTcp通讯</ListBoxItem>
             </ListBox>
         </ScrollViewer>
         <ScrollViewer Grid.Column="1" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
@@ -322,7 +325,7 @@
                     <TextBox x:Name="TextBox8_5" Grid.Column="4" Grid.Row="3" FontSize="20" Margin="5" IsReadOnly="True"></TextBox>
                     <Button x:Name="Button8_1" Content="计算" FontSize="20" Grid.Column="2" Grid.Row="4" Margin="5" MaxHeight="50" MinHeight="25" MinWidth="75" MaxWidth="100" IsDefault="True" Click="Cal_modbus"></Button>
                 </Grid>
-                <Grid x:Name="grid8" Visibility="Visible">
+                <Grid x:Name="grid8" Visibility="Hidden">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"></RowDefinition>
                         <RowDefinition></RowDefinition>
@@ -336,9 +339,34 @@
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Button Content="生成并输出" Grid.Column="1" MaxWidth="200" MinWidth="120" MaxHeight="30" MinHeight="40" Margin="5" FontSize="20" Click="GcodeSave_OnClick"></Button>
-                        <Button x:Name="ButtonOpenFile" Content="打开生成文件" Grid.Column="2" FontSize="20" Margin="5" Visibility="Hidden" Click="OpenGcodeFile_OnClick"></Button>
-                        <Button x:Name="ButtonDraw" Content="画图" Grid.Column="3" FontSize="20" Margin="5" Visibility="Hidden" Click="DrawPic_OnClick"></Button>
+                        <ComboBox x:Name="ComboBoxCurveType" Grid.Column="0" Margin="5" MinWidth="100" FontSize="20" VerticalContentAlignment="Center" SelectedIndex="1">
+                            <ComboBoxItem Content="样条曲线" FontSize="15"></ComboBoxItem>
+                            <ComboBoxItem Content="右上的8字形折线" FontSize="15"></ComboBoxItem>
+                            <ComboBoxItem Content="玫瑰线" FontSize="15"></ComboBoxItem>
+                            <ComboBoxItem Content="伯努利双纽线" FontSize="15"></ComboBoxItem>
+                            <ComboBoxItem Content="摆线" FontSize="15"></ComboBoxItem>
+                            <ComboBoxItem Content="笛卡儿叶形线" FontSize="15"></ComboBoxItem>
+                            <ComboBoxItem Content="箕舌线" FontSize="15"></ComboBoxItem>
+                            <ComboBoxItem Content="阿基米德螺旋线" FontSize="15"></ComboBoxItem>
+                            <ComboBoxItem Content="sin曲线" FontSize="15"></ComboBoxItem>
+                            <ComboBoxItem Content="折线" FontSize="15"></ComboBoxItem>
+                            <ComboBoxItem Content="椭圆" FontSize="15"></ComboBoxItem>
+                            <ComboBoxItem Content="勒洛三角形" FontSize="15"></ComboBoxItem>
+                            <ComboBoxItem Content="笛卡尔心型线" FontSize="15"></ComboBoxItem>
+                            <ComboBoxItem Content="圆的渐开线" FontSize="15"></ComboBoxItem>
+                            <ComboBoxItem Content="星形线" FontSize="15"></ComboBoxItem>
+                            <ComboBoxItem Content="内摆线" FontSize="15"></ComboBoxItem>
+                            <ComboBoxItem Content="抛物线" FontSize="15"></ComboBoxItem>
+                            <ComboBoxItem Content="双曲线" FontSize="15"></ComboBoxItem>
+                            <ComboBoxItem Content="三次函数" FontSize="15"></ComboBoxItem>
+                            <ComboBoxItem Content="蔓叶线" FontSize="15"></ComboBoxItem>
+                            <ComboBoxItem Content="半三次抛物线" FontSize="15"></ComboBoxItem>
+                            <ComboBoxItem Content="蛇形线" FontSize="15"></ComboBoxItem>
+                            <ComboBoxItem Content="双角线" FontSize="15"></ComboBoxItem>
+                        </ComboBox>
+                        <Button Content="生成并输出" Grid.Column="2" MaxWidth="200" MinWidth="120" MaxHeight="30" MinHeight="40" Margin="5" FontSize="20" Click="GcodeSave_OnClick"></Button>
+                        <Button x:Name="ButtonOpenFile" Content="打开生成文件" Grid.Column="3" FontSize="20" Margin="5" Visibility="Hidden" Click="OpenGcodeFile_OnClick"></Button>
+                        <Button x:Name="ButtonDraw" Content="画图" Grid.Column="1" FontSize="20" Margin="5" Visibility="Visible" Click="DrawPic_OnClick"></Button>
                     </Grid>
                     <TextBox x:Name="TextBox_GText" Grid.Row="1" Margin="5" FontSize="12" IsReadOnly="True"></TextBox>
                 </Grid>
@@ -354,6 +382,81 @@
                     <TextBox x:Name="TextBox_inputstr" Grid.Column="0" Grid.Row="0" Margin="5" FontSize="20" TextWrapping="NoWrap"></TextBox>
                     <Button x:Name="Button_trans" Grid.Column="1" Grid.Row="0" Content="转换" FontSize="20" MinHeight="25" MaxHeight="50" MinWidth="60" MaxWidth="100" Margin="5" IsDefault="True" Click="OnClick_strTrans"></Button>
                     <TextBox x:Name="TextBox_outputstr" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Margin="5" FontSize="20"></TextBox>
+                </Grid>
+                <Grid x:Name="grid10" Visibility="Hidden">
+                   <Grid.ColumnDefinitions>
+                       <ColumnDefinition Width="Auto"></ColumnDefinition>
+                       <ColumnDefinition></ColumnDefinition>
+                   </Grid.ColumnDefinitions> 
+                   <Grid Grid.Column="0">
+                       <Grid.ColumnDefinitions>
+                           <ColumnDefinition Width="Auto"></ColumnDefinition>
+                           <ColumnDefinition Width="Auto"></ColumnDefinition>
+                       </Grid.ColumnDefinitions>
+                       <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Column="0" Grid.Row="0" Content="波特率" FontSize="20" VerticalContentAlignment="Center" Margin="5"></Label>
+                        <Label Grid.Column="0" Grid.Row="1" Content="数据长度" FontSize="20" VerticalContentAlignment="Center" Margin="5"></Label>
+                        <Label Grid.Column="0" Grid.Row="2" Content="校验位" FontSize="20" VerticalContentAlignment="Center" Margin="5"></Label>
+                        <Label Grid.Column="0" Grid.Row="3" Content="停止位" FontSize="20" VerticalContentAlignment="Center" Margin="5"></Label>
+                        <Label Grid.Column="0" Grid.Row="4" Content="模式" FontSize="20" VerticalContentAlignment="Center" Margin="5"></Label>
+                        <ComboBox Grid.Column="1" Grid.Row="0" Margin="5" FontSize="20" SelectedIndex="0">
+                            <ComboBoxItem FontSize="18">9600</ComboBoxItem>
+                            <ComboBoxItem FontSize="18">19200</ComboBoxItem>
+                            <ComboBoxItem FontSize="18">38400</ComboBoxItem>
+                            <ComboBoxItem FontSize="18">57600</ComboBoxItem>
+                            <ComboBoxItem  FontSize="18">115200</ComboBoxItem>
+                        </ComboBox>
+                        <ComboBox Grid.Column="1" Grid.Row="1" Margin="5" FontSize="20" SelectedIndex="0">
+                            <ComboBoxItem FontSize="18">7</ComboBoxItem>
+                            <ComboBoxItem FontSize="18">8</ComboBoxItem>
+                        </ComboBox>
+                        <ComboBox Grid.Column="1" Grid.Row="2" Margin="5" FontSize="20" SelectedIndex="1">
+                            <ComboBoxItem FontSize="18">奇校验(O)</ComboBoxItem>
+                            <ComboBoxItem FontSize="18">偶校验(E)</ComboBoxItem>
+                            <ComboBoxItem FontSize="18">无校验(N)</ComboBoxItem>
+                        </ComboBox>
+                        <ComboBox Grid.Column="1" Grid.Row="3" Margin="5" FontSize="20" SelectedIndex="1">
+                            <ComboBoxItem FontSize="18">0</ComboBoxItem>
+                            <ComboBoxItem FontSize="18">1</ComboBoxItem>
+                        </ComboBox>
+                        <ComboBox Grid.Column="1" Grid.Row="4" Margin="5" FontSize="20" SelectedIndex="0">
+                            <ComboBoxItem FontSize="18">ASCII</ComboBoxItem>
+                            <ComboBoxItem FontSize="18">RTU</ComboBoxItem>
+                        </ComboBox>
+                        <Button x:Name="ButtonOpenCom" Grid.Column="0" Grid.Row="5" Content="打开串口" FontSize="20" VerticalContentAlignment="Center" Margin="5"></Button>
+                       
+                    </Grid>
+                </Grid>
+                <Grid x:Name="grid11" Visibility="Hidden">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" Content="选择网卡" FontSize="20" VerticalContentAlignment="Center"></Label>
+                    <ComboBox x:Name="ComboBoxNetworkInterface" Grid.Column="1" Grid.Row="0" Margin="5" DisplayMemberPath="comboMember" SelectionChanged="ComboBoxNetworkInterface_OnSelectionChanged"></ComboBox>
+                    <Label Grid.Column="0" Grid.Row="1" Content="IP地址" FontSize="20" VerticalContentAlignment="Center"></Label>
+                    <Label Grid.Column="0" Grid.Row="2" Content="发送数据" FontSize="20" VerticalContentAlignment="Center"></Label>
+                    <TextBox x:Name="TextBoxModbusTcpipaddr" Grid.Row="1" Grid.Column="1" Margin="5" TextWrapping="NoWrap" VerticalContentAlignment="Center" FontSize="20" Text="192.168.1.134"></TextBox>
+                    <TextBox x:Name="TextBoxModbusTcpsend" Grid.Column="1" Grid.Row="2"   Margin="5" TextWrapping="NoWrap" VerticalContentAlignment="Center" FontSize="20" Text="00 00 00 00 00 06 01 03 00 00 00 01"></TextBox>
+                    <Button x:Name="ButtonModbusTcpConnent" Grid.Row="1" Grid.Column="2" Content="连接" FontSize="20" MaxHeight="40" MaxWidth="80" MinWidth="60" Margin="5" Click="ButtonModbusTcpConnent_OnClick"></Button>
+                    <Button x:Name="ButtonModbusTcpSend" Grid.Row="2" Grid.Column="2" Content="发送" FontSize="20" MaxHeight="40" MaxWidth="80" MinWidth="60" Margin="5" Click="ButtonModbusTcpSend_OnClick" IsDefault="True"></Button>
+                    <TextBox x:Name="TextBoxModbusTcprecv" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3"  Margin="10" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" FontSize="20"></TextBox>
+
                 </Grid>
             </Grid>
         </ScrollViewer>

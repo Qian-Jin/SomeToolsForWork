@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace SomeTools
 {
     /// <summary>
@@ -32,7 +33,9 @@ namespace SomeTools
 
 
         [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "outfunction", CallingConvention = CallingConvention.Cdecl)]
-        public extern static double outfunction(double i, typ_xy typ);
+        public extern static double outfunction(double i, typ_xy typ, int curvetype);
+
+        public int curvetype1 = MainWindow.Curvetype;
 
         protected void DrawFunLine()
         {
@@ -40,10 +43,10 @@ namespace SomeTools
             const double for_step = 0.1;
             for (double i = 0; i <= for_time; i = i + for_step)
             {
-                double the1x = outfunction(i, typ_xy.X) * Zoom + Xpos;
-                double the1y = outfunction(i, typ_xy.Y) * Zoom + Ypos;
-                double the2x = outfunction(i + for_step, typ_xy.X) * Zoom + Xpos;
-                double the2y = outfunction(i + for_step, typ_xy.Y) * Zoom + Ypos;
+                double the1x = Xpos + outfunction(i, typ_xy.X, curvetype1) * Zoom ;
+                double the1y = Ypos - outfunction(i, typ_xy.Y, curvetype1) * Zoom ;
+                double the2x = Xpos + outfunction(i + for_step, typ_xy.X, curvetype1) * Zoom ;
+                double the2y = Ypos - outfunction(i + for_step, typ_xy.Y, curvetype1) * Zoom ;
                 Point the1Point = new Point(the1x,the1y);
                 Point the2Point = new Point(the2x,the2y);
                 DrawLine(the1Point,the2Point);
@@ -121,7 +124,7 @@ namespace SomeTools
             const double zoomdelta = 5;
             MouseButtonEventArgs args = new MouseButtonEventArgs(Mouse.PrimaryDevice,0, MouseButton.Left);
             args.RoutedEvent = Button.ClickEvent;
-            if (e.Delta < 0)
+            if (e.Delta > 0)
             {
                 if (Zoom <= 0)
                 {

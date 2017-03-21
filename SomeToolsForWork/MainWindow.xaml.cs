@@ -14,9 +14,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
+using System.Net;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
+using System.Threading;
 
 namespace SomeTools
 {
+
+    
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
@@ -25,6 +32,7 @@ namespace SomeTools
         public MainWindow()
         {
             InitializeComponent();
+
         }
 
         private void program_exit(object sender, RoutedEventArgs e)
@@ -37,6 +45,15 @@ namespace SomeTools
             ListBox0.SelectedIndex = 8;
             ComboBox8_1.SelectedIndex = 0;
             ComboBox8_2.SelectedIndex = 0;
+            LanuchTimer();
+            GetNetworkInterface();
+            ComboBoxNetworkInterface.ItemsSource = combolist;
+            ComboBoxNetworkInterface.SelectedIndex = 0;
+        }
+
+        private void MainWindow_OnClosed(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
         }
 
         private void open_About(object sender, RoutedEventArgs e)
@@ -44,6 +61,52 @@ namespace SomeTools
             About newAboutWindow = new About();
             newAboutWindow.Title = "关于";
             newAboutWindow.Show();
+        }
+
+        private void TimerTick(object sender, EventArgs e)
+        {
+            Timer.Content = DateTime.Now.ToLongDateString() +" " + DateTime.Now.ToLongTimeString();
+        }
+
+        private void LanuchTimer()
+        {
+            DispatcherTimer innerTimer = new DispatcherTimer(TimeSpan.FromSeconds(1.0),DispatcherPriority.Loaded, new EventHandler(this.TimerTick), this.Dispatcher);
+            innerTimer.Start();
+        }
+
+        public struct combomem
+        {
+            public int ID { get; set; }
+            public string comboMember { get; set; }
+            public string ipadd { get; set; }
+        }
+
+        private NetworkInterface[] NetworkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
+        List<combomem> combolist = new List<combomem>();
+
+        private void GetNetworkInterface()
+        {
+            
+            combomem combomenber = new combomem();
+            int i = 0;
+            foreach (NetworkInterface networkInterface in NetworkInterfaces)
+            {
+                combomenber.ID = i;
+                i++;
+                combomenber.comboMember = networkInterface.Description;
+                IPInterfaceProperties IPInterfaceProperties = networkInterface.GetIPProperties();
+                UnicastIPAddressInformationCollection UnicastIPAddressInformationCollection = IPInterfaceProperties.UnicastAddresses;
+                foreach (UnicastIPAddressInformation UnicastIPAddressInformation in UnicastIPAddressInformationCollection)
+                {
+                    if (UnicastIPAddressInformation.Address.AddressFamily == AddressFamily.InterNetwork)
+                    {
+                        combomenber.ipadd = UnicastIPAddressInformation.Address.ToString();
+                    }
+                }
+
+                combolist.Add(combomenber);
+            }
+        
         }
 
 
@@ -69,6 +132,8 @@ namespace SomeTools
                         grid7.Visibility = Visibility.Hidden;
                         grid8.Visibility = Visibility.Hidden;
                         grid9.Visibility = Visibility.Hidden;
+                        grid10.Visibility = Visibility.Hidden;
+                        grid11.Visibility = Visibility.Hidden;
                         break;
                     case 1:
                         grid0.Visibility = Visibility.Hidden;
@@ -81,6 +146,8 @@ namespace SomeTools
                         grid7.Visibility = Visibility.Hidden;
                         grid8.Visibility = Visibility.Hidden;
                         grid9.Visibility = Visibility.Hidden;
+                        grid10.Visibility = Visibility.Hidden;
+                        grid11.Visibility = Visibility.Hidden;
 
                         break;
                     case 2:
@@ -94,6 +161,8 @@ namespace SomeTools
                         grid7.Visibility = Visibility.Hidden;
                         grid8.Visibility = Visibility.Hidden;
                         grid9.Visibility = Visibility.Hidden;
+                        grid10.Visibility = Visibility.Hidden;
+                        grid11.Visibility = Visibility.Hidden;
 
                         break;
                     case 3:
@@ -107,6 +176,8 @@ namespace SomeTools
                         grid7.Visibility = Visibility.Hidden;
                         grid8.Visibility = Visibility.Hidden;
                         grid9.Visibility = Visibility.Hidden;
+                        grid10.Visibility = Visibility.Hidden;
+                        grid11.Visibility = Visibility.Hidden;
 
                         break;
                     case 4:
@@ -120,6 +191,8 @@ namespace SomeTools
                         grid7.Visibility = Visibility.Hidden;
                         grid8.Visibility = Visibility.Hidden;
                         grid9.Visibility = Visibility.Hidden;
+                        grid10.Visibility = Visibility.Hidden;
+                        grid11.Visibility = Visibility.Hidden;
 
                         break;
                     case 5:
@@ -133,6 +206,8 @@ namespace SomeTools
                         grid7.Visibility = Visibility.Hidden;
                         grid8.Visibility = Visibility.Hidden;
                         grid9.Visibility = Visibility.Hidden;
+                        grid10.Visibility = Visibility.Hidden;
+                        grid11.Visibility = Visibility.Hidden;
 
                         break;
                     case 6:
@@ -146,6 +221,8 @@ namespace SomeTools
                         grid7.Visibility = Visibility.Hidden;
                         grid8.Visibility = Visibility.Hidden;
                         grid9.Visibility = Visibility.Hidden;
+                        grid10.Visibility = Visibility.Hidden;
+                        grid11.Visibility = Visibility.Hidden;
 
                         break;
                     case 7:
@@ -159,6 +236,8 @@ namespace SomeTools
                         grid7.Visibility = Visibility.Visible;
                         grid8.Visibility = Visibility.Hidden;
                         grid9.Visibility = Visibility.Hidden;
+                        grid10.Visibility = Visibility.Hidden;
+                        grid11.Visibility = Visibility.Hidden;
 
                         break;
                     case 8:
@@ -172,6 +251,8 @@ namespace SomeTools
                         grid7.Visibility = Visibility.Hidden;
                         grid8.Visibility = Visibility.Visible;
                         grid9.Visibility = Visibility.Hidden;
+                        grid10.Visibility = Visibility.Hidden;
+                        grid11.Visibility = Visibility.Hidden;
 
                         break;
                     case 9:
@@ -185,7 +266,41 @@ namespace SomeTools
                         grid7.Visibility = Visibility.Hidden;
                         grid8.Visibility = Visibility.Hidden;
                         grid9.Visibility = Visibility.Visible;
+                        grid10.Visibility = Visibility.Hidden;
+                        grid11.Visibility = Visibility.Hidden;
+
                         break;
+                    case 10:
+                        grid0.Visibility = Visibility.Hidden;
+                        grid1.Visibility = Visibility.Hidden;
+                        grid2.Visibility = Visibility.Hidden;
+                        grid3.Visibility = Visibility.Hidden;
+                        grid4.Visibility = Visibility.Hidden;
+                        grid5.Visibility = Visibility.Hidden;
+                        grid6.Visibility = Visibility.Hidden;
+                        grid7.Visibility = Visibility.Hidden;
+                        grid8.Visibility = Visibility.Hidden;
+                        grid9.Visibility = Visibility.Hidden;
+                        grid10.Visibility = Visibility.Hidden;
+                        grid11.Visibility = Visibility.Hidden;
+
+                        break;
+                    case 11:
+                        grid0.Visibility = Visibility.Hidden;
+                        grid1.Visibility = Visibility.Hidden;
+                        grid2.Visibility = Visibility.Hidden;
+                        grid3.Visibility = Visibility.Hidden;
+                        grid4.Visibility = Visibility.Hidden;
+                        grid5.Visibility = Visibility.Hidden;
+                        grid6.Visibility = Visibility.Hidden;
+                        grid7.Visibility = Visibility.Hidden;
+                        grid8.Visibility = Visibility.Hidden;
+                        grid9.Visibility = Visibility.Hidden;
+                        grid10.Visibility = Visibility.Hidden;
+                        grid11.Visibility = Visibility.Visible;
+
+                        break;
+
                     default:
                         grid0.Visibility = Visibility.Hidden;
                         grid1.Visibility = Visibility.Hidden;
@@ -197,6 +312,8 @@ namespace SomeTools
                         grid7.Visibility = Visibility.Hidden;
                         grid8.Visibility = Visibility.Hidden;
                         grid9.Visibility = Visibility.Hidden;
+                        grid10.Visibility = Visibility.Hidden;
+                        grid11.Visibility = Visibility.Hidden;
 
                         break;
                 }
@@ -586,22 +703,29 @@ namespace SomeTools
             byte[] asciiarray = System.Text.Encoding.ASCII.GetBytes(TextBox_inputstr.Text);
             foreach (var VARIABLE in asciiarray)
             {
-                TextBox_outputstr.AppendText("0x" + Convert.ToString(VARIABLE, 16).ToUpper() + " \n");
+                TextBox_outputstr.AppendText("0x" + Convert.ToString(VARIABLE, 16).ToUpper() + " \t");
+                TextBox_outputstr.AppendText(Convert.ToString(VARIABLE, 10) + " \n");
             }
         }
 
 
 
         [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "gcodefileoutput",CallingConvention = CallingConvention.Cdecl)]
-        public extern static void gcodefileoutput();
+        public extern static void gcodefileoutput(int curvetype);
 
         private void GcodeSave_OnClick(object sender, RoutedEventArgs e)
         {
-            gcodefileoutput();
-            TextBox_GText.Text = "生成成功，文件位于E:\\TextOut\\G_code.txt\n具体文件如下：\n";
-            TextBox_GText.AppendText(File.ReadAllText("E:\\TextOut\\G_code.txt"));
-            ButtonOpenFile.Visibility = Visibility.Visible;
-            ButtonDraw.Visibility = Visibility.Visible;
+            if (ComboBoxCurveType.SelectedIndex == -1)
+            {
+                TextBox_GText.Text = "请选择曲线类型";
+            }
+            else
+            {
+                gcodefileoutput(ComboBoxCurveType.SelectedIndex);
+                TextBox_GText.Text = "生成成功，文件位于E:\\TextOut\\G_code.txt\n具体文件如下：\n";
+                TextBox_GText.AppendText(File.ReadAllText("E:\\TextOut\\G_code.txt"));
+                ButtonOpenFile.Visibility = Visibility.Visible;
+            }
         }
 
 
@@ -610,12 +734,157 @@ namespace SomeTools
             System.Diagnostics.Process.Start(@"E:\TextOut\Gcode.txt");
         }
 
+        public static int Curvetype;
+
         private void DrawPic_OnClick(object sender, RoutedEventArgs e)
         {
+            Curvetype = ComboBoxCurveType.SelectedIndex;
             DrawPic drawPic = new DrawPic();
             drawPic.Show();
 
         }
 
+        public Socket client;
+        public Thread MyThread;
+        public String recvdata;
+        public IPEndPoint ie;
+        public bool isclose;
+
+        public delegate void MyInvoke(string str, string str1);
+
+        public void Initsocket()
+        {
+            string ipadd = TextBoxModbusTcpipaddr.Text;//IP
+            int port = 502;//port
+
+            //make a socket
+            ie = new IPEndPoint(IPAddress.Parse(ipadd), port);
+            client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            IPEndPoint bindip = new IPEndPoint(IPAddress.Parse(combolist[ComboBoxNetworkInterface.SelectedIndex].ipadd), port);
+            if (client.IsBound == false)
+            {
+                client.Bind(bindip);
+            }
+        }
+        public void ConnectTcp()
+        {
+
+            byte[] data = new byte[1024];
+
+            //connect
+            try
+            {
+                client.Connect(ie);
+            }
+            catch (SocketException e)
+            {
+                MessageBox.Show("Connect Fail \n" + e.Message);
+                return;
+            }
+
+            ThreadStart myThreaddelegate = new ThreadStart(ReceiveMsg);
+            MyThread = new Thread(myThreaddelegate);
+            MyThread.Start();
+            TextBoxModbusTcprecv.AppendText("连接成功\n");
+        }
+
+        public void SendTcp()
+        {
+            string senddata = TextBoxModbusTcpsend.Text;
+            senddata = senddata.Replace(" ", "");
+            byte[] data = new byte[senddata.Length/2];
+            ushort[] dataUshort = new ushort[senddata.Length / 2];
+            for (int i = 0; i < data.Length; i++)
+            {
+                char str1 = senddata[i * 2];
+                char str2 = senddata[i * 2 + 1];
+                string str = str1.ToString() + str2.ToString();
+                dataUshort[i] = Convert.ToUInt16(str);
+                data[i] = Convert.ToByte(dataUshort[i]);
+            }
+
+                //new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x01, 0x03, 0x00, 0x00, 0x00, 0x01 };
+            if (client == null)
+            {
+                ;
+            }
+            else
+            {
+                client.Send(data);
+            }
+        }
+        public void ReceiveMsg()
+        {
+            while (isclose)
+            {
+                byte[] data = new byte[1024];
+                client.Receive(data);
+                int length = data[5];
+                Byte[] datashow = new byte[length + 6];
+                for (int i = 0; i <= length + 5; i++)
+                {
+                    datashow[i] = data[i];
+                }
+                recvdata = "";
+                string temp;
+                for (int i = 0; i <= length + 5; i++)
+                {
+                    temp = Convert.ToString(datashow[i], 16);
+                    switch (temp.Length)
+                    {
+                        case 1:
+                            temp = "0" + temp;
+                            break;
+                        default:
+                            break;
+                    }
+                    recvdata = recvdata + temp.ToUpper() + " ";
+                }
+                recvdata = recvdata + "\n";
+
+                string numvalue = "Receive value: " +
+                Convert.ToString(
+                        Convert.ToUInt16((Convert.ToString(datashow[9], 16) + Convert.ToString(datashow[10], 16)), 16)) +"\n";
+
+
+                ShowTcpMsg(recvdata, numvalue);
+            }
+        }
+
+        public void ShowTcpMsg(string msg, string num)
+        {
+            if (TextBoxModbusTcpsend.CheckAccess() && TextBoxModbusTcprecv.CheckAccess())
+            {
+                TextBoxModbusTcprecv.AppendText(msg);
+                TextBoxModbusTcprecv.ScrollToEnd();
+            }
+            else
+            {
+                MyInvoke _myInvoke = new MyInvoke(ShowTcpMsg);
+                this.Dispatcher.Invoke(_myInvoke, new object[] { msg, num });
+
+            }
+        }
+
+
+
+
+        private void ButtonModbusTcpConnent_OnClick(object sender, RoutedEventArgs e)
+        {
+            isclose = true;
+            Initsocket();
+            ConnectTcp();
+        }
+
+
+        private void ButtonModbusTcpSend_OnClick(object sender, RoutedEventArgs e)
+        {
+            SendTcp();
+        }
+
+        private void ComboBoxNetworkInterface_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ;
+        }
     }
 }

@@ -30,7 +30,7 @@
                 <Label Grid.Column="0" Content="放大倍数" FontSize="20" VerticalContentAlignment="Center"></Label>
                 <TextBox x:Name="TextBoxZoom" Grid.Column="1" Margin="5" FontSize="20" VerticalContentAlignment="Center" Text="5"></TextBox>
             </Grid>
-            <Button x:Name="ButtonDraw" Grid.Column="4" Margin="5" FontSize="20" Width="120" HorizontalAlignment="Left" Content="生成新图像" Click="ButtonDrawNewPic_OnClick"></Button>
+            <Button x:Name="ButtonDraw" Grid.Column="4" Margin="5" FontSize="20" Width="120" HorizontalAlignment="Left" Content="生成新图像" Click="ButtonDrawNewPic_OnClick" IsDefault="True"></Button>
         </Grid>
         <Canvas Name="Canvas" Grid.Row="1" Margin="5" MouseWheel="Canvas_OnMouseWheel" Background="White" MouseLeftButtonDown="Canvas_OnMouseLeftButtonDown" MouseLeftButtonUp="Canvas_OnMouseLeftButtonUp"></Canvas>
     </Grid>

@@ -392,7 +392,7 @@ double f_Rose(double x, typ_xy_C typ)
 }
 
 void makesplinepoint() {
-	std::vector<double> X(21), Y(21);
+	std::vector<double> X(10), Y(10);
 	X[0] = 0.25;		Y[0] = -0.13;
 	X[1] = 0.48;	Y[1] = -0.22;
 	X[2] = 0.78;	Y[2] = -0.31;
@@ -403,7 +403,8 @@ void makesplinepoint() {
 	X[7] = 2.6;	Y[7] = -0.19;
 	X[8] = 2.97;	Y[8] = 0.41;
 	X[9] = 2.88;	Y[9] = 0.83;
-	/*
+	
+/*
 	X[10] = 2.73;	Y[10] = 1.24;
 	X[11] = 2.53;	Y[11] = 1.61;
 	X[12] = 2.26;	Y[12] = 1.98;
@@ -415,8 +416,9 @@ void makesplinepoint() {
 	X[18] = 0.2;	Y[18] = 1.08;
 	X[19] = 0.07;	Y[19] = 0.65;
 	X[20] = 0.02;	Y[20] = 0.38;
+*/
 
-	*/
+	
 
 	s.set_points(X, Y);    // currently it is required that X is already sorted
 }
@@ -448,8 +450,8 @@ base_pointer pointer[4];
 
 double f_rightup_trapezium_8(int x, typ_xy_C typ)
 {
-	const double angle = 155;
-	const double firstangle = 62;
+	const double angle = 172;
+	const double firstangle = 13;
 	const double line_long = 5;
 	if ((angle >= 90) && (angle <= 180))
 	{

@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SomeToolsForWork", "SomeToolsForWork\SomeToolsForWork.csproj", "{B9125963-0258-4408-87B2-DCBA0FC51A0E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FCA1050F-57E0-4F70-8FC5-48FF51C36457} = {FCA1050F-57E0-4F70-8FC5-48FF51C36457}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AppFun", "AppFun\AppFun.vcxproj", "{FCA1050F-57E0-4F70-8FC5-48FF51C36457}"
 EndProject
@@ -36,6 +39,7 @@ Global
 		{FCA1050F-57E0-4F70-8FC5-48FF51C36457}.Debug|x86.ActiveCfg = Debug|Win32
 		{FCA1050F-57E0-4F70-8FC5-48FF51C36457}.Debug|x86.Build.0 = Debug|Win32
 		{FCA1050F-57E0-4F70-8FC5-48FF51C36457}.Release|Any CPU.ActiveCfg = Release|Win32
+		{FCA1050F-57E0-4F70-8FC5-48FF51C36457}.Release|Any CPU.Build.0 = Release|Win32
 		{FCA1050F-57E0-4F70-8FC5-48FF51C36457}.Release|x64.ActiveCfg = Release|x64
 		{FCA1050F-57E0-4F70-8FC5-48FF51C36457}.Release|x64.Build.0 = Release|x64
 		{FCA1050F-57E0-4F70-8FC5-48FF51C36457}.Release|x86.ActiveCfg = Release|Win32
