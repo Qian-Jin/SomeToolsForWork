@@ -450,7 +450,7 @@ base_pointer pointer[4];
 
 double f_rightup_trapezium_8(int x, typ_xy_C typ)
 {
-	const double angle = 172;
+	const double angle = 132;
 	const double firstangle = 13;
 	const double line_long = 5;
 	if ((angle >= 90) && (angle <= 180))

@@ -5,9 +5,9 @@
 
 
 const double for_time = 200;
-const double for_step = 0.1;
+const double for_step = 1;
 
-
+//G1
 double outfunction(double i, typ_xy_C typ, int curvetype)
 {
 	switch (curvetype)
@@ -303,7 +303,6 @@ void outfilefunc_xy(std::ofstream &file, int curvetype)
 
 }
 
-
 void gcodefileoutput(int curvetype)
 {
 	std::ofstream outfile;
@@ -311,3 +310,4 @@ void gcodefileoutput(int curvetype)
 	outfilefunc_xy(outfile, curvetype);
 	outfile.close();
 }
+

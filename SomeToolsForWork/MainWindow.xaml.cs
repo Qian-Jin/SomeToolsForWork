@@ -42,7 +42,7 @@ namespace SomeTools
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
-            ListBox0.SelectedIndex = 8;
+            ListBox0.SelectedIndex = 0;
             ComboBox8_1.SelectedIndex = 0;
             ComboBox8_2.SelectedIndex = 0;
             LanuchTimer();
@@ -134,6 +134,8 @@ namespace SomeTools
                         grid9.Visibility = Visibility.Hidden;
                         grid10.Visibility = Visibility.Hidden;
                         grid11.Visibility = Visibility.Hidden;
+                        grid12.Visibility = Visibility.Hidden;
+
                         break;
                     case 1:
                         grid0.Visibility = Visibility.Hidden;
@@ -148,7 +150,7 @@ namespace SomeTools
                         grid9.Visibility = Visibility.Hidden;
                         grid10.Visibility = Visibility.Hidden;
                         grid11.Visibility = Visibility.Hidden;
-
+                        grid12.Visibility = Visibility.Hidden;
                         break;
                     case 2:
                         grid0.Visibility = Visibility.Hidden;
@@ -163,7 +165,7 @@ namespace SomeTools
                         grid9.Visibility = Visibility.Hidden;
                         grid10.Visibility = Visibility.Hidden;
                         grid11.Visibility = Visibility.Hidden;
-
+                        grid12.Visibility = Visibility.Hidden;
                         break;
                     case 3:
                         grid0.Visibility = Visibility.Hidden;
@@ -178,7 +180,7 @@ namespace SomeTools
                         grid9.Visibility = Visibility.Hidden;
                         grid10.Visibility = Visibility.Hidden;
                         grid11.Visibility = Visibility.Hidden;
-
+                        grid12.Visibility = Visibility.Hidden;
                         break;
                     case 4:
                         grid0.Visibility = Visibility.Hidden;
@@ -193,7 +195,7 @@ namespace SomeTools
                         grid9.Visibility = Visibility.Hidden;
                         grid10.Visibility = Visibility.Hidden;
                         grid11.Visibility = Visibility.Hidden;
-
+                        grid12.Visibility = Visibility.Hidden;
                         break;
                     case 5:
                         grid0.Visibility = Visibility.Hidden;
@@ -208,7 +210,7 @@ namespace SomeTools
                         grid9.Visibility = Visibility.Hidden;
                         grid10.Visibility = Visibility.Hidden;
                         grid11.Visibility = Visibility.Hidden;
-
+                        grid12.Visibility = Visibility.Hidden;
                         break;
                     case 6:
                         grid0.Visibility = Visibility.Hidden;
@@ -223,7 +225,7 @@ namespace SomeTools
                         grid9.Visibility = Visibility.Hidden;
                         grid10.Visibility = Visibility.Hidden;
                         grid11.Visibility = Visibility.Hidden;
-
+                        grid12.Visibility = Visibility.Hidden;
                         break;
                     case 7:
                         grid0.Visibility = Visibility.Hidden;
@@ -238,7 +240,7 @@ namespace SomeTools
                         grid9.Visibility = Visibility.Hidden;
                         grid10.Visibility = Visibility.Hidden;
                         grid11.Visibility = Visibility.Hidden;
-
+                        grid12.Visibility = Visibility.Hidden;
                         break;
                     case 8:
                         grid0.Visibility = Visibility.Hidden;
@@ -253,7 +255,7 @@ namespace SomeTools
                         grid9.Visibility = Visibility.Hidden;
                         grid10.Visibility = Visibility.Hidden;
                         grid11.Visibility = Visibility.Hidden;
-
+                        grid12.Visibility = Visibility.Hidden;
                         break;
                     case 9:
                         grid0.Visibility = Visibility.Hidden;
@@ -268,7 +270,7 @@ namespace SomeTools
                         grid9.Visibility = Visibility.Visible;
                         grid10.Visibility = Visibility.Hidden;
                         grid11.Visibility = Visibility.Hidden;
-
+                        grid12.Visibility = Visibility.Hidden;
                         break;
                     case 10:
                         grid0.Visibility = Visibility.Hidden;
@@ -283,7 +285,7 @@ namespace SomeTools
                         grid9.Visibility = Visibility.Hidden;
                         grid10.Visibility = Visibility.Hidden;
                         grid11.Visibility = Visibility.Hidden;
-
+                        grid12.Visibility = Visibility.Hidden;
                         break;
                     case 11:
                         grid0.Visibility = Visibility.Hidden;
@@ -298,9 +300,23 @@ namespace SomeTools
                         grid9.Visibility = Visibility.Hidden;
                         grid10.Visibility = Visibility.Hidden;
                         grid11.Visibility = Visibility.Visible;
-
+                        grid12.Visibility = Visibility.Hidden;
                         break;
-
+                    case 12:
+                        grid0.Visibility = Visibility.Hidden;
+                        grid1.Visibility = Visibility.Hidden;
+                        grid2.Visibility = Visibility.Hidden;
+                        grid3.Visibility = Visibility.Hidden;
+                        grid4.Visibility = Visibility.Hidden;
+                        grid5.Visibility = Visibility.Hidden;
+                        grid6.Visibility = Visibility.Hidden;
+                        grid7.Visibility = Visibility.Hidden;
+                        grid8.Visibility = Visibility.Hidden;
+                        grid9.Visibility = Visibility.Hidden;
+                        grid10.Visibility = Visibility.Hidden;
+                        grid11.Visibility = Visibility.Hidden;
+                        grid12.Visibility = Visibility.Visible;
+                        break;
                     default:
                         grid0.Visibility = Visibility.Hidden;
                         grid1.Visibility = Visibility.Hidden;
@@ -314,7 +330,7 @@ namespace SomeTools
                         grid9.Visibility = Visibility.Hidden;
                         grid10.Visibility = Visibility.Hidden;
                         grid11.Visibility = Visibility.Hidden;
-
+                        grid12.Visibility = Visibility.Hidden;
                         break;
                 }
             }
@@ -885,6 +901,26 @@ namespace SomeTools
         private void ComboBoxNetworkInterface_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ;
+        }
+
+
+        [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "gcodecirclefileoutput", CallingConvention = CallingConvention.Cdecl)]
+        public extern static void gcodecirclefileoutput(int curvetype);
+
+        private void ButtonBase_OnClick_CreatCircleFile(object sender, RoutedEventArgs e)
+        {
+            if (ComboBoxCircleType.SelectedIndex == -1)
+            {
+                TextBox_CircleText.Text = "请选择曲线类型";
+            }
+            else
+            {
+                gcodecirclefileoutput(ComboBoxCircleType.SelectedIndex);
+                TextBox_CircleText.Text = "生成成功，文件位于E:\\TextOut\\G_code.txt\n具体文件如下：\n";
+                TextBox_CircleText.AppendText(File.ReadAllText("E:\\TextOut\\G_code.txt"));
+                ButtonCircleOpenFile.Visibility = Visibility.Visible;
+            }
+
         }
     }
 }

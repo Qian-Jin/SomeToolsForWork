@@ -34,10 +34,11 @@
                 <ListBoxItem>错误码查询</ListBoxItem>
                 <ListBoxItem>状态机查询</ListBoxItem>
                 <ListBoxItem>装置与Modbus地址转换</ListBoxItem>
-                <ListBoxItem>G代码字符串输出</ListBoxItem>
+                <ListBoxItem>G1字符串输出并画图</ListBoxItem>
                 <ListBoxItem>字符串长度与ASCII转换</ListBoxItem>
                 <ListBoxItem>Modbus串口通讯</ListBoxItem>
                 <ListBoxItem>ModbusTcp通讯</ListBoxItem>
+                <ListBoxItem>G2/G3字符串输出</ListBoxItem>
             </ListBox>
         </ScrollViewer>
         <ScrollViewer Grid.Column="1" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
@@ -456,6 +457,30 @@
                     <Button x:Name="ButtonModbusTcpConnent" Grid.Row="1" Grid.Column="2" Content="连接" FontSize="20" MaxHeight="40" MaxWidth="80" MinWidth="60" Margin="5" Click="ButtonModbusTcpConnent_OnClick"></Button>
                     <Button x:Name="ButtonModbusTcpSend" Grid.Row="2" Grid.Column="2" Content="发送" FontSize="20" MaxHeight="40" MaxWidth="80" MinWidth="60" Margin="5" Click="ButtonModbusTcpSend_OnClick" IsDefault="True"></Button>
                     <TextBox x:Name="TextBoxModbusTcprecv" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3"  Margin="10" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" FontSize="20"></TextBox>
+
+                </Grid>
+                <Grid x:Name="grid12" Visibility="Hidden">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <ComboBox x:Name="ComboBoxCircleType" Grid.Column="0" Margin="5" MinWidth="100" FontSize="20" VerticalContentAlignment="Center" SelectedIndex="0">
+                            <ComboBoxItem Content="G2" FontSize="15"></ComboBoxItem>
+                            <ComboBoxItem Content="G3" FontSize="15"></ComboBoxItem>
+                        </ComboBox>
+                        <Button Content="生成并输出" Grid.Column="2" MaxWidth="200" MinWidth="120" MaxHeight="30" MinHeight="40" Margin="5" FontSize="20" Click="ButtonBase_OnClick_CreatCircleFile"></Button>
+                        <Button x:Name="ButtonCircleOpenFile" Content="打开生成文件" Grid.Column="3" FontSize="20" Margin="5" Visibility="Hidden" Click="OpenGcodeFile_OnClick"></Button>
+                    </Grid>
+                    <TextBox x:Name="TextBox_CircleText" Grid.Row="1" Margin="5" FontSize="12" IsReadOnly="True"></TextBox>
 
                 </Grid>
             </Grid>

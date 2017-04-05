@@ -24,6 +24,9 @@
     <ClCompile Include="GcodeFun.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="G2G3code.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="motion.h">
@@ -36,6 +39,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="spline.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="G2G3code.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
