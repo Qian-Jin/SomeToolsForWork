@@ -135,7 +135,8 @@ namespace SomeTools
                         grid10.Visibility = Visibility.Hidden;
                         grid11.Visibility = Visibility.Hidden;
                         grid12.Visibility = Visibility.Hidden;
-
+                        Grid13.Visibility = Visibility.Hidden;
+                        Grid14.Visibility = Visibility.Hidden;
                         break;
                     case 1:
                         grid0.Visibility = Visibility.Hidden;
@@ -151,6 +152,8 @@ namespace SomeTools
                         grid10.Visibility = Visibility.Hidden;
                         grid11.Visibility = Visibility.Hidden;
                         grid12.Visibility = Visibility.Hidden;
+                        Grid13.Visibility = Visibility.Hidden;
+                        Grid14.Visibility = Visibility.Hidden;
                         break;
                     case 2:
                         grid0.Visibility = Visibility.Hidden;
@@ -166,6 +169,8 @@ namespace SomeTools
                         grid10.Visibility = Visibility.Hidden;
                         grid11.Visibility = Visibility.Hidden;
                         grid12.Visibility = Visibility.Hidden;
+                        Grid13.Visibility = Visibility.Hidden;
+                        Grid14.Visibility = Visibility.Hidden;
                         break;
                     case 3:
                         grid0.Visibility = Visibility.Hidden;
@@ -181,6 +186,8 @@ namespace SomeTools
                         grid10.Visibility = Visibility.Hidden;
                         grid11.Visibility = Visibility.Hidden;
                         grid12.Visibility = Visibility.Hidden;
+                        Grid13.Visibility = Visibility.Hidden;
+                        Grid14.Visibility = Visibility.Hidden;
                         break;
                     case 4:
                         grid0.Visibility = Visibility.Hidden;
@@ -196,6 +203,8 @@ namespace SomeTools
                         grid10.Visibility = Visibility.Hidden;
                         grid11.Visibility = Visibility.Hidden;
                         grid12.Visibility = Visibility.Hidden;
+                        Grid13.Visibility = Visibility.Hidden;
+                        Grid14.Visibility = Visibility.Hidden;
                         break;
                     case 5:
                         grid0.Visibility = Visibility.Hidden;
@@ -211,6 +220,8 @@ namespace SomeTools
                         grid10.Visibility = Visibility.Hidden;
                         grid11.Visibility = Visibility.Hidden;
                         grid12.Visibility = Visibility.Hidden;
+                        Grid13.Visibility = Visibility.Hidden;
+                        Grid14.Visibility = Visibility.Hidden;
                         break;
                     case 6:
                         grid0.Visibility = Visibility.Hidden;
@@ -226,6 +237,8 @@ namespace SomeTools
                         grid10.Visibility = Visibility.Hidden;
                         grid11.Visibility = Visibility.Hidden;
                         grid12.Visibility = Visibility.Hidden;
+                        Grid13.Visibility = Visibility.Hidden;
+                        Grid14.Visibility = Visibility.Hidden;
                         break;
                     case 7:
                         grid0.Visibility = Visibility.Hidden;
@@ -241,6 +254,8 @@ namespace SomeTools
                         grid10.Visibility = Visibility.Hidden;
                         grid11.Visibility = Visibility.Hidden;
                         grid12.Visibility = Visibility.Hidden;
+                        Grid13.Visibility = Visibility.Hidden;
+                        Grid14.Visibility = Visibility.Hidden;
                         break;
                     case 8:
                         grid0.Visibility = Visibility.Hidden;
@@ -256,6 +271,8 @@ namespace SomeTools
                         grid10.Visibility = Visibility.Hidden;
                         grid11.Visibility = Visibility.Hidden;
                         grid12.Visibility = Visibility.Hidden;
+                        Grid13.Visibility = Visibility.Hidden;
+                        Grid14.Visibility = Visibility.Hidden;
                         break;
                     case 9:
                         grid0.Visibility = Visibility.Hidden;
@@ -271,6 +288,8 @@ namespace SomeTools
                         grid10.Visibility = Visibility.Hidden;
                         grid11.Visibility = Visibility.Hidden;
                         grid12.Visibility = Visibility.Hidden;
+                        Grid13.Visibility = Visibility.Hidden;
+                        Grid14.Visibility = Visibility.Hidden;
                         break;
                     case 10:
                         grid0.Visibility = Visibility.Hidden;
@@ -286,6 +305,8 @@ namespace SomeTools
                         grid10.Visibility = Visibility.Hidden;
                         grid11.Visibility = Visibility.Hidden;
                         grid12.Visibility = Visibility.Hidden;
+                        Grid13.Visibility = Visibility.Hidden;
+                        Grid14.Visibility = Visibility.Hidden;
                         break;
                     case 11:
                         grid0.Visibility = Visibility.Hidden;
@@ -301,6 +322,8 @@ namespace SomeTools
                         grid10.Visibility = Visibility.Hidden;
                         grid11.Visibility = Visibility.Visible;
                         grid12.Visibility = Visibility.Hidden;
+                        Grid13.Visibility = Visibility.Hidden;
+                        Grid14.Visibility = Visibility.Hidden;
                         break;
                     case 12:
                         grid0.Visibility = Visibility.Hidden;
@@ -316,6 +339,42 @@ namespace SomeTools
                         grid10.Visibility = Visibility.Hidden;
                         grid11.Visibility = Visibility.Hidden;
                         grid12.Visibility = Visibility.Visible;
+                        Grid13.Visibility = Visibility.Hidden;
+                        Grid14.Visibility = Visibility.Hidden;
+                        break;
+                    case 13:
+                        grid0.Visibility = Visibility.Hidden;
+                        grid1.Visibility = Visibility.Hidden;
+                        grid2.Visibility = Visibility.Hidden;
+                        grid3.Visibility = Visibility.Hidden;
+                        grid4.Visibility = Visibility.Hidden;
+                        grid5.Visibility = Visibility.Hidden;
+                        grid6.Visibility = Visibility.Hidden;
+                        grid7.Visibility = Visibility.Hidden;
+                        grid8.Visibility = Visibility.Hidden;
+                        grid9.Visibility = Visibility.Hidden;
+                        grid10.Visibility = Visibility.Hidden;
+                        grid11.Visibility = Visibility.Hidden;
+                        grid12.Visibility = Visibility.Hidden;
+                        Grid13.Visibility = Visibility.Visible;
+                        Grid14.Visibility = Visibility.Hidden;
+                        break;
+                    case 14:
+                        grid0.Visibility = Visibility.Hidden;
+                        grid1.Visibility = Visibility.Hidden;
+                        grid2.Visibility = Visibility.Hidden;
+                        grid3.Visibility = Visibility.Hidden;
+                        grid4.Visibility = Visibility.Hidden;
+                        grid5.Visibility = Visibility.Hidden;
+                        grid6.Visibility = Visibility.Hidden;
+                        grid7.Visibility = Visibility.Hidden;
+                        grid8.Visibility = Visibility.Hidden;
+                        grid9.Visibility = Visibility.Hidden;
+                        grid10.Visibility = Visibility.Hidden;
+                        grid11.Visibility = Visibility.Hidden;
+                        grid12.Visibility = Visibility.Hidden;
+                        Grid13.Visibility = Visibility.Hidden;
+                        Grid14.Visibility = Visibility.Visible;
                         break;
                     default:
                         grid0.Visibility = Visibility.Hidden;
@@ -331,6 +390,8 @@ namespace SomeTools
                         grid10.Visibility = Visibility.Hidden;
                         grid11.Visibility = Visibility.Hidden;
                         grid12.Visibility = Visibility.Hidden;
+                        Grid13.Visibility = Visibility.Hidden;
+                        Grid14.Visibility = Visibility.Hidden;
                         break;
                 }
             }
@@ -720,7 +781,9 @@ namespace SomeTools
             foreach (var VARIABLE in asciiarray)
             {
                 TextBox_outputstr.AppendText("0x" + Convert.ToString(VARIABLE, 16).ToUpper() + " \t");
-                TextBox_outputstr.AppendText(Convert.ToString(VARIABLE, 10) + " \n");
+                TextBox_outputstr.AppendText(Convert.ToString(VARIABLE, 10) + " \t");
+                byte[] sBytes = { VARIABLE };
+                TextBox_outputstr.AppendText(System.Text.Encoding.ASCII.GetString(sBytes) + "\n");
             }
         }
 
@@ -905,7 +968,7 @@ namespace SomeTools
 
 
         [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "gcodecirclefileoutput", CallingConvention = CallingConvention.Cdecl)]
-        public extern static void gcodecirclefileoutput(int curvetype);
+        public extern static void gcodecirclefileoutput(int curvetype,int direction, int method);
 
         private void ButtonBase_OnClick_CreatCircleFile(object sender, RoutedEventArgs e)
         {
@@ -915,11 +978,70 @@ namespace SomeTools
             }
             else
             {
-                gcodecirclefileoutput(ComboBoxCircleType.SelectedIndex);
+                gcodecirclefileoutput(ComboBoxCircleType.SelectedIndex, ComboBoxFlat.SelectedIndex,ComboBoxMethod.SelectedIndex);
                 TextBox_CircleText.Text = "生成成功，文件位于E:\\TextOut\\G_code.txt\n具体文件如下：\n";
                 TextBox_CircleText.AppendText(File.ReadAllText("E:\\TextOut\\G_code.txt"));
                 ButtonCircleOpenFile.Visibility = Visibility.Visible;
             }
+
+        }
+
+        private void Button_Asciitrans_OnClick(object sender, RoutedEventArgs e)
+        {
+            byte[] asciiNum = {0};
+            asciiNum[0] = Convert.ToByte(TextBox_inputasciiNum.Text);
+            TextBox_Asciioutputstr.AppendText("0x" + Convert.ToString(asciiNum[0], 16).ToUpper() + " \t");
+            TextBox_Asciioutputstr.AppendText(Convert.ToString(asciiNum[0], 10) + " \t");
+            TextBox_Asciioutputstr.AppendText(System.Text.Encoding.ASCII.GetString(asciiNum) + "\n");
+            TextBox_inputasciiNum.SelectAll();
+        }
+
+        
+
+        private void ButtonCircleCale1_OnClick(object sender, RoutedEventArgs e)
+        {
+            double centerpointX = 0, centerpointY = 0;
+            double startpointX = 0, startpointY = 0;
+            double circleradium = 0, circleoffsetangle = 0;
+            startpointX = Convert.ToDouble(TextBoxCircleStartPointX.Text);
+            startpointY = Convert.ToDouble(TextBoxCircleStartPointY.Text);
+            circleradium = Convert.ToDouble(TextBoxCircleRadium.Text);
+            circleoffsetangle = Convert.ToDouble(TextBoxCircleOffsetAngle.Text)/ 180.0 * Math.PI;
+            centerpointX = startpointX + circleradium * Math.Cos(circleoffsetangle);
+            centerpointY = startpointY + circleradium * Math.Sin(circleoffsetangle);
+            TextBoxCircleCenterPointX.Text = Convert.ToString(centerpointX);
+            TextBoxCircleCenterPointY.Text = Convert.ToString(centerpointY);
+
+            double startAndCenterPointAngle = Math.Atan2(startpointY - centerpointY, startpointX - centerpointX);
+            double turnangleRoll = Convert.ToDouble(TextBoxCircleDrawAngle.Text) / 180.0 * Math.PI;
+            double vectorangle;
+            double endpointX = 0, endpointY = 0;
+            if (startAndCenterPointAngle <= Math.PI && startAndCenterPointAngle >= 0)
+            {
+                if (startAndCenterPointAngle > turnangleRoll)
+                {
+                    vectorangle = startAndCenterPointAngle - turnangleRoll;
+                }
+                else
+                {
+                    vectorangle = -(turnangleRoll - startAndCenterPointAngle);
+                }
+            }
+            else
+            {
+                if (startAndCenterPointAngle - turnangleRoll < -Math.PI)
+                {
+                    vectorangle = Math.PI - (turnangleRoll - (startAndCenterPointAngle + Math.PI));
+                }
+                else
+                {
+                    vectorangle = startAndCenterPointAngle - turnangleRoll;
+                }
+            }
+            endpointX = centerpointX + circleradium * Math.Cos(vectorangle);
+            endpointY = centerpointY + circleradium * Math.Sin(vectorangle);
+            TextBoxCircleEndPointX.Text = Convert.ToString(endpointX);
+            TextBoxCircleEndPointY.Text = Convert.ToString(endpointY);
 
         }
     }

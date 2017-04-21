@@ -4,8 +4,8 @@
 #include "Gcode.h"
 
 
-const double for_time = 200;
-const double for_step = 1;
+const double for_time = 200.0;
+const double for_step = 1.0;
 
 //G1
 double outfunction(double i, typ_xy_C typ, int curvetype)
@@ -27,9 +27,9 @@ double outfunction(double i, typ_xy_C typ, int curvetype)
 			switch (typ)
 			{
 				case X_C:
-					return f_rightup_trapezium_8(i, X_C);
+					return f_rightup_trapezium_8((int(i)), X_C);
 				case Y_C:
-					return f_rightup_trapezium_8(i, Y_C);
+					return f_rightup_trapezium_8((int(i)), Y_C);
 				default:
 					return -1;
 			}
@@ -274,6 +274,9 @@ double outfunction(double i, typ_xy_C typ, int curvetype)
 			default:
 				return -1;
 			}
+			break;
+		default:
+			return -1;
 			break;
 	}
 

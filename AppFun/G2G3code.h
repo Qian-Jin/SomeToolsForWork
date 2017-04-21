@@ -7,4 +7,4 @@ struct circle_point
 	double y;
 };
 
-extern "C" __declspec(dllexport) void gcodecirclefileoutput(int curvetype);
+extern "C" __declspec(dllexport) void gcodecirclefileoutput(int curvetype,int flat,int method);
