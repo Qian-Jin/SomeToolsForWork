@@ -10,3 +10,4 @@ EXPORTS
 	gcodefileoutput @ 7
 	outfunction @ 8
 	gcodecirclefileoutput @ 9
+	gCodeMixFileOutput @ 10

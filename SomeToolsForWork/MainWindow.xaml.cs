@@ -19,6 +19,7 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Threading;
+using System.Xml;
 
 namespace SomeTools
 {
@@ -137,6 +138,7 @@ namespace SomeTools
                         grid12.Visibility = Visibility.Hidden;
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
+                        Grid15.Visibility = Visibility.Hidden;
                         break;
                     case 1:
                         grid0.Visibility = Visibility.Hidden;
@@ -154,6 +156,8 @@ namespace SomeTools
                         grid12.Visibility = Visibility.Hidden;
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
+                        Grid15.Visibility = Visibility.Hidden;
+
                         break;
                     case 2:
                         grid0.Visibility = Visibility.Hidden;
@@ -171,6 +175,8 @@ namespace SomeTools
                         grid12.Visibility = Visibility.Hidden;
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
+                        Grid15.Visibility = Visibility.Hidden;
+
                         break;
                     case 3:
                         grid0.Visibility = Visibility.Hidden;
@@ -188,6 +194,8 @@ namespace SomeTools
                         grid12.Visibility = Visibility.Hidden;
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
+                        Grid15.Visibility = Visibility.Hidden;
+
                         break;
                     case 4:
                         grid0.Visibility = Visibility.Hidden;
@@ -205,6 +213,8 @@ namespace SomeTools
                         grid12.Visibility = Visibility.Hidden;
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
+                        Grid15.Visibility = Visibility.Hidden;
+
                         break;
                     case 5:
                         grid0.Visibility = Visibility.Hidden;
@@ -222,6 +232,8 @@ namespace SomeTools
                         grid12.Visibility = Visibility.Hidden;
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
+                        Grid15.Visibility = Visibility.Hidden;
+
                         break;
                     case 6:
                         grid0.Visibility = Visibility.Hidden;
@@ -239,6 +251,8 @@ namespace SomeTools
                         grid12.Visibility = Visibility.Hidden;
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
+                        Grid15.Visibility = Visibility.Hidden;
+
                         break;
                     case 7:
                         grid0.Visibility = Visibility.Hidden;
@@ -256,6 +270,8 @@ namespace SomeTools
                         grid12.Visibility = Visibility.Hidden;
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
+                        Grid15.Visibility = Visibility.Hidden;
+
                         break;
                     case 8:
                         grid0.Visibility = Visibility.Hidden;
@@ -273,6 +289,8 @@ namespace SomeTools
                         grid12.Visibility = Visibility.Hidden;
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
+                        Grid15.Visibility = Visibility.Hidden;
+
                         break;
                     case 9:
                         grid0.Visibility = Visibility.Hidden;
@@ -290,6 +308,8 @@ namespace SomeTools
                         grid12.Visibility = Visibility.Hidden;
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
+                        Grid15.Visibility = Visibility.Hidden;
+
                         break;
                     case 10:
                         grid0.Visibility = Visibility.Hidden;
@@ -307,6 +327,8 @@ namespace SomeTools
                         grid12.Visibility = Visibility.Hidden;
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
+                        Grid15.Visibility = Visibility.Hidden;
+
                         break;
                     case 11:
                         grid0.Visibility = Visibility.Hidden;
@@ -324,6 +346,8 @@ namespace SomeTools
                         grid12.Visibility = Visibility.Hidden;
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
+                        Grid15.Visibility = Visibility.Hidden;
+
                         break;
                     case 12:
                         grid0.Visibility = Visibility.Hidden;
@@ -341,6 +365,8 @@ namespace SomeTools
                         grid12.Visibility = Visibility.Visible;
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
+                        Grid15.Visibility = Visibility.Hidden;
+
                         break;
                     case 13:
                         grid0.Visibility = Visibility.Hidden;
@@ -358,6 +384,8 @@ namespace SomeTools
                         grid12.Visibility = Visibility.Hidden;
                         Grid13.Visibility = Visibility.Visible;
                         Grid14.Visibility = Visibility.Hidden;
+                        Grid15.Visibility = Visibility.Hidden;
+
                         break;
                     case 14:
                         grid0.Visibility = Visibility.Hidden;
@@ -375,6 +403,27 @@ namespace SomeTools
                         grid12.Visibility = Visibility.Hidden;
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Visible;
+                        Grid15.Visibility = Visibility.Hidden;
+
+                        break;
+                    case 15:
+                        grid0.Visibility = Visibility.Hidden;
+                        grid1.Visibility = Visibility.Hidden;
+                        grid2.Visibility = Visibility.Hidden;
+                        grid3.Visibility = Visibility.Hidden;
+                        grid4.Visibility = Visibility.Hidden;
+                        grid5.Visibility = Visibility.Hidden;
+                        grid6.Visibility = Visibility.Hidden;
+                        grid7.Visibility = Visibility.Hidden;
+                        grid8.Visibility = Visibility.Hidden;
+                        grid9.Visibility = Visibility.Hidden;
+                        grid10.Visibility = Visibility.Hidden;
+                        grid11.Visibility = Visibility.Hidden;
+                        grid12.Visibility = Visibility.Hidden;
+                        Grid13.Visibility = Visibility.Hidden;
+                        Grid14.Visibility = Visibility.Hidden;
+                        Grid15.Visibility = Visibility.Visible;
+
                         break;
                     default:
                         grid0.Visibility = Visibility.Hidden;
@@ -392,6 +441,7 @@ namespace SomeTools
                         grid12.Visibility = Visibility.Hidden;
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
+                        Grid15.Visibility = Visibility.Hidden;
                         break;
                 }
             }
@@ -1043,6 +1093,65 @@ namespace SomeTools
             TextBoxCircleEndPointX.Text = Convert.ToString(endpointX);
             TextBoxCircleEndPointY.Text = Convert.ToString(endpointY);
 
+        }
+
+
+        [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "gCodeMixFileOutput", CallingConvention = CallingConvention.Cdecl)]
+        public extern static void gCodeMixFileOutput();
+
+        private void ButtonBase_OnClick_CreatGMixFile(object sender, RoutedEventArgs e)
+        {
+            var xmlDoc = new XmlDocument();
+            xmlDoc.AppendChild(xmlDoc.CreateXmlDeclaration("1.0", "utf-8", null));
+            var el = xmlDoc.CreateElement("Parameters");
+            xmlDoc.AppendChild(el);
+            XmlElement elementPara = xmlDoc.CreateElement("LineLong");
+            el.AppendChild(elementPara);
+
+            XmlElement elementValue = xmlDoc.CreateElement("Value");
+            elementValue.InnerText = TextBoxLineLong.Text;
+            elementPara.AppendChild(elementValue);
+
+            elementPara = xmlDoc.CreateElement("FirstAngle");
+            el.AppendChild(elementPara);
+            elementValue = xmlDoc.CreateElement("Value");
+            elementValue.InnerText = TextBoxFirstAngle.Text;
+            elementPara.AppendChild(elementValue);
+
+
+            elementPara = xmlDoc.CreateElement("EachAngle");
+            el.AppendChild(elementPara);
+            elementValue = xmlDoc.CreateElement("Value");
+            elementValue.InnerText = TextBoxEachAngle.Text;
+            elementPara.AppendChild(elementValue);
+
+            elementPara = xmlDoc.CreateElement("Flat");
+            el.AppendChild(elementPara);
+            elementValue = xmlDoc.CreateElement("Value");
+            switch (ComboBoxGMixFlat.SelectedIndex)
+            {
+                case 0:
+                    elementValue.InnerText = "17";
+                    break;
+                case 1:
+                    elementValue.InnerText = "18";
+                    break;
+                case 2:
+                    elementValue.InnerText = "19";
+                    break;
+                default:
+                    elementValue.InnerText = "17";
+                    break;
+            }
+
+            elementPara.AppendChild(elementValue);
+
+            xmlDoc.Save("E:\\TextOut\\G_code_Para.xml");
+            
+
+            gCodeMixFileOutput();
+            TextBox_GMixText.Text = "生成成功，文件位于E:\\TextOut\\G_code.txt\n具体文件如下：\n";
+            TextBox_GMixText.AppendText(File.ReadAllText("E:\\TextOut\\G_code.txt"));
         }
     }
 }

@@ -138,7 +138,7 @@ circle_point getCircleEndPointByAngle(circle_point startpoint, circle_point cent
 }
 
 
-
+//输出G2G3的文件
 void outcirclefilefunc_xy(std::ofstream &file, int curvetype, int flat, int method)
 {
 	std::ofstream judgefile;

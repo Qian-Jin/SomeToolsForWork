@@ -30,6 +30,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <CLRSupport>true</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -155,12 +156,14 @@
     <ClCompile Include="G2G3code.cpp" />
     <ClCompile Include="Gcode.cpp" />
     <ClCompile Include="GcodeFun.cpp" />
+    <ClCompile Include="Gcodemix.cpp" />
     <ClCompile Include="motion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="G2G3code.h" />
     <ClInclude Include="Gcode.h" />
     <ClInclude Include="GcodeFun.h" />
+    <ClInclude Include="Gcodemix.h" />
     <ClInclude Include="motion.h" />
     <ClInclude Include="spline.h" />
   </ItemGroup>

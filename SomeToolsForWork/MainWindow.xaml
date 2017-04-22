@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SomeToolsForWork"
         mc:Ignorable="d"
-        Title="SomeTools" Height="500" Width="800" Loaded="MainWindow_OnLoaded" Icon="tool14.png" FontFamily="微软雅黑" Closed="MainWindow_OnClosed">
+        Title="SomeTools" Height="500" Width="900" Loaded="MainWindow_OnLoaded" Icon="tool14.png" FontFamily="微软雅黑" Closed="MainWindow_OnClosed">
     <Grid ShowGridLines="False" UseLayoutRounding="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="220"></ColumnDefinition>
@@ -41,6 +41,7 @@
                 <ListBoxItem>G2/G3字符串输出</ListBoxItem>
                 <ListBoxItem>ASCII数字到字符转换</ListBoxItem>
                 <ListBoxItem>画圆相关计算</ListBoxItem>
+                <ListBoxItem>G代码混合输出</ListBoxItem>
             </ListBox>
         </ScrollViewer>
         <ScrollViewer Grid.Column="1" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
@@ -461,7 +462,7 @@
                     <TextBox x:Name="TextBoxModbusTcprecv" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3"  Margin="10" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" FontSize="20"></TextBox>
 
                 </Grid>
-                <Grid x:Name="grid12" Visibility="Visible">
+                <Grid x:Name="grid12" Visibility="Hidden">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"></RowDefinition>
                         <RowDefinition></RowDefinition>
@@ -491,7 +492,7 @@
                         <Button Content="生成并输出" Grid.Column="3" MaxWidth="200" MinWidth="120" MaxHeight="30" MinHeight="40" Margin="5" FontSize="20" Click="ButtonBase_OnClick_CreatCircleFile"></Button>
                         <Button x:Name="ButtonCircleOpenFile" Content="打开生成文件" Grid.Column="4" FontSize="20" Margin="5" Visibility="Hidden" Click="OpenGcodeFile_OnClick"></Button>
                     </Grid>
-                    <TextBox x:Name="TextBox_CircleText" Grid.Row="1" Margin="5" FontSize="12" IsReadOnly="True"></TextBox>
+                    <TextBox x:Name="TextBox_CircleText" Grid.Row="1" Margin="5" FontSize="12" IsReadOnly="True"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"></TextBox>
 
                 </Grid>
                 <Grid x:Name="Grid13" Visibility="Hidden">
@@ -548,6 +549,58 @@
                     <TextBox Name="TextBoxCircleEndPointX" Grid.Row="6" Grid.Column="1" Margin="5" FontSize="18"></TextBox>
                     <Label Grid.Row="7" Grid.Column="0" Content="圆终点Y" FontSize="18" VerticalContentAlignment="Center"></Label>
                     <TextBox Name="TextBoxCircleEndPointY" Grid.Row="7" Grid.Column="1" Margin="5" FontSize="18"></TextBox>
+                </Grid>
+                <Grid x:Name="Grid15" Visibility="Visible">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" FontSize="20" Content="线长" VerticalContentAlignment="Center"></Label>
+                            <TextBox x:Name="TextBoxLineLong" Grid.Column="1" Margin="5" FontSize="20" MinWidth="50" VerticalContentAlignment="Center" Text="5"></TextBox>
+                        </Grid>
+                        <Grid Grid.Column="1" Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" FontSize="20" Content="夹角" VerticalContentAlignment="Center"></Label>
+                            <TextBox x:Name="TextBoxEachAngle" Grid.Column="1" Margin="5" FontSize="20" MinWidth="50" VerticalContentAlignment="Center" Text="90"></TextBox>
+                        </Grid>
+                        <Grid Grid.Column="2" Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" FontSize="20" Content="起始角" VerticalContentAlignment="Center"></Label>
+                            <TextBox x:Name="TextBoxFirstAngle" Grid.Column="1" Margin="5" FontSize="20" MinWidth="50" VerticalContentAlignment="Center" Text="45"></TextBox>
+                        </Grid>
+                        <Grid Grid.Column="3" Grid.Row="0">
+                            <ComboBox x:Name="ComboBoxGMixFlat" Margin="5" MinWidth="100" FontSize="20" VerticalContentAlignment="Center" SelectedIndex="0">
+                                <ComboBoxItem Content="XY平面" FontSize="15"></ComboBoxItem>
+                                <ComboBoxItem Content="ZX平面" FontSize="15"></ComboBoxItem>
+                                <ComboBoxItem Content="YZ平面" FontSize="15"></ComboBoxItem>
+                            </ComboBox>
+
+                        </Grid>
+
+                        <Button Content="生成并输出" Grid.Column="4" MaxWidth="200" MinWidth="120" MaxHeight="30" MinHeight="40" Margin="5" FontSize="20" Click="ButtonBase_OnClick_CreatGMixFile"></Button>
+                    </Grid>
+                    <TextBox x:Name="TextBox_GMixText" Grid.Row="1" Margin="5" FontSize="12" IsReadOnly="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"></TextBox>
+
                 </Grid>
             </Grid>
         </ScrollViewer>
