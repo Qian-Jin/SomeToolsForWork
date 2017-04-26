@@ -1,12 +1,34 @@
 ﻿#include "Gcodemix.h"
 
 
-void writeG1(std::ofstream &file,int32_t linenum, double x,double y,double z,double a,double b,double c,double p,double q)
+void writeG1(std::ofstream &file,int32_t linenum, int flot, double flot_x, double flot_y, double flot_z, double a,double b,double c,double p,double q)
 {
+	
+	
 	file << "N" << linenum << " G1 ";
-	file << "X" << x << " ";
-	file << "Y" << y << " ";
-	file << "Z" << z << " ";
+
+
+	switch (flot)
+	{
+	case 17:
+		file << "X" << flot_x << " ";
+		file << "Y" << flot_y << " ";
+		file << "Z" << flot_z << " ";
+		break;
+	case 18:
+		file << "X" << flot_y << " ";
+		file << "Y" << flot_z << " ";
+		file << "Z" << flot_x << " ";
+		break;
+	case 19:
+		file << "X" << flot_z << " ";
+		file << "Y" << flot_x << " ";
+		file << "Z" << flot_y << " ";
+		break;
+	default:
+		break;
+	}
+
 	file << "A" << a << " ";
 	file << "B" << b << " ";
 	file << "C" << c << " ";
@@ -387,7 +409,7 @@ void makeMixFile(std::ofstream &file, std::ofstream &judgefile)
 	file << "N2 G1 X0 Y0 Z0 A0 B0 C0 P0 Q0 E10 E-10 F10\n";
 
 	int32_t linenum = 3;
-	for (int32_t i = 0; i <=100;i++)
+	for (int32_t i = 0; i <=500;i++)
 	{
 		endpoint = f_rightup_trapezium_8(i);
 
@@ -404,34 +426,41 @@ void makeMixFile(std::ofstream &file, std::ofstream &judgefile)
 		{
 		case 0:
 			centerpoint = getCircleCenterPoint(startpoint, endpoint);
-			writeG2_center(file, linenum, flat_global, endpoint.x, endpoint.y, i, i, i, i, i, i, centerpoint.x, centerpoint.y, i / 8);
+			writeG2_center(file, linenum, flat_global, endpoint.x, endpoint.y, i*10, i*50, i*30, i*70, i*100, i*115, centerpoint.x, centerpoint.y, i / 8);
+			writeGcode_judge(judgefile, linenum + 1, flat_global, endpoint.x, endpoint.y, i * 10, i * 50, i * 30, i * 70, i * 100, i * 115);
 			break;
 		case 1:
 			centerpoint = getCircleCenterPoint(startpoint, endpoint);
-			writeG3_center(file, linenum, flat_global, endpoint.x, endpoint.y, i, i, i, i, i, i, centerpoint.x, centerpoint.y, i / 8);
+			writeG3_center(file, linenum, flat_global, endpoint.x, endpoint.y, i*23, i*85, i*46, i*76, i*12, i*130, centerpoint.x, centerpoint.y, i / 8);
+			writeGcode_judge(judgefile, linenum + 1, flat_global, endpoint.x, endpoint.y, i * 23, i * 85, i * 46, i * 76, i * 12, i * 130);
 			break;
 		case 2:
-			writeG2_radius(file, linenum, flat_global, endpoint.x, endpoint.y, i, i, i, i, i, i, line_long + i, i / 8);
+			writeG2_radius(file, linenum, flat_global, endpoint.x, endpoint.y, i*121, i*25, i*49, i*63, i*42, i*28, line_long + i, i / 8);
+			writeGcode_judge(judgefile, linenum + 1, flat_global, endpoint.x, endpoint.y, i * 121, i * 25, i * 49, i * 63, i * 42, i * 28);
 			break;
 		case 3:
-			writeG1(file, linenum, endpoint.x, endpoint.y, i, i, i, i, i, i);
+			writeG1(file, linenum,flat_global, endpoint.x, endpoint.y, i*17, i*59, i*78, i*78, i*12, i*56);
+			writeGcode_judge(judgefile, linenum + 1, flat_global, endpoint.x, endpoint.y, i * 17, i * 59, i * 78, i * 78, i * 12, i * 56);
 			break;
 		case 4:
-			writeG3_radius(file, linenum, flat_global, endpoint.x, endpoint.y, i, i, i, i, i, i, line_long + i, i / 8);
+			writeG3_radius(file, linenum, flat_global, endpoint.x, endpoint.y, i*99, i*84, i*73, i*27, i*78, i*42, line_long + i, i / 8);
+			writeGcode_judge(judgefile, linenum + 1, flat_global, endpoint.x, endpoint.y, i * 99, i * 84, i * 73, i * 27, i * 78, i * 42);
 			break;
 		case 5:
-			writeG3_radius(file, linenum, flat_global, endpoint.x, endpoint.y, i, i, i, i, i, i, -(line_long + i), i / 8);
+			writeG3_radius(file, linenum, flat_global, endpoint.x, endpoint.y, i*88, i*37, i*72, i*44, i*63, i*82, -(line_long + i), i / 8);
+			writeGcode_judge(judgefile, linenum + 1, flat_global, endpoint.x, endpoint.y, i * 88, i * 37, i * 72, i * 44, i * 63, i * 82);
 			break;
 		case 6:
-			writeG1(file, linenum, endpoint.x, endpoint.y, i, i, i, i, i, i);
+			writeG1(file, linenum, flat_global, endpoint.x, endpoint.y, i*10, i*7, i*88, i*46, i*29, i*69);
+			writeGcode_judge(judgefile, linenum + 1, flat_global, endpoint.x, endpoint.y, i * 10, i * 7, i * 88, i * 46, i * 29, i * 69);
 			break;
 		case 7:
-			writeG2_radius(file, linenum, flat_global, endpoint.x, endpoint.y, i, i, i, i, i, i, -(line_long + i), i / 8);
+			writeG2_radius(file, linenum, flat_global, endpoint.x, endpoint.y, i*45, i*62, i*49, i*73, i*61, i*85, -(line_long + i), i / 8);
+			writeGcode_judge(judgefile, linenum + 1, flat_global, endpoint.x, endpoint.y, i * 45, i * 62, i * 49, i * 73, i * 61, i * 85);
 			break;
 		default:
 			break;
 		}
-		writeGcode_judge(judgefile, linenum + 1, flat_global, endpoint.x, endpoint.y, i, i, i, i, i, i);
 		linenum++;
 		startpoint = endpoint;
 	}

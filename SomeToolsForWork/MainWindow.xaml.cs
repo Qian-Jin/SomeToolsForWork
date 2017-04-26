@@ -139,6 +139,7 @@ namespace SomeTools
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
+                        Grid16.Visibility = Visibility.Hidden;
                         break;
                     case 1:
                         grid0.Visibility = Visibility.Hidden;
@@ -157,6 +158,7 @@ namespace SomeTools
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
+                        Grid16.Visibility = Visibility.Hidden;
 
                         break;
                     case 2:
@@ -176,6 +178,7 @@ namespace SomeTools
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
+                        Grid16.Visibility = Visibility.Hidden;
 
                         break;
                     case 3:
@@ -195,6 +198,7 @@ namespace SomeTools
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
+                        Grid16.Visibility = Visibility.Hidden;
 
                         break;
                     case 4:
@@ -214,6 +218,7 @@ namespace SomeTools
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
+                        Grid16.Visibility = Visibility.Hidden;
 
                         break;
                     case 5:
@@ -233,6 +238,7 @@ namespace SomeTools
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
+                        Grid16.Visibility = Visibility.Hidden;
 
                         break;
                     case 6:
@@ -252,6 +258,7 @@ namespace SomeTools
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
+                        Grid16.Visibility = Visibility.Hidden;
 
                         break;
                     case 7:
@@ -271,6 +278,7 @@ namespace SomeTools
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
+                        Grid16.Visibility = Visibility.Hidden;
 
                         break;
                     case 8:
@@ -290,6 +298,7 @@ namespace SomeTools
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
+                        Grid16.Visibility = Visibility.Hidden;
 
                         break;
                     case 9:
@@ -309,6 +318,7 @@ namespace SomeTools
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
+                        Grid16.Visibility = Visibility.Hidden;
 
                         break;
                     case 10:
@@ -328,6 +338,7 @@ namespace SomeTools
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
+                        Grid16.Visibility = Visibility.Hidden;
 
                         break;
                     case 11:
@@ -347,6 +358,7 @@ namespace SomeTools
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
+                        Grid16.Visibility = Visibility.Hidden;
 
                         break;
                     case 12:
@@ -366,6 +378,7 @@ namespace SomeTools
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
+                        Grid16.Visibility = Visibility.Hidden;
 
                         break;
                     case 13:
@@ -385,6 +398,7 @@ namespace SomeTools
                         Grid13.Visibility = Visibility.Visible;
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
+                        Grid16.Visibility = Visibility.Hidden;
 
                         break;
                     case 14:
@@ -404,6 +418,7 @@ namespace SomeTools
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Visible;
                         Grid15.Visibility = Visibility.Hidden;
+                        Grid16.Visibility = Visibility.Hidden;
 
                         break;
                     case 15:
@@ -423,6 +438,29 @@ namespace SomeTools
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Visible;
+                        Grid16.Visibility = Visibility.Hidden;
+
+                        break;
+
+                    case 16:
+                        grid0.Visibility = Visibility.Hidden;
+                        grid1.Visibility = Visibility.Hidden;
+                        grid2.Visibility = Visibility.Hidden;
+                        grid3.Visibility = Visibility.Hidden;
+                        grid4.Visibility = Visibility.Hidden;
+                        grid5.Visibility = Visibility.Hidden;
+                        grid6.Visibility = Visibility.Hidden;
+                        grid7.Visibility = Visibility.Hidden;
+                        grid8.Visibility = Visibility.Hidden;
+                        grid9.Visibility = Visibility.Hidden;
+                        grid10.Visibility = Visibility.Hidden;
+                        grid11.Visibility = Visibility.Hidden;
+                        grid12.Visibility = Visibility.Hidden;
+                        Grid13.Visibility = Visibility.Hidden;
+                        Grid14.Visibility = Visibility.Hidden;
+                        Grid15.Visibility = Visibility.Hidden;
+                        Grid16.Visibility = Visibility.Visible;
+
 
                         break;
                     default:
@@ -442,6 +480,8 @@ namespace SomeTools
                         Grid13.Visibility = Visibility.Hidden;
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
+                        Grid16.Visibility = Visibility.Hidden;
+
                         break;
                 }
             }
@@ -1152,6 +1192,18 @@ namespace SomeTools
             gCodeMixFileOutput();
             TextBox_GMixText.Text = "生成成功，文件位于E:\\TextOut\\G_code.txt\n具体文件如下：\n";
             TextBox_GMixText.AppendText(File.ReadAllText("E:\\TextOut\\G_code.txt"));
+        }
+
+        [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "g4testFileOutput", CallingConvention = CallingConvention.Cdecl)]
+        public extern static void g4testFileOutput();
+
+        private void ButtonBase_OnClick_G4testOutputfile(object sender, RoutedEventArgs e)
+        {
+            g4testFileOutput();
+            TextBox_G4testText.Text = "生成成功，文件位于E:\\TextOut\\G_code.txt\n具体文件如下：\n";
+            TextBox_G4testText.AppendText(File.ReadAllText("E:\\TextOut\\G_code.txt"));
+            ButtonG4testOpenFile.Visibility = Visibility.Visible;
+
         }
     }
 }

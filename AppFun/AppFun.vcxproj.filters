@@ -30,6 +30,9 @@
     <ClCompile Include="Gcodemix.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="G4test.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="motion.h">
@@ -48,6 +51,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Gcodemix.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="G4test.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

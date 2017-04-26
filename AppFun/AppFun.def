@@ -11,3 +11,4 @@ EXPORTS
 	outfunction @ 8
 	gcodecirclefileoutput @ 9
 	gCodeMixFileOutput @ 10
+	g4testFileOutput @ 11

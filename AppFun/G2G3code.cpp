@@ -5,6 +5,7 @@
 
 const double for_time = 361;
 const double for_step = 0.5;
+const int circletime = 2;
 
 //circleType 
 //0:sin曲线随机取结束点，之后随机取圆心
@@ -147,7 +148,7 @@ void outcirclefilefunc_xy(std::ofstream &file, int curvetype, int flat, int meth
 	judgefile.precision(10);
 	file.precision(10);
 	auto linenum = 0;
-	circle_point startpoint, centerpoint, endpoint;
+	circle_point startpoint, centerpoint, endpoint,middlepoint;
 	startpoint.x = 0;
 	startpoint.y = 0;
 	for (double i = 0.5; i <= for_time; i = i + for_step)
@@ -160,13 +161,32 @@ void outcirclefilefunc_xy(std::ofstream &file, int curvetype, int flat, int meth
 			centerpoint.x = 100.0;
 			centerpoint.y = 0.0;
 			endpoint = getCircleEndPointByAngle(startpoint, centerpoint, i);
+			middlepoint = getCircleEndPointByAngle(startpoint, centerpoint, floor(i/2));
+			if ((endpoint.x < 1e-5) && (endpoint.x > -1e-5))
+			{
+				endpoint.x = 0.0;
+			}
+			if ((endpoint.y < 1e-5) && (endpoint.y > -1e-5))
+			{
+				endpoint.y = 0.0;
+			}
+
+
 		}
 		else
 		{
 			endpoint = getCircleEndPoint(startpoint);
+			if ((endpoint.x < 1e-5) && (endpoint.x > -1e-5))
+			{
+				endpoint.x = 0.0;
+			}
+			if ((endpoint.y < 1e-5) && (endpoint.y > -1e-5))
+			{
+				endpoint.y = 0.0;
+			}
+
 			centerpoint = getCircleCenterPoint(startpoint, endpoint);
 		}
-
 
 		if (linenum == 1)
 		{
@@ -231,11 +251,11 @@ void outcirclefilefunc_xy(std::ofstream &file, int curvetype, int flat, int meth
 			break;
 		}
 
-		file << "A" << linenum << " ";
-		file << "B" << linenum << " ";
-		file << "C" << linenum << " ";
-		file << "P" << linenum << " ";
-		file << "Q" << linenum << " ";
+		file << "A" << linenum * 10 << " ";
+		file << "B" << linenum * 20 << " ";
+		file << "C" << linenum * 40 << " ";
+		file << "P" << linenum * 80 << " ";
+		file << "Q" << linenum * 160 << " ";
 		if (method ==0 )
 		{
 			switch (flat)
@@ -297,6 +317,7 @@ void outcirclefilefunc_xy(std::ofstream &file, int curvetype, int flat, int meth
 				file << "R-100.0" << " ";
 			}
 		}
+		file << "T" << circletime << " ";
  		if (linenum == 1)
 		{
 			file << "E10 E-10 F10" << std::endl;
@@ -306,31 +327,64 @@ void outcirclefilefunc_xy(std::ofstream &file, int curvetype, int flat, int meth
 			file << std::endl;
 		}
 
+		judgefile << "IF (NC_Currentline = " << linenum << ") THEN\n";
+		switch (flat)
+		{
+		case 0:
+			judgefile << "\tIF EDGEPOS((ABS(Axis[1].cmdpos - (" << middlepoint.x << ")) < 0.1) & (ABS(Axis[2].cmdpos - (" << middlepoint.y << ")) < 0.1)) THEN\n";
+			break;
+		case 1:
+			judgefile << "\tIF EDGEPOS(((ABS(Axis[3].cmdpos - (" << middlepoint.x << ")) < 0.1) & (ABS(Axis[1].cmdpos - (" << middlepoint.y << ")) < 0.1)) THEN\n";
+			break;
+		case 2:
+			judgefile << "\tIF EDGEPOS(((ABS(Axis[2].cmdpos - (" << middlepoint.x << ")) < 0.1) & (ABS(Axis[3].cmdpos - (" << middlepoint.y << ")) < 0.1)) THEN\n";
+			break;
+		default:
+			judgefile << "\tIF EDGEPOS(((ABS(Axis[1].cmdpos - (" << middlepoint.x << ")) < 0.1) & (ABS(Axis[2].cmdpos - (" << middlepoint.y << ")) < 0.1)) THEN\n";
+			break;
+		}
+		judgefile << "\t\tcircletime := circletime + 1;\n";
+		judgefile << "\tEND_IF;\n";
+		judgefile << "END_IF;\n";
+
+
+
+
 		judgefile << "IF EDGEPOS(NC_Currentline = " << linenum+1 << ") THEN\n";
 		switch (flat)
 		{
 		case 0:
-			judgefile << "\t IF NOT ((ABS(Axis[1].cmdpos - (" << endpoint.x << ")) < 0.01) & (ABS(Axis[2].cmdpos - (" << endpoint.y << ")) < 0.01) & (ABS(Axis[3].cmdpos - (" << linenum;
+			judgefile << "\tIF NOT ((ABS(Axis[1].cmdpos - (" << endpoint.x << ")) < 0.01) & (ABS(Axis[2].cmdpos - (" << endpoint.y << ")) < 0.01) & (ABS(Axis[3].cmdpos - (" << linenum;
 
 			break;
 		case 1:
-			judgefile << "\t IF NOT ((ABS(Axis[3].cmdpos - (" << endpoint.x << ")) < 0.01) & (ABS(Axis[1].cmdpos - (" << endpoint.y << ")) < 0.01) & (ABS(Axis[2].cmdpos - (" << linenum;
+			judgefile << "\tIF NOT ((ABS(Axis[3].cmdpos - (" << endpoint.x << ")) < 0.01) & (ABS(Axis[1].cmdpos - (" << endpoint.y << ")) < 0.01) & (ABS(Axis[2].cmdpos - (" << linenum;
 
 			break;
 		case 2:
-			judgefile << "\t IF NOT ((ABS(Axis[2].cmdpos - (" << endpoint.x << ")) < 0.01) & (ABS(Axis[3].cmdpos - (" << endpoint.y << ")) < 0.01) & (ABS(Axis[1].cmdpos - (" << linenum;
+			judgefile << "\tIF NOT ((ABS(Axis[2].cmdpos - (" << endpoint.x << ")) < 0.01) & (ABS(Axis[3].cmdpos - (" << endpoint.y << ")) < 0.01) & (ABS(Axis[1].cmdpos - (" << linenum;
 
 			break;
 		default:
-			judgefile << "\t IF NOT ((ABS(Axis[1].cmdpos - (" << endpoint.x << ")) < 0.01) & (ABS(Axis[2].cmdpos - (" << endpoint.y << ")) < 0.01) & (ABS(Axis[3].cmdpos - (" << linenum;
+			judgefile << "\tIF NOT ((ABS(Axis[1].cmdpos - (" << endpoint.x << ")) < 0.10) & (ABS(Axis[2].cmdpos - (" << endpoint.y << ")) < 0.01) & (ABS(Axis[3].cmdpos - (" << linenum;
 
 			break;
 		}
 				
-		judgefile << ")) < 0.01) & (ABS(Axis[4].cmdpos - " << linenum  << ") < 0.01) & (ABS(Axis[5].cmdpos - " << linenum  << ") < 0.01) & (ABS(Axis[6].cmdpos - " << linenum  << ") < 0.01) & (ABS(Axis[7].cmdpos - " << linenum << ") < 0.01) & (ABS(Axis[8].cmdpos - " << linenum << ") < 0.01)) THEN\n";
+		judgefile << ")) < 0.01) & (ABS(Axis[4].cmdpos - " << linenum * 10  << ") < 0.01) & (ABS(Axis[5].cmdpos - " << linenum * 20 << ") < 0.01) & (ABS(Axis[6].cmdpos - " << linenum * 40 << ") < 0.01) & (ABS(Axis[7].cmdpos - " << linenum * 80 << ") < 0.01) & (ABS(Axis[8].cmdpos - " << linenum * 160 << ") < 0.01) & (circletime = " << circletime+1 << ")) THEN\n";
 		judgefile << "\t\tError := TRUE;\n\t\tlineError := NC_Currentline;\n";
+		judgefile << "\t\tPos1Error := Axis[1].cmdpos;\n";
+		judgefile << "\t\tPos2Error := Axis[2].cmdpos;\n";
+		judgefile << "\t\tPos3Error := Axis[3].cmdpos;\n";
+		judgefile << "\t\tPos4Error := Axis[4].cmdpos;\n";
+		judgefile << "\t\tPos5Error := Axis[5].cmdpos;\n";
+		judgefile << "\t\tPos6Error := Axis[6].cmdpos;\n";
+		judgefile << "\t\tPos7Error := Axis[7].cmdpos;\n";
+		judgefile << "\t\tPos8Error := Axis[8].cmdpos;\n";
+		judgefile << "\t\tcircletimeError := circletime;\n";
 		judgefile << "\tEND_IF;\n";
-		judgefile << "END_IF;\n";
+		judgefile << "\tcircletime := 0;\n";
+		judgefile << "END_IF;" << std::endl;
 		//judgefile << "IF (NC_Currentline = " << linenum << ") THEN\n";
 		//judgefile << "\tdiff := judgeCircle(nowPointX := NC_X,nowPointY := NC_Y, startPointX:= " << startpoint.x << ", startPointY:= " << startpoint.y << ", centerPointX:= " << centerpoint.x  << ", centerPointY:= " << centerpoint.y << ");\n";
 		//judgefile << "\tIF (diff > 0.1) THEN\n";

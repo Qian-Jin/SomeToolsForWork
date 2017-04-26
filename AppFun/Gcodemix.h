@@ -16,7 +16,7 @@ double line_long = 5;
 int32_t flat_global = 17;
 
 
-void writeG1(std::ofstream &file, int32_t linenum, double x, double y, double z, double a, double b, double c, double p, double q);
+void writeG1(std::ofstream &file, int32_t linenum, int flot, double flot_x, double flot_y, double flot_z, double a, double b, double c, double p, double q);
 void writeG2_center(std::ofstream &file, int32_t linenum, int flot, double flot_x, double flot_y, double flot_z, double a, double b, double c, double p, double q, double flot_i, double flot_j, int32_t t);
 void writeG2_radius(std::ofstream &file, int32_t linenum, int flot, double flot_x, double flot_y, double flot_z, double a, double b, double c, double p, double q, double r, int32_t t);
 void writeG3_center(std::ofstream &file, int32_t linenum, int flot, double flot_x, double flot_y, double flot_z, double a, double b, double c, double p, double q, double flot_i, double flot_j, int32_t t);
