@@ -1,6 +1,6 @@
 #pragma once
 #include <fstream>
-
+#include <string>
 
 void makeG4testFile(std::ofstream &file, std::ofstream &judgefile);
 

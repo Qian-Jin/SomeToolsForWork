@@ -900,7 +900,7 @@ namespace SomeTools
 
         private void OpenGcodeFile_OnClick(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start(@"E:\TextOut\Gcode.txt");
+            System.Diagnostics.Process.Start(@"E:\TextOut\G_code.txt");
         }
 
         public static int Curvetype;

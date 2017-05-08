@@ -80,12 +80,19 @@ double cal_move_time(double pos_start, double pos_end, double vel_start, double 
 	double del_acc_vel, del_dec_vel, del_pos;
 	double pos_v1, pos_v2, pos_v3, pos_v4, pos_v5, pos_v6, pos_v7;
 
+	double high_vel, low_vel;   //二分法逼近最大速度 
+	high_vel = low_vel = vel_max;
+
+
 start:
 	del_acc_vel = vel_max - vel_start;
 	del_dec_vel = vel_max - vel_end;
 	del_pos = pos_end - pos_start;
 	pos_t1 = vel_acc / vel_jerk;
 	pos_v1 = vel_jerk * pow(pos_t1, 2);
+
+	
+
 	if (pos_v1 > del_acc_vel)
 	{
 		//加速运动没有到达最高加速度
@@ -115,21 +122,25 @@ start:
 		pos_t6 = (del_dec_vel - pos_v7) / vel_dec;
 		pos_t7 = 0 + pos_t7;
 	}
+
 	pos_v1 = pos_start + vel_jerk * pow(pos_t1, 2) / 2;
-	pos_v2 = pos_v1 + vel_acc * pos_t2;
-	pos_v3 = pos_v2 + vel_acc * pos_t3 - vel_jerk * pow(pos_t3, 2) / 2;
+	pos_v2 = pos_v1 + vel_jerk * pos_t1 * pos_t2;
+	pos_v3 = pos_v2 + vel_jerk * pos_t1 * pos_t3 - vel_jerk * pow(pos_t3, 2) / 2;
 	pos_v4 = vel_max;
 	pos_v7 = vel_end + vel_jerk * pow(pos_t7, 2) / 2;
-	pos_v6 = pos_v7 + vel_dec * pos_t6;
-	pos_v5 = pos_v6 + vel_dec * pos_t5 - vel_jerk * pow(pos_t5, 2) / 2;
+	pos_v6 = pos_v7 + vel_jerk * pos_t7 * pos_t6;
+	pos_v5 = pos_v6 + vel_jerk * pos_t7 * pos_t5 - vel_jerk * pow(pos_t5, 2) / 2;
 
 	pos_d1 = vel_start * pos_t1 + vel_jerk *pow(pos_t1, 3) / 6;
-	pos_d2 = pos_v1 * pos_t2 + vel_acc * pow(pos_t2, 2) / 2;
-	pos_d3 = pos_v2 * pos_t3 + vel_acc * pow(pos_t3, 2) / 2 - vel_jerk * pow(pos_t3, 3) / 6;
+	pos_d2 = pos_v1 * pos_t2 + vel_jerk * pos_t1 * pow(pos_t2, 2) / 2;
+	pos_d3 = pos_v2 * pos_t3 + vel_jerk * pos_t1 * pow(pos_t3, 2) / 2 - vel_jerk * pow(pos_t3, 3) / 6;
 	pos_d7 = vel_end * pos_t7 + vel_jerk * pow(pos_t7, 3) / 6;
-	pos_d6 = pos_v7 * pos_t6 + vel_dec * pow(pos_t6, 2) / 2;
-	pos_d5 = pos_v6 * pos_t5 + vel_dec * pow(pos_t5, 2) / 2 - vel_jerk * pow(pos_t5, 3) / 6;
+	pos_d6 = pos_v7 * pos_t6 + vel_jerk * pos_t7 * pow(pos_t6, 2) / 2;
+	pos_d5 = pos_v6 * pos_t5 + vel_jerk * pos_t7 * pow(pos_t5, 2) / 2 - vel_jerk * pow(pos_t5, 3) / 6;
 	pos_d4 = del_pos - pos_d1 - pos_d2 - pos_d3 - pos_d5 - pos_d6 - pos_d7;
+
+
+
 	if (pos_d4 == 0.0)
 	{
 		pos_t4 = 0;
@@ -137,16 +148,39 @@ start:
 	}
 	else
 	{
-		if (pos_d4<0)
+//		if (pos_d4<0)
+//		{
+//			vel_max = vel_max - 0.1;
+//			goto start;
+//		}
+//		else
+//		{
+//			pos_t4 = pos_d4 / vel_max;
+//			pos_time = pos_t1 + pos_t2 + pos_t3 + pos_t4 + pos_t5 + pos_t6 + pos_t7;
+//		}
+
+		if (pos_d4 < 0)//二分法逼近最大速度 
 		{
-			vel_max = vel_max - 0.1;
+			high_vel = vel_max;
+			vel_max = vel_max / 2;
 			goto start;
 		}
 		else
 		{
-			pos_t4 = pos_d4 / vel_max;
-			pos_time = pos_t1 + pos_t2 + pos_t3 + pos_t4 + pos_t5 + pos_t6 + pos_t7;
+			if (vel_max >= high_vel - 0.1)
+			{
+				pos_t4 = pos_d4 / vel_max;
+				pos_time = pos_t1 + pos_t2 + pos_t3 + pos_t4 + pos_t5 + pos_t6 + pos_t7;
+			}
+			else
+			{
+				low_vel = vel_max;
+				vel_max += (high_vel - low_vel) / 2;
+				goto start;
+			}
+
 		}
+
 	}
 	switch (what_return)
 	{
