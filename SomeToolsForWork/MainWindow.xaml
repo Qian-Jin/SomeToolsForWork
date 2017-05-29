@@ -41,8 +41,9 @@
                 <ListBoxItem>G2/G3字符串输出</ListBoxItem>
                 <ListBoxItem>ASCII数字到字符转换</ListBoxItem>
                 <ListBoxItem>画圆相关计算</ListBoxItem>
-                <ListBoxItem>G代码混合输出</ListBoxItem>
+                <ListBoxItem>G代码M代码混合输出</ListBoxItem>
                 <ListBoxItem>G4测试代码输出</ListBoxItem>
+                <ListBoxItem>输出G代码相关文件</ListBoxItem>
             </ListBox>
         </ScrollViewer>
         <ScrollViewer Grid.Column="1" Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
@@ -551,8 +552,9 @@
                     <Label Grid.Row="7" Grid.Column="0" Content="圆终点Y" FontSize="18" VerticalContentAlignment="Center"></Label>
                     <TextBox Name="TextBoxCircleEndPointY" Grid.Row="7" Grid.Column="1" Margin="5" FontSize="18"></TextBox>
                 </Grid>
-                <Grid x:Name="Grid15" Visibility="Hidden">
+                <Grid x:Name="Grid15" Visibility="Visible">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="50"></RowDefinition>
                         <RowDefinition Height="50"></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
@@ -600,10 +602,21 @@
 
                         <Button Content="生成并输出" Grid.Column="4" MaxWidth="200" MinWidth="120" MaxHeight="30" MinHeight="40" Margin="5" FontSize="20" Click="ButtonBase_OnClick_CreatGMixFile"></Button>
                     </Grid>
-                    <TextBox x:Name="TextBox_GMixText" Grid.Row="1" Margin="5" FontSize="12" IsReadOnly="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"></TextBox>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                        <ComboBox x:Name="ComboBoxMcodeType" Margin="5" MinWidth="100" FontSize="20" VerticalContentAlignment="Center" SelectedIndex="0">
+                            <ComboBoxItem Content="M代码和G代码同一行" FontSize="15"></ComboBoxItem>
+                            <ComboBoxItem Content="M代码和G代码不同行" FontSize="15"></ComboBoxItem>
+                        </ComboBox>
+                        <ComboBox x:Name="ComboBoxMcodeValue" Margin="5" MinWidth="100" FontSize="20" VerticalContentAlignment="Center" SelectedIndex="0">
+                            <ComboBoxItem Content="M代码会传出参数" FontSize="15"></ComboBoxItem>
+                            <ComboBoxItem Content="M代码不传出参数" FontSize="15"></ComboBoxItem>
+                        </ComboBox>
+
+                    </StackPanel>
+                    <TextBox x:Name="TextBox_GMixText" Grid.Row="2" Margin="5" FontSize="12" IsReadOnly="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"></TextBox>
 
                 </Grid>
-                <Grid x:Name="Grid16" Visibility="Visible">
+                <Grid x:Name="Grid16" Visibility="Hidden">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"></RowDefinition>
                         <RowDefinition></RowDefinition>
@@ -622,6 +635,74 @@
                     </Grid>
                     <TextBox x:Name="TextBox_G4testText" Grid.Row="1" Margin="5" FontSize="12" IsReadOnly="True"  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"></TextBox>
 
+                </Grid>
+                <Grid x:Name="Grid17" Visibility="Hidden">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    
+
+                    <ComboBox x:Name="ComboBox_Grid17_Axis" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5" FontSize="20" VerticalContentAlignment="Center" SelectedIndex="0" Width="150" Height="50" Visibility="Hidden">
+                        <ComboBoxItem Content="单轴运行" FontSize="15"></ComboBoxItem>
+                        <ComboBoxItem Content="多轴运行" FontSize="15"></ComboBoxItem>
+                    </ComboBox>
+                    <ComboBox x:Name="ComboBox_Grid17_Rela" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5" FontSize="20" VerticalContentAlignment="Center" SelectedIndex="0" Width="150" Height="50">
+                        <ComboBoxItem Content="绝对模式" FontSize="15"></ComboBoxItem>
+                        <ComboBoxItem Content="相对模式" FontSize="15"></ComboBoxItem>
+                        
+                    </ComboBox>
+                    <ComboBox x:Name="ComboBox_Grid17_G2method" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5" FontSize="20" VerticalContentAlignment="Center" SelectedIndex="0" Width="150" Height="50" Visibility="Hidden">
+                        <ComboBoxItem Content="圆心法" FontSize="15"></ComboBoxItem>
+                        <ComboBoxItem Content="半径法R&gt;0" FontSize="15"></ComboBoxItem>
+                        <ComboBoxItem Content="半径法R&lt;0" FontSize="15"></ComboBoxItem>
+                    </ComboBox>
+                    <ComboBox x:Name="ComboBox_Grid17_flat" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5" FontSize="20" VerticalContentAlignment="Center" SelectedIndex="0" Width="150" Height="50" Visibility="Hidden">
+                        <ComboBoxItem Content="XY平面" FontSize="15"></ComboBoxItem>
+                        <ComboBoxItem Content="ZX平面" FontSize="15"></ComboBoxItem>
+                        <ComboBoxItem Content="YZ平面" FontSize="15"></ComboBoxItem>
+                    </ComboBox>
+
+                    <ComboBox x:Name="ComboBox_Grid17_Gcode" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5" FontSize="20" VerticalContentAlignment="Center" SelectedIndex="0" Width="150" Height="50" SelectionChanged="ComboBox_Grid17_Gcode_OnSelectionChanged" Visibility="Hidden">
+                        <ComboBoxItem Content="G0" FontSize="15"></ComboBoxItem>
+                        <ComboBoxItem Content="G1" FontSize="15"></ComboBoxItem>
+                        <ComboBoxItem Content="G2" FontSize="15"></ComboBoxItem>
+                        <ComboBoxItem Content="G3" FontSize="15"></ComboBoxItem>
+                    </ComboBox>
+
+                    <ComboBox x:Name="ComboBox_Grid17_FirstGcode" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5" FontSize="20" VerticalContentAlignment="Center" SelectedIndex="0" Width="150" Height="50" SelectionChanged="ComboBox_Grid17_Gcode_OnSelectionChanged" Visibility="Visible">
+                        <ComboBoxItem Content="先是G0" FontSize="15"></ComboBoxItem>
+                        <ComboBoxItem Content="先是G1" FontSize="15"></ComboBoxItem>
+                        <ComboBoxItem Content="先是G2圆心法" FontSize="15"></ComboBoxItem>
+                        <ComboBoxItem Content="先是G2 R&gt;0" FontSize="15"></ComboBoxItem>
+                        <ComboBoxItem Content="先是G2 R&lt;0" FontSize="15"></ComboBoxItem>
+                        <ComboBoxItem Content="先是G3圆心法" FontSize="15"></ComboBoxItem>
+                        <ComboBoxItem Content="先是G3 R&gt;0" FontSize="15"></ComboBoxItem>
+                        <ComboBoxItem Content="先是G3 R&lt;0" FontSize="15"></ComboBoxItem>
+                    </ComboBox>
+                    <ComboBox x:Name="ComboBox_Grid17_SencondGcode" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5" FontSize="20" VerticalContentAlignment="Center" SelectedIndex="0" Width="150" Height="50" SelectionChanged="ComboBox_Grid17_Gcode_OnSelectionChanged" Visibility="Visible">
+                        <ComboBoxItem Content="后是G0" FontSize="15"></ComboBoxItem>
+                        <ComboBoxItem Content="后是G1" FontSize="15"></ComboBoxItem>
+                        <ComboBoxItem Content="后是G2圆心法" FontSize="15"></ComboBoxItem>
+                        <ComboBoxItem Content="后是G2 R&gt;0" FontSize="15"></ComboBoxItem>
+                        <ComboBoxItem Content="后是G2 R&lt;0" FontSize="15"></ComboBoxItem>
+                        <ComboBoxItem Content="后是G3圆心法" FontSize="15"></ComboBoxItem>
+                        <ComboBoxItem Content="后是G3 R&gt;0" FontSize="15"></ComboBoxItem>
+                        <ComboBoxItem Content="后是G3 R&lt;0" FontSize="15"></ComboBoxItem>
+                    </ComboBox>
+
+                    <ComboBox x:Name="ComboBox_Grid17_type" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5" FontSize="20" VerticalContentAlignment="Center" SelectedIndex="0" Width="200" Height="50" SelectionChanged="ComboBox_Grid17_type_SelectionChanged">
+                        <ComboBoxItem Content="单独G代码运行" FontSize="15"></ComboBoxItem>
+                        <ComboBoxItem Content="交接G代码运行" FontSize="15"></ComboBoxItem>
+                    </ComboBox>
+
+                    <Button x:Name="buttonOutputGFile" Grid.Row="6" Content="输出G代码相关文件" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5"  Width="200" Height="50" FontSize="20" Click="ButtonOutputGFile_OnClick"/>
+                    <Label x:Name="Label_Grid17_show" Grid.Row="6" HorizontalAlignment="Right" FontSize="20" Content="尚未输出" VerticalAlignment="Top" Margin="5" Height="50" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Right"></Label>
                 </Grid>
             </Grid>
         </ScrollViewer>

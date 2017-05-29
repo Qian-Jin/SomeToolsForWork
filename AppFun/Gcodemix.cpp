@@ -3,11 +3,27 @@
 
 void writeG1(std::ofstream &file,int32_t linenum, int flot, double flot_x, double flot_y, double flot_z, double a,double b,double c,double p,double q)
 {
-	
-	
-//	file << "N" << linenum << " M" << a << " D" << a*5.68 << " G1 ";
-	file << "N" << linenum << " G1 ";
+	//M代码只能放到后面
+	//if (McodeType == 0)
+	//{
+	//	if (McodeValue == 0)
+	//	{
+	//		file << "N" << linenum << " M" << a << " D" << a*mCodeFactor << " G1 ";
 
+	//	}
+	//	else if (McodeValue == 1)
+	//	{
+	//		file << "N" << linenum << " M" << a <<  " G1 ";
+	//	}
+	//}
+	//else if (McodeType == 1)
+	//{
+	//	file << "N" << linenum << " G1 ";
+	//}
+
+	
+	file << "N" << linenum << " G1 ";
+	
 	switch (flot)
 	{
 	case 17:
@@ -34,7 +50,23 @@ void writeG1(std::ofstream &file,int32_t linenum, int flot, double flot_x, doubl
 	file << "C" << c << " ";
 	file << "P" << p << " ";
 	file << "Q" << q << " ";
-//	file << "M" << a << " D" << a*4.36;
+	if (McodeType == 0)
+	{
+		if (McodeValue == 0)
+		{
+			file << "M" << a << " D" << (a + 1)*mCodeFactor;
+
+		}
+		else if (McodeValue == 1)
+		{
+			file << "M" << a ;
+		}
+	}
+	else if (McodeType == 1)
+	{
+		;
+	}
+
 	file << std::endl;
 
 }
@@ -402,17 +434,101 @@ void writeGcode_judge(std::ofstream &file,int32_t linume, int flot, double flot_
 
 void writeMcode_judge(std::ofstream &file,int32_t linenum,int i)
 {
-	file << "IF (NC_Currentline = " << linenum+1 << ") THEN\n";
+	if (McodeType == 0)
+	{
+		file << "IF (NC_Currentline = " << linenum << ") THEN\n";
+	}
+	else if (McodeType == 1)
+	{
+		file << "IF (NC_Currentline = " << linenum + 1 << ") THEN\n";
+	}
+	
 //	file << "\tA:=0;\n";
 	file << "\tA:=A+1;\n";
 	file << "\tIF A=2 THEN\n";
-	file << "\t\tIF (AxisGrp[1].M_Function[" << i << "] = 1) & (ABS(AxisGrp[1].M_Value[" << i << "] - " << i * 4.36 << ")<1E-3 )THEN\n";
-//	file << "\t\tIF (AxisGrp[1].M_Function[" << i << "] = 1) THEN\n";
 
+	if (McodeValue == 0)
+	{
+		file << "\t\tIF (AxesGroup[1].M_Function[" << i << "] = 1) & (ABS(AxesGroup[1].M_Value[" << i << "] - " << (i + 1) * mCodeFactor << ")<1E-3 ) & (\n";
+		if (McodeType == 0)
+		{
+			for (int j = i; j < 100; j++)
+			{
+				if (j == i)
+				{
+					;
+				}
+				else
+				{
+					file << "\t\t(AxesGroup[1].M_Function[" << j << "] = 0) & \n";
+				}
+			}
+		}
+		else if (McodeType == 1)
+		{
+			for (int j = 0; j < 100; j++)
+			{
+				if (j == i)
+				{
+					;
+				}
+				else
+				{
+					file << "\t\t(AxesGroup[1].M_Function[" << j << "] = 0) & \n";
+				}
+			}
+		}
+			
+		file << "\t\tTRUE )THEN\n";
+	}
+	else if (McodeValue == 1)
+	{
+		file << "\t\tIF (AxesGroup[1].M_Function[" << i << "] = 1) & (\n";
+		if (McodeType == 0)
+		{
+			for (int j = i; j < 100; j++)
+			{
+				if (j == i)
+				{
+					;
+				}
+				else
+				{
+					file << "\t\t(AxesGroup[1].M_Function[" << j << "] = 0) & \n";
+				}
+			}
+		}
+		else if (McodeType == 1)
+		{
+			for (int j = 0; j < 100; j++)
+			{
+				if (j == i)
+				{
+					;
+				}
+				else
+				{
+					file << "\t\t(AxesGroup[1].M_Function[" << j << "] = 0) & \n";
+				}
+			}
+		}
+		file << "\t\tTRUE )THEN\n";
+	}
+	
+	if (McodeType == 0)
+	{
+		file << "\t\t\t;\n";
 
-	file << "\t\t\tAxisGrp[1].M_Function[" << i << "] := 0;\n";
-//	file << "\t\t\t;\n";
-	file << "\t\tELSE\n\t\t\tError1 := TRUE;\n\t\t\tlineError1 := NC_Currentline;\n\t\t\tErrorValue:=ABS(AxisGrp[1].M_Value[" << i << "] - " << i *4.36 << ");\n";
+	}
+	else if (McodeType == 1)
+	{
+		file << "\t\t\tAxesGroup[1].M_Function[" << i << "] := 0;\n";
+	}
+	
+	file << "\t\tELSE\n\t\t\tError1 := TRUE;\n";
+	file << "\t\t\tMError[" << i << "] := AxesGroup[1].M_Function;\n";
+	file <<	"\t\t\tlineError1[" << i << "] := NC_Currentline;\n";
+	file << "\t\t\tErrorValue[" << i << "]:=ABS(AxesGroup[1].M_Value[" << i << "] - " << i * mCodeFactor << ");\n";
 	file << "\t\tEND_IF;\n";
 	file << "\tEND_IF;\n";
 	file << "END_IF;\n";
@@ -425,7 +541,7 @@ void makeMixFile(std::ofstream &file, std::ofstream &judgefile)
 {
 	base_pointer startpoint;
 	base_pointer endpoint;
-	base_pointer centerpoint;
+//	base_pointer centerpoint;
 	startpoint.x = 0.0;
 	startpoint.y = 0.0;
 
@@ -487,12 +603,31 @@ void makeMixFile(std::ofstream &file, std::ofstream &judgefile)
 		default:
 			break;
 		}
-		writeGcode_judge(judgefile, judgelinenum, flat_global, endpoint.x, endpoint.y, i, i, i, i, i, i);
+		writeGcode_judge(judgefile, judgelinenum +1, flat_global, endpoint.x, endpoint.y, i, i, i, i, i, i);
 
 		linenum++;
-		file << "N" << linenum << " M" << i << " D" << i*10.2 <<std::endl;
-		writeMcode_judge(judgefile, linenum, i);
-		linenum++;
+
+		if (McodeType == 0)
+		{
+			;
+			writeMcode_judge(judgefile, linenum, i);
+		}
+		else if (McodeType == 1)
+		{
+			if (McodeValue == 0)
+			{
+				file << "N" << linenum << " M" << i << " D" << (i + 1) * mCodeFactor <<std::endl;
+
+			}
+			else if (McodeValue == 1)
+			{
+				file << "N" << linenum << " M" << i << std::endl;
+			}
+			writeMcode_judge(judgefile, linenum, i);
+			linenum++;
+		}
+		
+		
 		startpoint = endpoint;
 	}
 }
@@ -509,17 +644,25 @@ void gCodeMixFileOutput()
 	System::Xml::XmlNode^ firstangle_node = rootnode->SelectSingleNode("FirstAngle");
 	System::Xml::XmlNode^ eachangle_node = rootnode->SelectSingleNode("EachAngle");
 	System::Xml::XmlNode^ flat_node = rootnode->SelectSingleNode("Flat");
+	System::Xml::XmlNode^ McodeType_node = rootnode->SelectSingleNode("McodeType");
+	System::Xml::XmlNode^ McodeValue_node = rootnode->SelectSingleNode("McodeIsValue");
 
 	
 	char* linelong_char = (char*)(void*)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(linelong_node->ChildNodes[0]->InnerText);
 	char* firstangle_char = (char*)(void*)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(firstangle_node->ChildNodes[0]->InnerText);
 	char* eachangle_char = (char*)(void*)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(eachangle_node->ChildNodes[0]->InnerText);
 	char* flat_char = (char*)(void*)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(flat_node->ChildNodes[0]->InnerText);
+	char* McodeType_char = (char*)(void*)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(McodeType_node->ChildNodes[0]->InnerText);
+	char* McodeValue_char = (char*)(void*)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(McodeValue_node->ChildNodes[0]->InnerText);
+
 
 	line_long = atof(linelong_char);
 	firstangle = atof(firstangle_char);
 	angle = atof(eachangle_char);
 	flat_global = atoi(flat_char);
+
+	McodeType = atoi(McodeType_char);
+	McodeValue = atoi(McodeValue_char);
 
 	std::ofstream outfile , outfileJudge;
 	outfile.open("E:\\TextOut\\G_code.txt", std::ios::out, std::ios::trunc);

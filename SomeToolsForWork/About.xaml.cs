@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,6 +23,13 @@ namespace SomeTools
         public About()
         {
             InitializeComponent();
+        }
+
+        private void About_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            var version = Assembly.GetExecutingAssembly().GetName().Version;
+            LabelVersion.Content = "Version : " + version.ToString();
+            LabelDate.Content = "Compile Date : " + System.IO.File.GetLastWriteTime(this.GetType().Assembly.Location).ToString();
         }
     }
 }

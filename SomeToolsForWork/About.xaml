@@ -5,10 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SomeToolsForWork"
         mc:Ignorable="d"
-        Title="关于" Height="200" Width="300" MaxHeight="200" MaxWidth="300" MinHeight="200" MinWidth="300" Icon="dialog-information.png">
+        Title="关于" Height="300" Width="500" MaxHeight="300" MaxWidth="500" MinHeight="300" MinWidth="500" Icon="dialog-information.png" Loaded="About_OnLoaded">
     <StackPanel>
-        <Label Content="App = Some tools" FontSize="25" ></Label>
-        <Label Content="Author = Zhukov Wang" FontSize="15"></Label>
-        <Label Content="https://github.com/Qian-Jin"></Label>
+        <Label Content="Some tools" FontSize="30" ></Label>
+        <Label x:Name="LabelVersion" FontSize="18"></Label>
+        <Label x:Name="LabelDate" FontSize="18"></Label>
+        <Label Content="Zhukov Wang" FontSize="20"></Label>
+        <Label Content="https://github.com/Qian-Jin" FontSize="15"></Label>
+        
     </StackPanel>
 </Window>

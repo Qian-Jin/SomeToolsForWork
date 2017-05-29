@@ -4,8 +4,8 @@
 #include "Gcode.h"
 
 
-const double for_time = 200.0;
-const double for_step = 1.0;
+const double for_time = 10.0;
+const double for_step = 0.1;
 
 //G1
 double outfunction(double i, typ_xy_C typ, int curvetype)

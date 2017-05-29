@@ -1,30 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
+using System.Runtime.InteropServices;
 using System.Threading;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Threading;
 using System.Xml;
 
 namespace SomeTools
 {
-
-    
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
@@ -33,7 +21,6 @@ namespace SomeTools
         public MainWindow()
         {
             InitializeComponent();
-
         }
 
         private void program_exit(object sender, RoutedEventArgs e)
@@ -66,12 +53,12 @@ namespace SomeTools
 
         private void TimerTick(object sender, EventArgs e)
         {
-            Timer.Content = DateTime.Now.ToLongDateString() +" " + DateTime.Now.ToLongTimeString();
+            Timer.Content = DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString();
         }
 
         private void LanuchTimer()
         {
-            DispatcherTimer innerTimer = new DispatcherTimer(TimeSpan.FromSeconds(1.0),DispatcherPriority.Loaded, new EventHandler(this.TimerTick), this.Dispatcher);
+            DispatcherTimer innerTimer = new DispatcherTimer(TimeSpan.FromSeconds(1.0), DispatcherPriority.Loaded, new EventHandler(this.TimerTick), this.Dispatcher);
             innerTimer.Start();
         }
 
@@ -83,11 +70,10 @@ namespace SomeTools
         }
 
         private NetworkInterface[] NetworkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
-        List<combomem> combolist = new List<combomem>();
+        private List<combomem> combolist = new List<combomem>();
 
         private void GetNetworkInterface()
         {
-            
             combomem combomenber = new combomem();
             int i = 0;
             foreach (NetworkInterface networkInterface in NetworkInterfaces)
@@ -107,9 +93,7 @@ namespace SomeTools
 
                 combolist.Add(combomenber);
             }
-        
         }
-
 
         private void ListBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -140,7 +124,9 @@ namespace SomeTools
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
                         Grid16.Visibility = Visibility.Hidden;
+                        Grid17.Visibility = Visibility.Hidden;
                         break;
+
                     case 1:
                         grid0.Visibility = Visibility.Hidden;
                         grid1.Visibility = Visibility.Visible;
@@ -159,8 +145,9 @@ namespace SomeTools
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
                         Grid16.Visibility = Visibility.Hidden;
-
+                        Grid17.Visibility = Visibility.Hidden;
                         break;
+
                     case 2:
                         grid0.Visibility = Visibility.Hidden;
                         grid1.Visibility = Visibility.Hidden;
@@ -179,8 +166,9 @@ namespace SomeTools
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
                         Grid16.Visibility = Visibility.Hidden;
-
+                        Grid17.Visibility = Visibility.Hidden;
                         break;
+
                     case 3:
                         grid0.Visibility = Visibility.Hidden;
                         grid1.Visibility = Visibility.Hidden;
@@ -199,8 +187,9 @@ namespace SomeTools
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
                         Grid16.Visibility = Visibility.Hidden;
-
+                        Grid17.Visibility = Visibility.Hidden;
                         break;
+
                     case 4:
                         grid0.Visibility = Visibility.Hidden;
                         grid1.Visibility = Visibility.Hidden;
@@ -219,8 +208,10 @@ namespace SomeTools
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
                         Grid16.Visibility = Visibility.Hidden;
+                        Grid17.Visibility = Visibility.Hidden;
 
                         break;
+
                     case 5:
                         grid0.Visibility = Visibility.Hidden;
                         grid1.Visibility = Visibility.Hidden;
@@ -239,8 +230,10 @@ namespace SomeTools
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
                         Grid16.Visibility = Visibility.Hidden;
+                        Grid17.Visibility = Visibility.Hidden;
 
                         break;
+
                     case 6:
                         grid0.Visibility = Visibility.Hidden;
                         grid1.Visibility = Visibility.Hidden;
@@ -259,8 +252,10 @@ namespace SomeTools
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
                         Grid16.Visibility = Visibility.Hidden;
+                        Grid17.Visibility = Visibility.Hidden;
 
                         break;
+
                     case 7:
                         grid0.Visibility = Visibility.Hidden;
                         grid1.Visibility = Visibility.Hidden;
@@ -279,8 +274,10 @@ namespace SomeTools
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
                         Grid16.Visibility = Visibility.Hidden;
+                        Grid17.Visibility = Visibility.Hidden;
 
                         break;
+
                     case 8:
                         grid0.Visibility = Visibility.Hidden;
                         grid1.Visibility = Visibility.Hidden;
@@ -299,8 +296,10 @@ namespace SomeTools
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
                         Grid16.Visibility = Visibility.Hidden;
+                        Grid17.Visibility = Visibility.Hidden;
 
                         break;
+
                     case 9:
                         grid0.Visibility = Visibility.Hidden;
                         grid1.Visibility = Visibility.Hidden;
@@ -319,8 +318,10 @@ namespace SomeTools
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
                         Grid16.Visibility = Visibility.Hidden;
+                        Grid17.Visibility = Visibility.Hidden;
 
                         break;
+
                     case 10:
                         grid0.Visibility = Visibility.Hidden;
                         grid1.Visibility = Visibility.Hidden;
@@ -339,8 +340,10 @@ namespace SomeTools
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
                         Grid16.Visibility = Visibility.Hidden;
+                        Grid17.Visibility = Visibility.Hidden;
 
                         break;
+
                     case 11:
                         grid0.Visibility = Visibility.Hidden;
                         grid1.Visibility = Visibility.Hidden;
@@ -359,8 +362,10 @@ namespace SomeTools
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
                         Grid16.Visibility = Visibility.Hidden;
+                        Grid17.Visibility = Visibility.Hidden;
 
                         break;
+
                     case 12:
                         grid0.Visibility = Visibility.Hidden;
                         grid1.Visibility = Visibility.Hidden;
@@ -379,8 +384,10 @@ namespace SomeTools
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
                         Grid16.Visibility = Visibility.Hidden;
+                        Grid17.Visibility = Visibility.Hidden;
 
                         break;
+
                     case 13:
                         grid0.Visibility = Visibility.Hidden;
                         grid1.Visibility = Visibility.Hidden;
@@ -399,8 +406,10 @@ namespace SomeTools
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
                         Grid16.Visibility = Visibility.Hidden;
+                        Grid17.Visibility = Visibility.Hidden;
 
                         break;
+
                     case 14:
                         grid0.Visibility = Visibility.Hidden;
                         grid1.Visibility = Visibility.Hidden;
@@ -419,8 +428,10 @@ namespace SomeTools
                         Grid14.Visibility = Visibility.Visible;
                         Grid15.Visibility = Visibility.Hidden;
                         Grid16.Visibility = Visibility.Hidden;
+                        Grid17.Visibility = Visibility.Hidden;
 
                         break;
+
                     case 15:
                         grid0.Visibility = Visibility.Hidden;
                         grid1.Visibility = Visibility.Hidden;
@@ -439,6 +450,7 @@ namespace SomeTools
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Visible;
                         Grid16.Visibility = Visibility.Hidden;
+                        Grid17.Visibility = Visibility.Hidden;
 
                         break;
 
@@ -460,9 +472,32 @@ namespace SomeTools
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
                         Grid16.Visibility = Visibility.Visible;
-
+                        Grid17.Visibility = Visibility.Hidden;
 
                         break;
+
+                    case 17:
+                        grid0.Visibility = Visibility.Hidden;
+                        grid1.Visibility = Visibility.Hidden;
+                        grid2.Visibility = Visibility.Hidden;
+                        grid3.Visibility = Visibility.Hidden;
+                        grid4.Visibility = Visibility.Hidden;
+                        grid5.Visibility = Visibility.Hidden;
+                        grid6.Visibility = Visibility.Hidden;
+                        grid7.Visibility = Visibility.Hidden;
+                        grid8.Visibility = Visibility.Hidden;
+                        grid9.Visibility = Visibility.Hidden;
+                        grid10.Visibility = Visibility.Hidden;
+                        grid11.Visibility = Visibility.Hidden;
+                        grid12.Visibility = Visibility.Hidden;
+                        Grid13.Visibility = Visibility.Hidden;
+                        Grid14.Visibility = Visibility.Hidden;
+                        Grid15.Visibility = Visibility.Hidden;
+                        Grid16.Visibility = Visibility.Hidden;
+                        Grid17.Visibility = Visibility.Visible;
+
+                        break;
+
                     default:
                         grid0.Visibility = Visibility.Hidden;
                         grid1.Visibility = Visibility.Hidden;
@@ -481,6 +516,7 @@ namespace SomeTools
                         Grid14.Visibility = Visibility.Hidden;
                         Grid15.Visibility = Visibility.Hidden;
                         Grid16.Visibility = Visibility.Hidden;
+                        Grid17.Visibility = Visibility.Hidden;
 
                         break;
                 }
@@ -524,6 +560,7 @@ namespace SomeTools
                 }
             }
         }
+
         //进制转换——十六进制
         private void HexText_Change(object sender, TextChangedEventArgs e)
         {
@@ -558,11 +595,11 @@ namespace SomeTools
                     {
                         TextBox1_1.Text = Convert.ToString(hexNum, 10);
                         TextBox1_3.Text = Convert.ToString(hexNum, 2);
-
                     }
                 }
             }
         }
+
         //进制转换——二进制
         private void BinText_Change(object sender, TextChangedEventArgs e)
         {
@@ -621,17 +658,16 @@ namespace SomeTools
         private void Button2_1_OnClick(object sender, RoutedEventArgs e)
         {
             int transmode = 0;
-            if (RadioButton2_1.IsChecked==true && RadioButton2_2.IsChecked == false)
+            if (RadioButton2_1.IsChecked == true && RadioButton2_2.IsChecked == false)
             {
-                if (RadioButton2_3.IsChecked==true && RadioButton2_4.IsChecked==false)
+                if (RadioButton2_3.IsChecked == true && RadioButton2_4.IsChecked == false)
                 {
                     transmode = 1;
                 }
-                if (RadioButton2_4.IsChecked==true && RadioButton2_3.IsChecked==false)
+                if (RadioButton2_4.IsChecked == true && RadioButton2_3.IsChecked == false)
                 {
                     transmode = 2;
                 }
-             
             }
             if (RadioButton2_1.IsChecked == false && RadioButton2_2.IsChecked == true)
             {
@@ -644,33 +680,33 @@ namespace SomeTools
                     transmode = 4;
                 }
             }
-            
+
             switch (transmode)
             {
                 case 1:
                     float real = (float)(Convert.ToDouble(TextBox2_1.Text));
                     TextBox2_2.Text = Convert.ToString(trans_float_int32(real), 16).ToUpper();
                     break;
+
                 case 2:
                     Int32 udint = (Convert.ToInt32(TextBox2_1.Text, 16));
                     TextBox2_2.Text = Convert.ToString(trans_int32_float(udint));
                     break;
+
                 case 3:
                     double lreal = (Convert.ToDouble(TextBox2_1.Text));
                     TextBox2_2.Text = Convert.ToString(trans_double_int64(lreal), 16).ToUpper();
                     break;
+
                 case 4:
                     long ulint = (Convert.ToInt64(TextBox2_1.Text, 16));
                     TextBox2_2.Text = Convert.ToString(trans_int64_double(ulint));
                     break;
+
                 default:
                     break;
-                    
             }
-
         }
-
-
 
         [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "cal_acc_time",
                 CallingConvention = CallingConvention.Cdecl)]
@@ -682,7 +718,7 @@ namespace SomeTools
             double vel_max = Convert.ToDouble(TextBox3_2.Text);//最大速度
             double vel_acc = Convert.ToDouble(TextBox3_3.Text);//加速度
             double vel_jerk = Convert.ToDouble(TextBox3_4.Text);//加加速度
-            
+
             TextBox3_5.Text = Convert.ToString(cal_acc_time(vel_start, vel_max, vel_acc, vel_jerk, 0));
             TextBox3_6.Text = Convert.ToString(cal_acc_time(vel_start, vel_max, vel_acc, vel_jerk, 1));
             TextBox3_7.Text = Convert.ToString(cal_acc_time(vel_start, vel_max, vel_acc, vel_jerk, 2));
@@ -693,6 +729,7 @@ namespace SomeTools
             CallingConvention = CallingConvention.Cdecl)]
         public extern static double cal_move_time(double pos_start, double pos_end, double vel_start, double vel_max,
             double vel_end, double vel_acc, double vel_dec, double vel_jerk, int what_return);
+
         private void Cal_mc_moverelative(object sender, RoutedEventArgs e)
         {
             double pos_start = Convert.ToDouble(TextBox4_1.Text);//起始位置
@@ -719,7 +756,6 @@ namespace SomeTools
             TextBox4_26.Text = Convert.ToString(cal_move_time(pos_start, pos_end, vel_start, vel_max, vel_end, vel_acc, vel_dec, vel_jerk, 12));
             TextBox4_27.Text = Convert.ToString(cal_move_time(pos_start, pos_end, vel_start, vel_max, vel_end, vel_acc, vel_dec, vel_jerk, 13));
             TextBox4_28.Text = Convert.ToString(cal_move_time(pos_start, pos_end, vel_start, vel_max, vel_end, vel_acc, vel_dec, vel_jerk, 14));
-
         }
 
         private void Cal_motionvel(object sender, RoutedEventArgs e)
@@ -751,66 +787,85 @@ namespace SomeTools
             {
                 ;
             }
-             
+
             switch (state)
             {
                 case 0:
                     TextBox7_2.Text = Convert.ToString("Disable");
                     break;
+
                 case 1:
                     TextBox7_2.Text = Convert.ToString("Standstill");
                     break;
+
                 case 2:
                     TextBox7_2.Text = Convert.ToString("ErrStop");
                     break;
+
                 case 3:
                     TextBox7_2.Text = Convert.ToString("Stopping");
                     break;
+
                 case 4:
                     TextBox7_2.Text = Convert.ToString("Homing");
                     break;
+
                 case 5:
                     TextBox7_2.Text = Convert.ToString("DiscMotion");
                     break;
+
                 case 6:
                     TextBox7_2.Text = Convert.ToString("ContMotion");
                     break;
+
                 case 7:
                     TextBox7_2.Text = Convert.ToString("CAMMotion");
                     break;
+
                 case 8:
                     TextBox7_2.Text = Convert.ToString("GearMotion");
                     break;
+
                 case 9:
                     TextBox7_2.Text = Convert.ToString("CootMotion");
                     break;
+
                 case 10:
                     TextBox7_2.Text = Convert.ToString("RotaryCut");
                     break;
+
                 case 11:
                     TextBox7_2.Text = Convert.ToString("GearMotion");
                     break;
+
                 case 12:
                     TextBox7_2.Text = Convert.ToString("CamMotion");
                     break;
+
                 case 13:
                     TextBox7_2.Text = Convert.ToString("FlyingShear");
                     break;
+
                 case 14:
                     TextBox7_2.Text = Convert.ToString("SetTorque");
                     break;
+
                 case 15:
                     TextBox7_2.Text = Convert.ToString("ContMotion");
                     break;
+
                 case 16:
                     TextBox7_2.Text = Convert.ToString("CamMotion");
                     break;
+
                 case 17:
                     TextBox7_2.Text = Convert.ToString("GearMotion");
                     break;
+
                 case 18:
                     TextBox7_2.Text = Convert.ToString("CombineMotion");
                     break;
+
                 default:
                     TextBox7_2.Text = Convert.ToString("输入值不正确");
                     break;
@@ -832,21 +887,26 @@ namespace SomeTools
                         case 1:
                             TextBox8_2.Text = "0x000" + mwvalue16;
                             break;
+
                         case 2:
                             TextBox8_2.Text = "0x00" + mwvalue16;
                             break;
+
                         case 3:
                             TextBox8_2.Text = "0x0" + mwvalue16;
                             break;
+
                         default:
                             TextBox8_2.Text = "0x" + mwvalue16;
                             break;
                     }
                     break;
+
                 case 1:
                     mwvalue16 = Convert.ToString(mwvalue + 0x8000, 16).ToUpper();
                     TextBox8_2.Text = "0x" + mwvalue16;
                     break;
+
                 case 2:
                     mwvalue16 = Convert.ToString(mwvalue + 0xA000, 16).ToUpper();
                     TextBox8_2.Text = "0x" + mwvalue16;
@@ -858,6 +918,7 @@ namespace SomeTools
                 case 0:
                     TextBox8_5.Text = "0x" + Convert.ToString(ixvalue + 0x6000, 16).ToUpper();
                     break;
+
                 case 1:
                     TextBox8_5.Text = "0x" + Convert.ToString(ixvalue + 0xA000, 16).ToUpper();
                     break;
@@ -877,9 +938,7 @@ namespace SomeTools
             }
         }
 
-
-
-        [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "gcodefileoutput",CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "gcodefileoutput", CallingConvention = CallingConvention.Cdecl)]
         public extern static void gcodefileoutput(int curvetype);
 
         private void GcodeSave_OnClick(object sender, RoutedEventArgs e)
@@ -897,7 +956,6 @@ namespace SomeTools
             }
         }
 
-
         private void OpenGcodeFile_OnClick(object sender, RoutedEventArgs e)
         {
             System.Diagnostics.Process.Start(@"E:\TextOut\G_code.txt");
@@ -910,7 +968,6 @@ namespace SomeTools
             Curvetype = ComboBoxCurveType.SelectedIndex;
             DrawPic drawPic = new DrawPic();
             drawPic.Show();
-
         }
 
         public Socket client;
@@ -935,9 +992,9 @@ namespace SomeTools
                 client.Bind(bindip);
             }
         }
+
         public void ConnectTcp()
         {
-
             byte[] data = new byte[1024];
 
             //connect
@@ -961,7 +1018,7 @@ namespace SomeTools
         {
             string senddata = TextBoxModbusTcpsend.Text;
             senddata = senddata.Replace(" ", "");
-            byte[] data = new byte[senddata.Length/2];
+            byte[] data = new byte[senddata.Length / 2];
             ushort[] dataUshort = new ushort[senddata.Length / 2];
             for (int i = 0; i < data.Length; i++)
             {
@@ -972,7 +1029,7 @@ namespace SomeTools
                 data[i] = Convert.ToByte(dataUshort[i]);
             }
 
-                //new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x01, 0x03, 0x00, 0x00, 0x00, 0x01 };
+            //new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x01, 0x03, 0x00, 0x00, 0x00, 0x01 };
             if (client == null)
             {
                 ;
@@ -982,6 +1039,7 @@ namespace SomeTools
                 client.Send(data);
             }
         }
+
         public void ReceiveMsg()
         {
             while (isclose)
@@ -1004,6 +1062,7 @@ namespace SomeTools
                         case 1:
                             temp = "0" + temp;
                             break;
+
                         default:
                             break;
                     }
@@ -1013,8 +1072,7 @@ namespace SomeTools
 
                 string numvalue = "Receive value: " +
                 Convert.ToString(
-                        Convert.ToUInt16((Convert.ToString(datashow[9], 16) + Convert.ToString(datashow[10], 16)), 16)) +"\n";
-
+                        Convert.ToUInt16((Convert.ToString(datashow[9], 16) + Convert.ToString(datashow[10], 16)), 16)) + "\n";
 
                 ShowTcpMsg(recvdata, numvalue);
             }
@@ -1031,12 +1089,8 @@ namespace SomeTools
             {
                 MyInvoke _myInvoke = new MyInvoke(ShowTcpMsg);
                 this.Dispatcher.Invoke(_myInvoke, new object[] { msg, num });
-
             }
         }
-
-
-
 
         private void ButtonModbusTcpConnent_OnClick(object sender, RoutedEventArgs e)
         {
@@ -1044,7 +1098,6 @@ namespace SomeTools
             Initsocket();
             ConnectTcp();
         }
-
 
         private void ButtonModbusTcpSend_OnClick(object sender, RoutedEventArgs e)
         {
@@ -1056,9 +1109,8 @@ namespace SomeTools
             ;
         }
 
-
         [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "gcodecirclefileoutput", CallingConvention = CallingConvention.Cdecl)]
-        public extern static void gcodecirclefileoutput(int curvetype,int direction, int method);
+        public extern static void gcodecirclefileoutput(int curvetype, int direction, int method);
 
         private void ButtonBase_OnClick_CreatCircleFile(object sender, RoutedEventArgs e)
         {
@@ -1068,25 +1120,22 @@ namespace SomeTools
             }
             else
             {
-                gcodecirclefileoutput(ComboBoxCircleType.SelectedIndex, ComboBoxFlat.SelectedIndex,ComboBoxMethod.SelectedIndex);
+                gcodecirclefileoutput(ComboBoxCircleType.SelectedIndex, ComboBoxFlat.SelectedIndex, ComboBoxMethod.SelectedIndex);
                 TextBox_CircleText.Text = "生成成功，文件位于E:\\TextOut\\G_code.txt\n具体文件如下：\n";
                 TextBox_CircleText.AppendText(File.ReadAllText("E:\\TextOut\\G_code.txt"));
                 ButtonCircleOpenFile.Visibility = Visibility.Visible;
             }
-
         }
 
         private void Button_Asciitrans_OnClick(object sender, RoutedEventArgs e)
         {
-            byte[] asciiNum = {0};
+            byte[] asciiNum = { 0 };
             asciiNum[0] = Convert.ToByte(TextBox_inputasciiNum.Text);
             TextBox_Asciioutputstr.AppendText("0x" + Convert.ToString(asciiNum[0], 16).ToUpper() + " \t");
             TextBox_Asciioutputstr.AppendText(Convert.ToString(asciiNum[0], 10) + " \t");
             TextBox_Asciioutputstr.AppendText(System.Text.Encoding.ASCII.GetString(asciiNum) + "\n");
             TextBox_inputasciiNum.SelectAll();
         }
-
-        
 
         private void ButtonCircleCale1_OnClick(object sender, RoutedEventArgs e)
         {
@@ -1096,7 +1145,7 @@ namespace SomeTools
             startpointX = Convert.ToDouble(TextBoxCircleStartPointX.Text);
             startpointY = Convert.ToDouble(TextBoxCircleStartPointY.Text);
             circleradium = Convert.ToDouble(TextBoxCircleRadium.Text);
-            circleoffsetangle = Convert.ToDouble(TextBoxCircleOffsetAngle.Text)/ 180.0 * Math.PI;
+            circleoffsetangle = Convert.ToDouble(TextBoxCircleOffsetAngle.Text) / 180.0 * Math.PI;
             centerpointX = startpointX + circleradium * Math.Cos(circleoffsetangle);
             centerpointY = startpointY + circleradium * Math.Sin(circleoffsetangle);
             TextBoxCircleCenterPointX.Text = Convert.ToString(centerpointX);
@@ -1132,9 +1181,7 @@ namespace SomeTools
             endpointY = centerpointY + circleradium * Math.Sin(vectorangle);
             TextBoxCircleEndPointX.Text = Convert.ToString(endpointX);
             TextBoxCircleEndPointY.Text = Convert.ToString(endpointY);
-
         }
-
 
         [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "gCodeMixFileOutput", CallingConvention = CallingConvention.Cdecl)]
         public extern static void gCodeMixFileOutput();
@@ -1158,7 +1205,6 @@ namespace SomeTools
             elementValue.InnerText = TextBoxFirstAngle.Text;
             elementPara.AppendChild(elementValue);
 
-
             elementPara = xmlDoc.CreateElement("EachAngle");
             el.AppendChild(elementPara);
             elementValue = xmlDoc.CreateElement("Value");
@@ -1168,17 +1214,23 @@ namespace SomeTools
             elementPara = xmlDoc.CreateElement("Flat");
             el.AppendChild(elementPara);
             elementValue = xmlDoc.CreateElement("Value");
+
+          
+
             switch (ComboBoxGMixFlat.SelectedIndex)
             {
                 case 0:
                     elementValue.InnerText = "17";
                     break;
+
                 case 1:
                     elementValue.InnerText = "18";
                     break;
+
                 case 2:
                     elementValue.InnerText = "19";
                     break;
+
                 default:
                     elementValue.InnerText = "17";
                     break;
@@ -1186,8 +1238,22 @@ namespace SomeTools
 
             elementPara.AppendChild(elementValue);
 
+            elementPara = xmlDoc.CreateElement("McodeType");
+            el.AppendChild(elementPara);
+            elementValue = xmlDoc.CreateElement("Value");
+            elementValue.InnerText = ComboBoxMcodeType.SelectedIndex.ToString();
+            elementPara.AppendChild(elementValue);
+
+            elementPara = xmlDoc.CreateElement("McodeIsValue");
+            el.AppendChild(elementPara);
+            elementValue = xmlDoc.CreateElement("Value");
+            elementValue.InnerText = ComboBoxMcodeValue.SelectedIndex.ToString();
+            elementPara.AppendChild(elementValue);
+
+
+
+
             xmlDoc.Save("E:\\TextOut\\G_code_Para.xml");
-            
 
             gCodeMixFileOutput();
             TextBox_GMixText.Text = "生成成功，文件位于E:\\TextOut\\G_code.txt\n具体文件如下：\n";
@@ -1203,7 +1269,133 @@ namespace SomeTools
             TextBox_G4testText.Text = "生成成功，文件位于E:\\TextOut\\G_code.txt\n具体文件如下：\n";
             TextBox_G4testText.AppendText(File.ReadAllText("E:\\TextOut\\G_code.txt"));
             ButtonG4testOpenFile.Visibility = Visibility.Visible;
+        }
 
+        [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "makeGfile", CallingConvention = CallingConvention.Cdecl)]
+        public extern static void makeGfile();
+
+        private void ButtonOutputGFile_OnClick(object sender, RoutedEventArgs e)
+        {
+
+            var xmlDoc = new XmlDocument();
+            xmlDoc.AppendChild(xmlDoc.CreateXmlDeclaration("1.0", "utf-8", null));
+
+            if (ComboBox_Grid17_type.SelectedIndex == 0)
+            {
+                var el = xmlDoc.CreateElement("Parameters");
+                xmlDoc.AppendChild(el);
+
+                XmlElement elementPara = xmlDoc.CreateElement("Type");
+                el.AppendChild(elementPara);
+                XmlElement elementValue = xmlDoc.CreateElement("Value");
+                elementValue.InnerText = ComboBox_Grid17_type.SelectedIndex.ToString();
+                elementPara.AppendChild(elementValue);
+
+                elementPara = xmlDoc.CreateElement("Axis");
+                el.AppendChild(elementPara);
+                elementValue = xmlDoc.CreateElement("Value");
+                elementValue.InnerText = ComboBox_Grid17_Axis.SelectedIndex.ToString();
+                elementPara.AppendChild(elementValue);
+
+                elementPara = xmlDoc.CreateElement("isRelative");
+                el.AppendChild(elementPara);
+                elementValue = xmlDoc.CreateElement("Value");
+                elementValue.InnerText = ComboBox_Grid17_Rela.SelectedIndex.ToString();
+                elementPara.AppendChild(elementValue);
+
+                elementPara = xmlDoc.CreateElement("Gcode");
+                el.AppendChild(elementPara);
+                elementValue = xmlDoc.CreateElement("Value");
+                elementValue.InnerText = ComboBox_Grid17_Gcode.SelectedIndex.ToString();
+                elementPara.AppendChild(elementValue);
+
+                elementPara = xmlDoc.CreateElement("G2method");
+                el.AppendChild(elementPara);
+                elementValue = xmlDoc.CreateElement("Value");
+                elementValue.InnerText = ComboBox_Grid17_G2method.SelectedIndex.ToString();
+                elementPara.AppendChild(elementValue);
+
+                elementPara = xmlDoc.CreateElement("flat");
+                el.AppendChild(elementPara);
+                elementValue = xmlDoc.CreateElement("Value");
+                elementValue.InnerText = ComboBox_Grid17_flat.SelectedIndex.ToString();
+                elementPara.AppendChild(elementValue);
+
+            }
+
+            if (ComboBox_Grid17_type.SelectedIndex == 1)
+            {
+                var el = xmlDoc.CreateElement("Parameters");
+                xmlDoc.AppendChild(el);
+
+                XmlElement elementPara = xmlDoc.CreateElement("Type");
+                el.AppendChild(elementPara);
+                XmlElement elementValue = xmlDoc.CreateElement("Value");
+                elementValue.InnerText = ComboBox_Grid17_type.SelectedIndex.ToString();
+                elementPara.AppendChild(elementValue);
+
+                elementPara = xmlDoc.CreateElement("isRelative");
+                el.AppendChild(elementPara);
+                elementValue = xmlDoc.CreateElement("Value");
+                elementValue.InnerText = ComboBox_Grid17_Rela.SelectedIndex.ToString();
+                elementPara.AppendChild(elementValue);
+
+                elementPara = xmlDoc.CreateElement("FirstGcode");
+                el.AppendChild(elementPara);
+                elementValue = xmlDoc.CreateElement("Value");
+                elementValue.InnerText = ComboBox_Grid17_FirstGcode.SelectedIndex.ToString();
+                elementPara.AppendChild(elementValue);
+
+                elementPara = xmlDoc.CreateElement("SecondGcode");
+                el.AppendChild(elementPara);
+                elementValue = xmlDoc.CreateElement("Value");
+                elementValue.InnerText = ComboBox_Grid17_SencondGcode.SelectedIndex.ToString();
+                elementPara.AppendChild(elementValue);
+
+            }
+
+            xmlDoc.Save("E:\\TextOut\\G_code_Para.xml");
+
+            makeGfile();
+            Label_Grid17_show.Content = "已经输出到E:\\TextOut\\G_code.txt";
+        }
+
+        private void ComboBox_Grid17_Gcode_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (ComboBox_Grid17_Gcode.SelectedIndex)
+            {
+                case 0:
+                case 1:
+                    ComboBox_Grid17_G2method.Visibility = Visibility.Hidden;
+                    ComboBox_Grid17_flat.Visibility = Visibility.Hidden;
+                break;
+                case 2:
+                case 3:
+                    ComboBox_Grid17_G2method.Visibility = Visibility.Visible;
+                    ComboBox_Grid17_flat.Visibility = Visibility.Visible;
+                break;
+                    
+            }
+        }
+
+        private void ComboBox_Grid17_type_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(ComboBox_Grid17_type.SelectedIndex == 0)
+            {
+                ComboBox_Grid17_Axis.Visibility = Visibility.Visible;
+                ComboBox_Grid17_Rela.Visibility = Visibility.Visible;
+                ComboBox_Grid17_Gcode.Visibility = Visibility.Visible;
+                ComboBox_Grid17_FirstGcode.Visibility = Visibility.Hidden;
+                ComboBox_Grid17_SencondGcode.Visibility = Visibility.Hidden;
+            }
+            if (ComboBox_Grid17_type.SelectedIndex == 1)
+            {
+                ComboBox_Grid17_Axis.Visibility = Visibility.Hidden;
+                ComboBox_Grid17_Rela.Visibility = Visibility.Visible;
+                ComboBox_Grid17_Gcode.Visibility = Visibility.Hidden;
+                ComboBox_Grid17_FirstGcode.Visibility = Visibility.Visible;
+                ComboBox_Grid17_SencondGcode.Visibility = Visibility.Visible;
+            }
         }
     }
 }

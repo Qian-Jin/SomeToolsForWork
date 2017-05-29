@@ -14,6 +14,10 @@ double angle = 90;
 double firstangle = 45;
 double line_long = 5;
 int32_t flat_global = 17;
+const double mCodeFactor = 10.2;
+
+int McodeType = 0;
+int McodeValue = 0;
 
 
 void writeG1(std::ofstream &file, int32_t linenum, int flot, double flot_x, double flot_y, double flot_z, double a, double b, double c, double p, double q);

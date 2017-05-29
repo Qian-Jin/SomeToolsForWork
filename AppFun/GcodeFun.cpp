@@ -282,7 +282,7 @@ double f_sin(double i, typ_xy_C typ)
 	case X_C:
 		return i;
 	case Y_C:
-		return 2 * pow(sin(i * M_PI / 10), 1);
+		return 2 * (sin(i * M_PI / 10));
 	default:
 		return -1;
 	}
