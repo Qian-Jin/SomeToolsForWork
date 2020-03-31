@@ -78,11 +78,39 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="About.xaml">
+    <Page Include="Function\CalculateMotionAccelerationTime.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DrawPic.xaml">
+    <Page Include="Function\CalculateMotionTime.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Function\ConvertFloatToHex.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Function\ConvertNumberBase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Function\ConvertPulseToUnit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Function\ConvertStringToAscii.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Function\GenerateCurve.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Function\SerialCommunication.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Function\SocketCommunication.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -90,15 +118,36 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="About.xaml.cs">
-      <DependentUpon>About.xaml</DependentUpon>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DrawPic.xaml.cs">
-      <DependentUpon>DrawPic.xaml</DependentUpon>
+    <Compile Include="Function\CalculateMotionAccelerationTime.xaml.cs">
+      <DependentUpon>CalculateMotionAccelerationTime.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Function\CalculateMotionTime.xaml.cs">
+      <DependentUpon>CalculateMotionTime.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Function\ConvertFloatToHex.xaml.cs">
+      <DependentUpon>ConvertFloatToHex.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Function\ConvertNumberBase.xaml.cs">
+      <DependentUpon>ConvertNumberBase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Function\ConvertPulseToUnit.xaml.cs">
+      <DependentUpon>ConvertPulseToUnit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Function\ConvertStringToAscii.xaml.cs">
+      <DependentUpon>ConvertStringToAscii.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Function\GenerateCurve.xaml.cs">
+      <DependentUpon>GenerateCurve.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Function\SerialCommunication.xaml.cs">
+      <DependentUpon>SerialCommunication.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Function\SocketCommunication.xaml.cs">
+      <DependentUpon>SocketCommunication.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -136,10 +185,7 @@
     <Resource Include="tool14.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="law.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="dialog-information.png" />
+    <Resource Include="Function\ConvertPulseToUnitLow.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="tools.ico" />
@@ -156,6 +202,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
