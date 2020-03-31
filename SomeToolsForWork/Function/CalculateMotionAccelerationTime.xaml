@@ -5,134 +5,123 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:SomeTools.Function"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Margin="10"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="AcceptsReturn" Value="False" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <EventSetter Event="KeyDown" Handler="TextBoxKeyDownEventSetter_OnHandler" />
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10" />
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
-            <ColumnDefinition Width="50" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
-            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="10" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Label
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="0"
+            Text="起始速度" />
+        <TextBox
+            x:Name="StartVelocityTextBox"
+            Grid.Row="0"
+            Grid.Column="1" />
+        <TextBlock
             Grid.Row="1"
-            Grid.Column="1"
-            Content="起始速度"
-            FontSize="20" />
-        <Label
-            Grid.Row="2"
-            Grid.Column="1"
-            Content="最大目标速度"
-            FontSize="20" />
-        <Label
-            Grid.Row="3"
-            Grid.Column="1"
-            Content="加速度"
-            FontSize="20" />
-        <Label
-            Grid.Row="4"
-            Grid.Column="1"
-            Content="加加速度"
-            FontSize="20" />
+            Grid.Column="0"
+            Text="目标速度" />
         <TextBox
-            x:Name="TextBox3_1"
+            x:Name="MaxVelocityTextBox"
             Grid.Row="1"
-            Grid.Column="2"
-            Margin="5"
-            AcceptsReturn="False"
-            FontSize="20" />
-        <TextBox
-            x:Name="TextBox3_2"
+            Grid.Column="1" />
+        <TextBlock
             Grid.Row="2"
-            Grid.Column="2"
-            Margin="5"
-            FontSize="20" />
+            Grid.Column="0"
+            Text="加速度" />
         <TextBox
-            x:Name="TextBox3_3"
-            Grid.Row="3"
-            Grid.Column="2"
-            Margin="5"
-            FontSize="20" />
-        <TextBox
-            x:Name="TextBox3_4"
-            Grid.Row="4"
-            Grid.Column="2"
-            Margin="5"
-            FontSize="20" />
-        <Label
-            Grid.Row="1"
-            Grid.Column="4"
-            Content="总时间"
-            FontSize="20" />
-        <Label
+            x:Name="MaxAccelerationTextBox"
             Grid.Row="2"
-            Grid.Column="4"
-            Content="第一段时间"
-            FontSize="20" />
-        <Label
+            Grid.Column="1" />
+        <TextBlock
             Grid.Row="3"
-            Grid.Column="4"
-            Content="第二段时间"
-            FontSize="20" />
-        <Label
-            Grid.Row="4"
-            Grid.Column="4"
-            Content="第三段时间"
-            FontSize="20" />
-        <TextBox
-            x:Name="TextBox3_5"
-            Grid.Row="1"
-            Grid.Column="5"
-            Margin="5"
+            Grid.Column="0"
             FontSize="20"
-            IsReadOnly="True" />
+            Text="加加速度" />
         <TextBox
-            x:Name="TextBox3_6"
-            Grid.Row="2"
-            Grid.Column="5"
-            Margin="5"
-            FontSize="20"
-            IsReadOnly="True" />
-        <TextBox
-            x:Name="TextBox3_7"
+            x:Name="MaxJerkTextBox"
             Grid.Row="3"
-            Grid.Column="5"
-            Margin="5"
-            FontSize="20"
-            IsReadOnly="True" />
-        <TextBox
-            x:Name="TextBox3_8"
-            Grid.Row="4"
-            Grid.Column="5"
-            Margin="5"
-            FontSize="20"
-            IsReadOnly="True" />
+            Grid.Column="1" />
         <Button
-            x:Name="Button3_1"
+            x:Name="CalculateButton"
+            Grid.Row="4"
+            Grid.Column="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Click="CalculateButton_OnClick"
+            FontSize="20">
+            <TextBlock Margin="20,5" Text="计算" />
+        </Button>
+        <TextBlock
             Grid.Row="5"
-            Grid.Column="2"
-            MinWidth="30"
-            MinHeight="25"
-            MaxWidth="100"
-            MaxHeight="50"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Top"
-            Click="Cal_mc_movevelocity"
-            Content="计算"
-            FontSize="20"
-            IsDefault="True" />
+            Grid.Column="0"
+            Text="总时间" />
+        <TextBlock
+            x:Name="TotalTimeTextBlock"
+            Grid.Row="5"
+            Grid.Column="1"
+            HorizontalAlignment="Left" />
+        <TextBlock
+            Grid.Row="6"
+            Grid.Column="0"
+            Text="第一段时间" />
+        <TextBlock
+            x:Name="FirstStageTextBox"
+            Grid.Row="6"
+            Grid.Column="1"
+            HorizontalAlignment="Left" />
+        <TextBlock
+            Grid.Row="7"
+            Grid.Column="0"
+            Text="第二段时间" />
+        <TextBlock
+            x:Name="SecondStageTextBlock"
+            Grid.Row="7"
+            Grid.Column="1"
+            HorizontalAlignment="Left" />
+        <TextBlock
+            Grid.Row="8"
+            Grid.Column="0"
+            Text="第三段时间" />
+        <TextBlock
+            x:Name="ThirdStageTextBlock"
+            Grid.Row="8"
+            Grid.Column="1"
+            HorizontalAlignment="Left" />
     </Grid>
 </UserControl>

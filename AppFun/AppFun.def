@@ -1,12 +1,12 @@
 LIBRARY "AppFun"
 
 EXPORTS
-	trans_int32_float @ 1
-	trans_float_int32 @ 2
-	trans_int64_double @ 3
-	trans_double_int64 @ 4
-	cal_acc_time @ 5
-	cal_move_time @ 6
+	convert_int32_to_float @ 1
+	convert_float_to_int32 @ 2
+	convert_int64_to_double @ 3
+	convert_double_to_int64 @ 4
+	calculate_acceleration_time @ 5
+	calculate_motion_time @ 6
 	gcodefileoutput @ 7
 	outfunction @ 8
 	gcodecirclefileoutput @ 9

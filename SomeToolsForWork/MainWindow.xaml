@@ -10,6 +10,7 @@
     Height="500"
     FontFamily="微软雅黑"
     Icon="tool14.png"
+    Loaded="MainWindow_OnLoaded"
     mc:Ignorable="d">
     <Grid ShowGridLines="False" UseLayoutRounding="True">
         <Grid.ColumnDefinitions>
@@ -26,7 +27,6 @@
                 <ListBoxItem>计算运动加速时间</ListBoxItem>
                 <ListBoxItem>计算运动位移时间</ListBoxItem>
                 <ListBoxItem>脉冲和单元换算关系</ListBoxItem>
-                <ListBoxItem>曲线位置输出</ListBoxItem>
                 <ListBoxItem>字符串和ASCII转换</ListBoxItem>
                 <ListBoxItem>串口通讯</ListBoxItem>
                 <ListBoxItem>TCP通讯</ListBoxItem>
@@ -36,7 +36,7 @@
             Grid.Column="1"
             HorizontalScrollBarVisibility="Auto"
             VerticalScrollBarVisibility="Auto">
-            <Grid x:Name="FunctionShow_Grid" />
+            <Grid x:Name="FunctionShowGrid" />
         </ScrollViewer>
     </Grid>
 </Window>

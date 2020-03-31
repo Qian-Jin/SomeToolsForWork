@@ -1,18 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SomeTools.Function
 {
@@ -27,72 +15,134 @@ namespace SomeTools.Function
         }
 
         //浮点数转换
-        [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "trans_int32_float",
+        [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "convert_int32_to_float",
             CallingConvention = CallingConvention.Cdecl)]
-        public extern static float trans_int32_float(Int32 value);
+        private static extern float ConvertInt32ToFloat(Int32 value);
 
-        [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "trans_float_int32",
+        [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "convert_float_to_int32",
             CallingConvention = CallingConvention.Cdecl)]
-        public extern static Int32 trans_float_int32(float value);
+        private static extern Int32 ConvertFloatToInt32(float value);
 
-        [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "trans_int64_double",
+        [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "convert_int64_to_double",
             CallingConvention = CallingConvention.Cdecl)]
-        public extern static double trans_int64_double(long value);
+        private static extern double ConvertInt64ToDouble(Int64 value);
 
-        [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "trans_double_int64",
+        [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "convert_double_to_int64",
             CallingConvention = CallingConvention.Cdecl)]
-        public extern static long trans_double_int64(double value);
+        private static extern Int64 ConvertDoubleToInt64(double value);
 
-        private void Button2_1_OnClick(object sender, RoutedEventArgs e)
+        private void Bit32FloatTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            int transmode = 0;
-            if (RadioButton2_1.IsChecked == true && RadioButton2_2.IsChecked == false)
+            try
             {
-                if (RadioButton2_3.IsChecked == true && RadioButton2_4.IsChecked == false)
+                var value = ConvertStringToNumber(Bit32FloatTextBox.Text, typeof(Int32));
+
+                if (value is Int32)
                 {
-                    transmode = 1;
+                    Bit32FloatTextBlock.Text = ConvertInt32ToFloat(Convert.ToInt32(value)).ToString();
                 }
-                if (RadioButton2_4.IsChecked == true && RadioButton2_3.IsChecked == false)
+                else
                 {
-                    transmode = 2;
+                    Bit32FloatTextBlock.Text = "0x" + ConvertFloatToInt32(Convert.ToSingle(value)).ToString("X");
                 }
             }
-            if (RadioButton2_1.IsChecked == false && RadioButton2_2.IsChecked == true)
+            catch
             {
-                if (RadioButton2_3.IsChecked == true && RadioButton2_4.IsChecked == false)
+                Bit32FloatTextBlock.Text = "Error.";
+            }
+        }
+
+        private void Bit64FloatTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                var value = ConvertStringToNumber(Bit64FloatTextBox.Text, typeof(Int64));
+
+                if (value is Int64)
                 {
-                    transmode = 3;
+                    Bit64FloatTextBlock.Text = ConvertInt64ToDouble(Convert.ToInt64(value)).ToString();
                 }
-                if (RadioButton2_4.IsChecked == true && RadioButton2_3.IsChecked == false)
+                else
                 {
-                    transmode = 4;
+                    Bit64FloatTextBlock.Text = "0x" + ConvertDoubleToInt64(Convert.ToDouble(value)).ToString("X");
                 }
             }
-
-            switch (transmode)
+            catch
             {
-                case 1:
-                    float real = (float)(Convert.ToDouble(TextBox2_1.Text));
-                    TextBox2_2.Text = Convert.ToString(trans_float_int32(real), 16).ToUpper();
-                    break;
+                Bit64FloatTextBlock.Text = "Error.";
+            }
+        }
 
-                case 2:
-                    Int32 udint = (Convert.ToInt32(TextBox2_1.Text, 16));
-                    TextBox2_2.Text = Convert.ToString(trans_int32_float(udint));
-                    break;
-
-                case 3:
-                    double lreal = (Convert.ToDouble(TextBox2_1.Text));
-                    TextBox2_2.Text = Convert.ToString(trans_double_int64(lreal), 16).ToUpper();
-                    break;
-
-                case 4:
-                    long ulint = (Convert.ToInt64(TextBox2_1.Text, 16));
-                    TextBox2_2.Text = Convert.ToString(trans_int64_double(ulint));
-                    break;
-
-                default:
-                    break;
+        private Object ConvertStringToNumber(string str, Type type)
+        {
+            if (str[0] == '0' && str[1] == 'x')
+            {
+                if (!str.Contains("."))
+                {
+                    if (type == typeof(Int32))
+                    {
+                        try
+                        {
+                            Int32 value = Int32.Parse(str.Substring(2), System.Globalization.NumberStyles.HexNumber);
+                            return value;
+                        }
+                        catch
+                        {
+                            throw;
+                        }
+                    }
+                    else if (type == typeof(Int64))
+                    {
+                        try
+                        {
+                            Int64 value = Int64.Parse(str.Substring(2), System.Globalization.NumberStyles.HexNumber);
+                            return value;
+                        }
+                        catch
+                        {
+                            throw;
+                        }
+                    }
+                    else
+                    {
+                        throw new ArgumentException(nameof(type));
+                    }
+                }
+                else
+                {
+                    throw new ArgumentException(nameof(str));
+                }
+            }
+            else
+            {
+                if (type == typeof(Int32))
+                {
+                    try
+                    {
+                        float value = Convert.ToSingle(str);
+                        return value;
+                    }
+                    catch
+                    {
+                        throw;
+                    }
+                }
+                else if (type == typeof(Int64))
+                {
+                    try
+                    {
+                        double value = Convert.ToDouble(str);
+                        return value;
+                    }
+                    catch
+                    {
+                        throw;
+                    }
+                }
+                else
+                {
+                    throw new ArgumentException(nameof(type));
+                }
             }
         }
     }

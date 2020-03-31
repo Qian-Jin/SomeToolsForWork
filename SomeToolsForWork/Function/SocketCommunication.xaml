@@ -5,56 +5,73 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:SomeTools.Function"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Margin="10"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    Loaded="SocketCommunication_OnLoaded"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="AcceptsReturn" Value="False" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="1.5*" />
+            <ColumnDefinition Width="6*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="50" />
-            <RowDefinition />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="6*" />
         </Grid.RowDefinitions>
-        <Label
+        <TextBlock
             Grid.Row="0"
             Grid.Column="0"
-            VerticalContentAlignment="Center"
-            Content="选择网卡"
-            FontSize="20" />
+            Text="选择网卡" />
         <ComboBox
-            x:Name="ComboBoxNetworkInterface"
+            x:Name="NetworkInterfaceComboBox"
             Grid.Row="0"
             Grid.Column="1"
-            Margin="5"
-            DisplayMemberPath="comboMember" />
-        <Label
+            Margin="5" />
+        <TextBlock
             Grid.Row="1"
             Grid.Column="0"
-            VerticalContentAlignment="Center"
-            Content="IP地址"
-            FontSize="20" />
-        <Label
+            Text="IP地址及端口" />
+        <TextBlock
             Grid.Row="2"
             Grid.Column="0"
-            VerticalContentAlignment="Center"
-            Content="发送数据"
-            FontSize="20" />
+            Text="发送数据" />
         <TextBox
-            x:Name="TextBoxModbusTcpipaddr"
+            x:Name="TcpIpTextBox"
             Grid.Row="1"
             Grid.Column="1"
             Margin="5"
             VerticalContentAlignment="Center"
             FontSize="20"
-            Text="192.168.1.134"
+            Text="192.168.1.3:502"
             TextWrapping="NoWrap" />
         <TextBox
-            x:Name="TextBoxModbusTcpsend"
+            x:Name="TcpSendTextBox"
             Grid.Row="2"
             Grid.Column="1"
             Margin="5"
@@ -63,33 +80,36 @@
             Text="00 00 00 00 00 06 01 03 00 00 00 01"
             TextWrapping="NoWrap" />
         <Button
-            x:Name="ButtonModbusTcpConnent"
+            x:Name="TcpConnectButton"
             Grid.Row="1"
             Grid.Column="2"
-            MinWidth="60"
-            MaxWidth="80"
-            MaxHeight="40"
             Margin="5"
             Content="连接"
-            FontSize="20" />
+            FontSize="20" Click="TcpConnectButton_OnClick">
+            <Button.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="连接" Click="TcpConnectButton_OnClick">
+                    </MenuItem>
+                    <MenuItem Header="断开" Click="TcpDisconnectButton_OnClick"></MenuItem>
+                </ContextMenu>
+            </Button.ContextMenu>
+        </Button>
         <Button
-            x:Name="ButtonModbusTcpSend"
+            x:Name="TcpSendButton"
             Grid.Row="2"
             Grid.Column="2"
-            MinWidth="60"
-            MaxWidth="80"
-            MaxHeight="40"
             Margin="5"
             Content="发送"
             FontSize="20"
-            IsDefault="True" />
+            Click="TcpSendButton_OnClick" />
         <TextBox
-            x:Name="TextBoxModbusTcprecv"
+            x:Name="TcpReceiveTextBox"
             Grid.Row="3"
             Grid.Column="0"
             Grid.ColumnSpan="3"
             Margin="10"
             FontSize="20"
+            IsReadOnly="True"
             TextWrapping="Wrap"
             VerticalScrollBarVisibility="Visible" />
     </Grid>

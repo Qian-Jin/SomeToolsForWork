@@ -25,17 +25,41 @@ namespace SomeTools.Function
             InitializeComponent();
         }
 
-        private void OnClick_strTrans(object sender, RoutedEventArgs e)
+        private void ConvertStringToAsciiButton_OnClick(object sender, RoutedEventArgs e)
         {
-            TextBox_outputstr.Text = "字符串长度为: " + Convert.ToString(TextBox_inputstr.Text.Length) + " \n";
-            byte[] asciiarray = System.Text.Encoding.ASCII.GetBytes(TextBox_inputstr.Text);
-            foreach (var VARIABLE in asciiarray)
+            if (InputTextBox.Text.Length == 0)
             {
-                TextBox_outputstr.AppendText("0x" + Convert.ToString(VARIABLE, 16).ToUpper() + " \t");
-                TextBox_outputstr.AppendText(Convert.ToString(VARIABLE, 10) + " \t");
-                byte[] sBytes = { VARIABLE };
-                TextBox_outputstr.AppendText(System.Text.Encoding.ASCII.GetString(sBytes) + "\n");
+                return;
             }
+            OutputTextBox.Text = "字符串长度为: " + Convert.ToString(InputTextBox.Text.Length) + " \n";
+            byte[] asciiarray = System.Text.Encoding.ASCII.GetBytes(InputTextBox.Text);
+            foreach (var variable in asciiarray)
+            {
+                OutputTextBox.AppendText("0x" + Convert.ToString(variable, 16).ToUpper() + " \t");
+                OutputTextBox.AppendText(Convert.ToString(variable, 10) + " \t");
+                byte[] sBytes = { variable };
+                OutputTextBox.AppendText(System.Text.Encoding.ASCII.GetString(sBytes) + "\n");
+            }
+        }
+
+        private void ConvertAsciiToStringButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            string hexValues = InputTextBox.Text;
+            if (hexValues.Length == 0)
+            {
+                return;
+            }
+            string[] hexValuesSplit = hexValues.Split(' ');
+            OutputTextBox.Text = "字符串长度为: " + Convert.ToString(hexValuesSplit.Length) + " \n";
+            foreach (string hex in hexValuesSplit)
+            {
+                int value = Convert.ToInt32(hex, 16);
+                string stringValue = Char.ConvertFromUtf32(value);
+                char charValue = (char)value;
+                OutputTextBox.AppendText(charValue.ToString());
+            }
+
+            OutputTextBox.AppendText("\n");
         }
     }
 }

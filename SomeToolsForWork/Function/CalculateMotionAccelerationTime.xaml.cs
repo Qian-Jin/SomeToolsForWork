@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace SomeTools.Function
 {
@@ -15,21 +16,47 @@ namespace SomeTools.Function
             InitializeComponent();
         }
 
-        [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "cal_acc_time",
-            CallingConvention = CallingConvention.Cdecl)]
-        public extern static double cal_acc_time(double vel_start, double vel_max, double vel_acc, double vel_jerk, int what_return);
+        [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "calculate_acceleration_time", CallingConvention = CallingConvention.Cdecl)]
+        private static extern int CalculateAccelerationTime(double velStart, double velMax, double velAcc, double velJerk, ref double totalTime, ref double firstTime, ref double secondTime, ref double thirdTime);
 
-        private void Cal_mc_movevelocity(object sender, RoutedEventArgs e)
+        private void CalculateButton_OnClick(object sender, RoutedEventArgs e)
         {
-            double vel_start = Convert.ToDouble(TextBox3_1.Text);//起始速度
-            double vel_max = Convert.ToDouble(TextBox3_2.Text);//最大速度
-            double vel_acc = Convert.ToDouble(TextBox3_3.Text);//加速度
-            double vel_jerk = Convert.ToDouble(TextBox3_4.Text);//加加速度
+            double velStart = 0, velMax = 0, acceleration = 0, jerk = 0;
+            try
+            {
+                velStart = Convert.ToDouble(StartVelocityTextBox.Text);//起始速度
+                velMax = Convert.ToDouble(MaxVelocityTextBox.Text);//最大速度
+                acceleration = Convert.ToDouble(MaxAccelerationTextBox.Text);//加速度
+                jerk = Convert.ToDouble(MaxJerkTextBox.Text);//加加速度
+            }
+            catch
+            {
+                TotalTimeTextBlock.Text = "Error: 数据输入格式有误";
+            }
 
-            TextBox3_5.Text = Convert.ToString(cal_acc_time(vel_start, vel_max, vel_acc, vel_jerk, 0));
-            TextBox3_6.Text = Convert.ToString(cal_acc_time(vel_start, vel_max, vel_acc, vel_jerk, 1));
-            TextBox3_7.Text = Convert.ToString(cal_acc_time(vel_start, vel_max, vel_acc, vel_jerk, 2));
-            TextBox3_8.Text = Convert.ToString(cal_acc_time(vel_start, vel_max, vel_acc, vel_jerk, 3));
+            double totalTime = 0, firstTime = 0, secondTime = 0, thirdTime = 0;
+
+            int res = CalculateAccelerationTime(velStart, velMax, acceleration, jerk, ref totalTime, ref firstTime,
+                ref secondTime, ref thirdTime);
+
+            if (res == 0)
+            {
+                TotalTimeTextBlock.Text = totalTime.ToString();
+                FirstStageTextBox.Text = firstTime.ToString();
+                SecondStageTextBlock.Text = secondTime.ToString();
+                ThirdStageTextBlock.Text = thirdTime.ToString();
+            }
+            else
+            {
+                TotalTimeTextBlock.Text = "Error: 计算错误，数据输入有误";
+            }
+        }
+
+        private void TextBoxKeyDownEventSetter_OnHandler(object sender, KeyEventArgs e)
+        {
+            e.Handled = !((e.Key >= Key.D0 && e.Key <= Key.D9)
+                            || e.Key == Key.Decimal
+                            || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9));
         }
     }
 }

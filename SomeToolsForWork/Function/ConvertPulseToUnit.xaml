@@ -5,36 +5,48 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:SomeTools.Function"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Margin="5"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="AcceptsReturn" Value="False" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <EventSetter Event="KeyDown" Handler="TextBoxKeyDownEventSetter_OnHandler" />
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
-            <ColumnDefinition Width="20" />
+            <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="85" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
         <Label
             Grid.Row="0"
             Grid.Column="0"
-            Grid.ColumnSpan="6"
+            Grid.ColumnSpan="4"
             Margin="5">
             <Label.Background>
                 <ImageBrush
@@ -44,115 +56,85 @@
                     Stretch="Uniform" />
             </Label.Background>
         </Label>
-        <Label
+        <TextBlock
+            Grid.Row="1"
+            Grid.Column="0"
+            Text="机构导程" />
+        <TextBlock
             Grid.Row="2"
-            Grid.Column="1"
-            Content="机构导程"
-            FontSize="20" />
-        <Label
+            Grid.Column="0"
+            Text="齿轮箱输入" />
+        <TextBlock
             Grid.Row="3"
-            Grid.Column="1"
-            Content="齿轮箱输入"
-            FontSize="20" />
-        <Label
+            Grid.Column="0"
+            Text="齿轮箱输出" />
+        <TextBlock
             Grid.Row="4"
-            Grid.Column="1"
-            Content="齿轮箱输出"
-            FontSize="20" />
-        <Label
+            Grid.Column="0"
+            Text="设置速度" />
+        <TextBlock
             Grid.Row="6"
-            Grid.Column="1"
-            Content="设置速度"
-            FontSize="20" />
-        <Label
+            Grid.Column="0"
+            Text="电机转速(r/min)" />
+        <TextBlock
             Grid.Row="7"
-            Grid.Column="1"
-            Content="电机转速(r/min)"
-            FontSize="20" />
-        <Label
-            Grid.Row="8"
-            Grid.Column="1"
-            Content="电机转速(r/s)"
-            FontSize="20" />
-        <Label
-            Grid.Row="6"
-            Grid.Column="4"
-            Content="电机转速(r/min)"
-            FontSize="20" />
-        <Label
-            Grid.Row="7"
-            Grid.Column="4"
-            Content="单元数"
-            FontSize="20" />
-        <TextBox
-            x:Name="TextBox5_1"
-            Grid.Row="2"
-            Grid.Column="2"
-            Margin="5"
-            FontSize="20" />
-        <TextBox
-            x:Name="TextBox5_2"
-            Grid.Row="3"
-            Grid.Column="2"
-            Margin="5"
-            FontSize="20" />
-        <TextBox
-            x:Name="TextBox5_3"
+            Grid.Column="0"
+            Text="电机转速(r/s)" />
+        <TextBlock
             Grid.Row="4"
             Grid.Column="2"
-            Margin="5"
-            FontSize="20" />
-        <TextBox
-            x:Name="TextBox5_4"
+            Text="电机转速(r/min)" />
+        <TextBlock
             Grid.Row="6"
             Grid.Column="2"
-            Margin="5"
-            AcceptsReturn="False"
-            FontSize="20"
+            Text="导程速度" />
+        <TextBox
+            x:Name="PprTextBox"
+            Grid.Row="1"
+            Grid.Column="1" />
+        <TextBox
+            x:Name="GearInTextBox"
+            Grid.Row="2"
+            Grid.Column="1" />
+        <TextBox
+            x:Name="GearOutTextBox"
+            Grid.Row="3"
+            Grid.Column="1" />
+        <TextBox
+            x:Name="SetSpeedTextBox"
+            Grid.Row="4"
+            Grid.Column="1"
             Text="0" />
-        <TextBox
-            x:Name="TextBox5_5"
-            Grid.Row="7"
-            Grid.Column="2"
-            Margin="5"
-            FontSize="20"
-            IsReadOnly="True" />
-        <TextBox
-            x:Name="TextBox5_6"
-            Grid.Row="8"
-            Grid.Column="2"
-            Margin="5"
-            FontSize="20"
-            IsReadOnly="True" />
-        <TextBox
-            x:Name="TextBox5_7"
+        <TextBlock
+            x:Name="MotorSpeedMinTextBlock"
             Grid.Row="6"
-            Grid.Column="5"
-            Margin="5"
-            AcceptsReturn="False"
-            FontSize="20"
-            Text="0" />
-        <TextBox
-            x:Name="TextBox5_8"
+            Grid.Column="1" />
+        <TextBlock
+            x:Name="MotorSpeedSecTextBlock"
             Grid.Row="7"
-            Grid.Column="5"
-            Margin="5"
-            FontSize="20"
-            IsReadOnly="True" />
+            Grid.Column="1" />
+        <TextBox
+            x:Name="SetMotorSpeedMinTextBox"
+            Grid.Row="4"
+            Grid.Column="3"
+            Text="0" />
+        <TextBlock
+            x:Name="UnitSpeedTextBlock"
+            Grid.Row="6"
+            Grid.Column="3" />
 
         <Button
-            x:Name="Button5_1"
-            Grid.Row="9"
-            Grid.Column="2"
-            MinWidth="80"
-            MinHeight="25"
-            MaxWidth="200"
-            MaxHeight="50"
+            x:Name="CalculateButton"
+            Grid.Row="5"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
             HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            Click="Cal_motionvel"
-            Content="计算"
-            FontSize="20"
-            IsDefault="True" />
+            VerticalAlignment="Center"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Click="CalculateButton_OnClick"
+            FontSize="20">
+            <TextBlock Margin="20,5" Text="计算" />
+        </Button>
     </Grid>
 </UserControl>

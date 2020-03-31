@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Comm.Socket;
 
 namespace SomeTools.Function
 {
@@ -27,37 +28,67 @@ namespace SomeTools.Function
             InitializeComponent();
         }
 
-        public struct combomem
+        private void SocketCommunication_OnLoaded(object sender, RoutedEventArgs e)
         {
-            public int ID { get; set; }
-            public string comboMember { get; set; }
-            public string ipadd { get; set; }
+            InitNetworkInterface();
         }
 
-        private NetworkInterface[] NetworkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
-        private List<combomem> combolist = new List<combomem>();
+        private Comm.Socket.TransportTcpSocket transportTcpSocket;
 
-        private void GetNetworkInterface()
+        private void InitNetworkInterface()
         {
-            combomem combomenber = new combomem();
-            int i = 0;
-            foreach (NetworkInterface networkInterface in NetworkInterfaces)
+            NetworkInterface[] networkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
+
+            foreach (NetworkInterface networkInterface in networkInterfaces)
             {
-                combomenber.ID = i;
-                i++;
-                combomenber.comboMember = networkInterface.Description;
-                IPInterfaceProperties IPInterfaceProperties = networkInterface.GetIPProperties();
-                UnicastIPAddressInformationCollection UnicastIPAddressInformationCollection = IPInterfaceProperties.UnicastAddresses;
-                foreach (UnicastIPAddressInformation UnicastIPAddressInformation in UnicastIPAddressInformationCollection)
+                foreach (UnicastIPAddressInformation unicastIpAddressInformation in networkInterface.GetIPProperties()
+                    .UnicastAddresses)
                 {
-                    if (UnicastIPAddressInformation.Address.AddressFamily == AddressFamily.InterNetwork)
+                    if (unicastIpAddressInformation.Address.AddressFamily == AddressFamily.InterNetwork)
                     {
-                        combomenber.ipadd = UnicastIPAddressInformation.Address.ToString();
+                        ComboBoxItem comboBoxItem = new ComboBoxItem();
+                        comboBoxItem.Content = networkInterface.Name + ":::::" +
+                                               unicastIpAddressInformation.Address.ToString();
+                        NetworkInterfaceComboBox.Items.Add(comboBoxItem);
                     }
                 }
-
-                combolist.Add(combomenber);
             }
+
+            NetworkInterfaceComboBox.SelectedIndex = 0;
+        }
+
+        private void TcpConnectButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            string remoteIpAndPort = TcpIpTextBox.Text;
+
+            string[] remoteIpAndPortStrings = remoteIpAndPort.Split(':');
+
+            string localIp = NetworkInterfaceComboBox.Text.Substring(NetworkInterfaceComboBox.Text.IndexOf(":::::") + 5);
+
+            transportTcpSocket = new TransportTcpSocket(remoteIpAndPortStrings[0], Convert.ToInt32(remoteIpAndPortStrings[1]), localIp, 0);
+
+            transportTcpSocket.TransportOpen();
+        }
+
+        private void TcpDisconnectButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (transportTcpSocket != null)
+            {
+                transportTcpSocket.TransportClose();
+            }
+        }
+
+        private void TcpSendButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            string sendData = TcpSendTextBox.Text.Replace(" ", "");
+
+            List<byte> sendBytes = Comm.Convert.ConvertHexStringToBytes(sendData).ToList();
+
+            transportTcpSocket.Transport(ref sendBytes, out var receiveData);
+
+            string receiveString = Comm.Convert.ConvertBytesToHexString(receiveData.ToArray());
+
+            TcpReceiveTextBox.AppendText(receiveString);
         }
     }
 }

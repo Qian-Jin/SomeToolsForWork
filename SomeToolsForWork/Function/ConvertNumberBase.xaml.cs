@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SomeTools.Function
 {
@@ -25,119 +15,72 @@ namespace SomeTools.Function
             InitializeComponent();
         }
 
-        //进制转换——十进制
-        private void DecText_Change(object sender, TextChangedEventArgs e)
+        private void DecTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            if (TextBox1_1.IsFocused)
+            try
             {
-                string decText = TextBox1_1.Text;
-                if (decText == "")
-                {
-                    TextBox1_2.Text = "0";
-                    TextBox1_3.Text = "0";
-                }
-                else
-                {
-                    long decNum = 0;
-                    try
-                    {
-                        decNum = Convert.ToInt64(decText, 10);
-                        Label1_4.Visibility = Visibility.Hidden;
-                    }
-                    catch (FormatException)
-                    {
-                        decNum = 0;
-                        Label1_4.Visibility = Visibility.Visible;
-                    }
-                    catch (OverflowException)
-                    {
-                        decNum = 0;
-                        Label1_4.Visibility = Visibility.Visible;
-                    }
-                    finally
-                    {
-                        TextBox1_2.Text = Convert.ToString(decNum, 16).ToUpper();
-                        TextBox1_3.Text = Convert.ToString(decNum, 2);
-                    }
-                }
+                Int64 value = Convert.ToInt64(DecTextBox.Text);
+
+                HexTextBox.Text = Convert.ToString(value, 16).ToUpper();
+                BinTextBox.Text = Convert.ToString(value, 2);
+            }
+            catch
+            {
+                HexTextBox.Text = "Error.";
+                BinTextBox.Text = "Error.";
             }
         }
 
-        //进制转换——十六进制
-        private void HexText_Change(object sender, TextChangedEventArgs e)
+        private void HexTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            if (TextBox1_2.IsFocused)
+            try
             {
-                string hexText = TextBox1_2.Text;
+                Int64 value = Convert.ToInt64(HexTextBox.Text, 16);
 
-                if (hexText == "")
-                {
-                    TextBox1_1.Text = "0";
-                    TextBox1_3.Text = "0";
-                }
-                else
-                {
-                    long hexNum = 0;
-                    try
-                    {
-                        hexNum = Convert.ToInt64(hexText, 16);
-                        Label1_4.Visibility = Visibility.Hidden;
-                    }
-                    catch (FormatException)
-                    {
-                        hexNum = 0;
-                        Label1_4.Visibility = Visibility.Visible;
-                    }
-                    catch (OverflowException)
-                    {
-                        hexNum = 0;
-                        Label1_4.Visibility = Visibility.Visible;
-                    }
-                    finally
-                    {
-                        TextBox1_1.Text = Convert.ToString(hexNum, 10);
-                        TextBox1_3.Text = Convert.ToString(hexNum, 2);
-                    }
-                }
+                DecTextBox.Text = Convert.ToString(value, 10);
+                BinTextBox.Text = Convert.ToString(value, 2);
+            }
+            catch
+            {
+                DecTextBox.Text = "Error.";
+                BinTextBox.Text = "Error.";
             }
         }
 
-        //进制转换——二进制
-        private void BinText_Change(object sender, TextChangedEventArgs e)
+        private void BinTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            if (TextBox1_3.IsFocused)
+            try
             {
-                string binText = TextBox1_3.Text;
-                if (binText == "")
-                {
-                    TextBox1_1.Text = "0";
-                    TextBox1_2.Text = "0";
-                }
-                else
-                {
-                    long binNum = 0;
-                    try
-                    {
-                        binNum = Convert.ToInt64(binText, 2);
-                        Label1_4.Visibility = Visibility.Hidden;
-                    }
-                    catch (FormatException)
-                    {
-                        binNum = 0;
-                        Label1_4.Visibility = Visibility.Visible;
-                    }
-                    catch (OverflowException)
-                    {
-                        binNum = 0;
-                        Label1_4.Visibility = Visibility.Visible;
-                    }
-                    finally
-                    {
-                        TextBox1_1.Text = Convert.ToString(binNum, 10);
-                        TextBox1_2.Text = Convert.ToString(binNum, 16).ToUpper();
-                    }
-                }
+                Int64 value = Convert.ToInt64(BinTextBox.Text, 2);
+
+                DecTextBox.Text = Convert.ToString(value, 10);
+                HexTextBox.Text = Convert.ToString(value, 16).ToUpper();
             }
+            catch
+            {
+                HexTextBox.Text = "Error.";
+                DecTextBox.Text = "Error.";
+            }
+        }
+
+        private void DecTextBox_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = !((e.Key >= Key.D0 && e.Key <= Key.D9)
+                         || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9));
+        }
+
+        private void HexTextBox_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = !((e.Key >= Key.D0 && e.Key <= Key.D9)
+                          || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+                          || (e.Key == Key.A) || (e.Key == Key.B) || (e.Key == Key.C) || (e.Key == Key.D)
+                          || (e.Key == Key.E) || (e.Key == Key.F));
+        }
+
+        private void BinTextBox_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = !(e.Key == Key.D0 || e.Key == Key.D1
+                          || e.Key == Key.NumPad0 || e.Key == Key.NumPad1);
         }
     }
 }

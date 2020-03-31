@@ -5,83 +5,68 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:SomeTools.Function"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Margin="10"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="AcceptsReturn" Value="False" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition MinHeight="0" MaxHeight="10" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="5*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition MinWidth="0" MaxWidth="10" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="5*" />
         </Grid.ColumnDefinitions>
-        <Label
-            x:Name="Label1_1"
-            Grid.Row="1"
-            Grid.Column="1"
-            Margin="5"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Content="十进制"
-            FontSize="20" />
-        <Label
-            x:Name="Label1_2"
-            Grid.Row="2"
-            Grid.Column="1"
-            Margin="5"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Content="十六进制"
-            FontSize="20" />
-        <Label
-            x:Name="Label1_3"
-            Grid.Row="3"
-            Grid.Column="1"
-            Margin="5"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Content="二进制"
-            FontSize="20" />
-        <TextBox
-            x:Name="TextBox1_1"
-            Grid.Row="1"
-            Grid.Column="2"
-            Margin="5"
-            BorderBrush="DeepSkyBlue"
-            FontSize="20"
-            TextChanged="DecText_Change" />
-        <TextBox
-            x:Name="TextBox1_2"
-            Grid.Row="2"
-            Grid.Column="2"
-            Margin="5"
-            BorderBrush="DeepSkyBlue"
-            FontSize="20"
-            TextChanged="HexText_Change" />
-        <TextBox
-            x:Name="TextBox1_3"
-            Grid.Row="3"
-            Grid.Column="2"
-            Margin="5"
-            BorderBrush="DeepSkyBlue"
-            FontSize="20"
-            TextChanged="BinText_Change" />
-        <Label
-            x:Name="Label1_4"
+        <TextBlock
             Grid.Row="0"
-            Grid.Column="2"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Bottom"
-            Content="Error"
-            FontSize="30"
-            Foreground="Red"
-            Visibility="Hidden" />
+            Grid.Column="0"
+            Text="十进制" />
+        <TextBlock
+            Grid.Row="1"
+            Grid.Column="0"
+            Text="十六进制" />
+        <TextBlock
+            Grid.Row="2"
+            Grid.Column="0"
+            Text="二进制" />
+        <TextBox
+            x:Name="DecTextBox"
+            Grid.Row="0"
+            Grid.Column="1"
+            BorderBrush="DeepSkyBlue"
+            KeyDown="DecTextBox_OnKeyDown"
+            TextChanged="DecTextBox_OnTextChanged" />
+        <TextBox
+            x:Name="HexTextBox"
+            Grid.Row="1"
+            Grid.Column="1"
+            BorderBrush="DeepSkyBlue"
+            KeyDown="HexTextBox_OnKeyDown"
+            TextChanged="HexTextBox_OnTextChanged" />
+        <TextBox
+            x:Name="BinTextBox"
+            Grid.Row="2"
+            Grid.Column="1"
+            BorderBrush="DeepSkyBlue"
+            KeyDown="BinTextBox_OnKeyDown"
+            TextChanged="BinTextBox_OnTextChanged" />
     </Grid>
 </UserControl>

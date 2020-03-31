@@ -5,315 +5,235 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:SomeTools.Function"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Margin="10"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="AcceptsReturn" Value="False" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <EventSetter Event="KeyDown" Handler="TextBoxKeyDownEventSetter_OnHandler" />
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
-            <ColumnDefinition Width="20" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="2" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="10" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Label
+        <Border
+            Grid.Row="0"
+            Grid.RowSpan="9"
+            Grid.Column="2"
+            Background="Gainsboro"
+            BorderBrush="Gainsboro"
+            BorderThickness="1" />
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="0"
+            Text="起始位置" />
+        <TextBlock
             Grid.Row="1"
-            Grid.Column="1"
-            Content="起始位置"
-            FontSize="20" />
-        <Label
+            Grid.Column="0"
+            Text="目标位置" />
+        <TextBlock
             Grid.Row="2"
-            Grid.Column="1"
-            Content="目标位置"
-            FontSize="20" />
-        <Label
+            Grid.Column="0"
+            Text="起始速度" />
+        <TextBlock
             Grid.Row="3"
-            Grid.Column="1"
-            Content="起始速度"
-            FontSize="20" />
-        <Label
+            Grid.Column="0"
+            Text="最大速度" />
+        <TextBlock
             Grid.Row="4"
-            Grid.Column="1"
-            Content="最大速度"
-            FontSize="20" />
-        <Label
+            Grid.Column="0"
+            Text="结束速度" />
+        <TextBlock
             Grid.Row="5"
-            Grid.Column="1"
-            Content="结束速度"
-            FontSize="20" />
-        <Label
+            Grid.Column="0"
+            Text="加速度" />
+        <TextBlock
             Grid.Row="6"
-            Grid.Column="1"
-            Content="加速度"
-            FontSize="20" />
-        <Label
+            Grid.Column="0"
+            Text="减速度" />
+        <TextBlock
             Grid.Row="7"
-            Grid.Column="1"
-            Content="减速度"
-            FontSize="20" />
-        <Label
-            Grid.Row="8"
-            Grid.Column="1"
-            Content="加加速度"
-            FontSize="20" />
-        <Label
+            Grid.Column="0"
+            Text="加加速度" />
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="4"
+            Text="时间" />
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="5"
+            Text="距离" />
+        <TextBlock
             Grid.Row="1"
-            Grid.Column="4"
-            Content="总时间"
-            FontSize="20" />
-        <Label
+            Grid.Column="3"
+            Text="Stage 1" />
+        <TextBlock
             Grid.Row="2"
-            Grid.Column="4"
-            Content="T1"
-            FontSize="20" />
-        <Label
+            Grid.Column="3"
+            Text="Stage 2" />
+        <TextBlock
             Grid.Row="3"
-            Grid.Column="4"
-            Content="T2"
-            FontSize="20" />
-        <Label
+            Grid.Column="3"
+            Text="Stage 3" />
+        <TextBlock
             Grid.Row="4"
-            Grid.Column="4"
-            Content="T3"
-            FontSize="20" />
-        <Label
+            Grid.Column="3"
+            Text="Stage 4" />
+        <TextBlock
             Grid.Row="5"
-            Grid.Column="4"
-            Content="T4"
-            FontSize="20" />
-        <Label
+            Grid.Column="3"
+            Text="Stage 5" />
+        <TextBlock
             Grid.Row="6"
-            Grid.Column="4"
-            Content="T5"
-            FontSize="20" />
-        <Label
+            Grid.Column="3"
+            Text="Stage 6" />
+        <TextBlock
             Grid.Row="7"
-            Grid.Column="4"
-            Content="T6"
-            FontSize="20" />
-        <Label
+            Grid.Column="3"
+            Text="Stage 7" />
+        <TextBlock
             Grid.Row="8"
-            Grid.Column="4"
-            Content="T7"
-            FontSize="20" />
-        <Label
-            Grid.Row="2"
-            Grid.Column="6"
-            Content="D1"
-            FontSize="20" />
-        <Label
-            Grid.Row="3"
-            Grid.Column="6"
-            Content="D2"
-            FontSize="20" />
-        <Label
-            Grid.Row="4"
-            Grid.Column="6"
-            Content="D3"
-            FontSize="20" />
-        <Label
-            Grid.Row="5"
-            Grid.Column="6"
-            Content="D4"
-            FontSize="20" />
-        <Label
-            Grid.Row="6"
-            Grid.Column="6"
-            Content="D5"
-            FontSize="20" />
-        <Label
-            Grid.Row="7"
-            Grid.Column="6"
-            Content="D6"
-            FontSize="20" />
-        <Label
-            Grid.Row="8"
-            Grid.Column="6"
-            Content="D7"
-            FontSize="20" />
+            Grid.Column="3"
+            Text="总计" />
+
         <TextBox
-            x:Name="TextBox4_1"
+            x:Name="StartPositionTextBox"
+            Grid.Row="0"
+            Grid.Column="1" />
+        <TextBox
+            x:Name="EndPositionTextBox"
             Grid.Row="1"
-            Grid.Column="2"
-            Margin="5"
-            FontSize="20" />
+            Grid.Column="1" />
         <TextBox
-            x:Name="TextBox4_2"
+            x:Name="StartVelocityTextBox"
             Grid.Row="2"
-            Grid.Column="2"
-            Margin="5"
-            FontSize="20" />
+            Grid.Column="1" />
         <TextBox
-            x:Name="TextBox4_3"
+            x:Name="MaxVelocityTextBox"
             Grid.Row="3"
-            Grid.Column="2"
-            Margin="5"
-            FontSize="20" />
+            Grid.Column="1" />
         <TextBox
-            x:Name="TextBox4_4"
+            x:Name="EndVelocityTextBox"
             Grid.Row="4"
-            Grid.Column="2"
-            Margin="5"
-            FontSize="20" />
+            Grid.Column="1" />
         <TextBox
-            x:Name="TextBox4_5"
+            x:Name="AccelerationTextBox"
             Grid.Row="5"
-            Grid.Column="2"
-            Margin="5"
-            FontSize="20" />
+            Grid.Column="1" />
         <TextBox
-            x:Name="TextBox4_6"
+            x:Name="DecelerationTextBox"
             Grid.Row="6"
-            Grid.Column="2"
-            Margin="5"
-            FontSize="20" />
+            Grid.Column="1" />
         <TextBox
-            x:Name="TextBox4_7"
+            x:Name="JerkTextBox"
             Grid.Row="7"
-            Grid.Column="2"
-            Margin="5"
-            FontSize="20" />
-        <TextBox
-            x:Name="TextBox4_8"
-            Grid.Row="8"
-            Grid.Column="2"
-            Margin="5"
-            FontSize="20" />
-        <TextBox
-            x:Name="TextBox4_11"
-            Grid.Row="1"
-            Grid.Column="5"
-            Margin="5"
-            FontSize="20"
-            IsReadOnly="True" />
-        <TextBox
-            x:Name="TextBox4_12"
-            Grid.Row="2"
-            Grid.Column="5"
-            Margin="5"
-            FontSize="20"
-            IsReadOnly="True" />
-        <TextBox
-            x:Name="TextBox4_13"
-            Grid.Row="3"
-            Grid.Column="5"
-            Margin="5"
-            FontSize="20"
-            IsReadOnly="True" />
-        <TextBox
-            x:Name="TextBox4_14"
-            Grid.Row="4"
-            Grid.Column="5"
-            Margin="5"
-            FontSize="20"
-            IsReadOnly="True" />
-        <TextBox
-            x:Name="TextBox4_15"
-            Grid.Row="5"
-            Grid.Column="5"
-            Margin="5"
-            FontSize="20"
-            IsReadOnly="True" />
-        <TextBox
-            x:Name="TextBox4_16"
-            Grid.Row="6"
-            Grid.Column="5"
-            Margin="5"
-            FontSize="20"
-            IsReadOnly="True" />
-        <TextBox
-            x:Name="TextBox4_17"
-            Grid.Row="7"
-            Grid.Column="5"
-            Margin="5"
-            FontSize="20"
-            IsReadOnly="True" />
-        <TextBox
-            x:Name="TextBox4_18"
-            Grid.Row="8"
-            Grid.Column="5"
-            Margin="5"
-            FontSize="20"
-            IsReadOnly="True" />
-        <TextBox
-            x:Name="TextBox4_22"
-            Grid.Row="2"
-            Grid.Column="7"
-            Margin="5"
-            FontSize="20"
-            IsReadOnly="True" />
-        <TextBox
-            x:Name="TextBox4_23"
-            Grid.Row="3"
-            Grid.Column="7"
-            Margin="5"
-            FontSize="20"
-            IsReadOnly="True" />
-        <TextBox
-            x:Name="TextBox4_24"
-            Grid.Row="4"
-            Grid.Column="7"
-            Margin="5"
-            FontSize="20"
-            IsReadOnly="True" />
-        <TextBox
-            x:Name="TextBox4_25"
-            Grid.Row="5"
-            Grid.Column="7"
-            Margin="5"
-            FontSize="20"
-            IsReadOnly="True" />
-        <TextBox
-            x:Name="TextBox4_26"
-            Grid.Row="6"
-            Grid.Column="7"
-            Margin="5"
-            FontSize="20"
-            IsReadOnly="True" />
-        <TextBox
-            x:Name="TextBox4_27"
-            Grid.Row="7"
-            Grid.Column="7"
-            Margin="5"
-            FontSize="20"
-            IsReadOnly="True" />
-        <TextBox
-            x:Name="TextBox4_28"
-            Grid.Row="8"
-            Grid.Column="7"
-            Margin="5"
-            FontSize="20"
-            IsReadOnly="True" />
+            Grid.Column="1" />
+
         <Button
-            x:Name="Button4_1"
-            Grid.Row="9"
-            Grid.Column="2"
-            MinWidth="50"
-            MinHeight="22"
-            MaxWidth="100"
-            MaxHeight="50"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Top"
-            Click="Cal_mc_moverelative"
-            Content="计算"
-            FontSize="20"
-            IsDefault="True" />
+            x:Name="CalculateButton"
+            Grid.Row="8"
+            Grid.Column="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Click="CalculateButton_OnClick"
+            FontSize="20">
+            <TextBlock Margin="20,5" Text="计算" />
+        </Button>
+
+        <TextBlock
+            x:Name="Stage1TimeTextBlock"
+            Grid.Row="1"
+            Grid.Column="4" />
+        <TextBlock
+            x:Name="Stage2TimeTextBlock"
+            Grid.Row="2"
+            Grid.Column="4" />
+        <TextBlock
+            x:Name="Stage3TimeTextBlock"
+            Grid.Row="3"
+            Grid.Column="4" />
+        <TextBlock
+            x:Name="Stage4TimeTextBlock"
+            Grid.Row="4"
+            Grid.Column="4" />
+        <TextBlock
+            x:Name="Stage5TimeTextBlock"
+            Grid.Row="5"
+            Grid.Column="4" />
+        <TextBlock
+            x:Name="Stage6TimeTextBlock"
+            Grid.Row="6"
+            Grid.Column="4" />
+        <TextBlock
+            x:Name="Stage7TimeTextBlock"
+            Grid.Row="7"
+            Grid.Column="4" />
+        <TextBlock
+            x:Name="StageTotalTimeTextBlock"
+            Grid.Row="8"
+            Grid.Column="4" />
+        <TextBlock
+            x:Name="Stage1DistanceTextBlock"
+            Grid.Row="1"
+            Grid.Column="5" />
+        <TextBlock
+            x:Name="Stage2DistanceTextBlock"
+            Grid.Row="2"
+            Grid.Column="5" />
+        <TextBlock
+            x:Name="Stage3DistanceTextBlock"
+            Grid.Row="3"
+            Grid.Column="5" />
+        <TextBlock
+            x:Name="Stage4DistanceTextBlock"
+            Grid.Row="4"
+            Grid.Column="5" />
+        <TextBlock
+            x:Name="Stage5DistanceTextBlock"
+            Grid.Row="5"
+            Grid.Column="5" />
+        <TextBlock
+            x:Name="Stage6DistanceTextBlock"
+            Grid.Row="6"
+            Grid.Column="5" />
+        <TextBlock
+            x:Name="Stage7DistanceTextBlock"
+            Grid.Row="7"
+            Grid.Column="5" />
+        <TextBlock
+            x:Name="StageTotalDistanceTextBlock"
+            Grid.Row="8"
+            Grid.Column="5" />
     </Grid>
 </UserControl>

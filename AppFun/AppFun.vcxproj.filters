@@ -36,6 +36,9 @@
     <ClCompile Include="MakeGFile.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="convert_float_to_hex.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="motion.h">
@@ -60,6 +63,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="MakeGFile.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="convert_float_to_hex.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -153,6 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="convert_float_to_hex.cpp" />
     <ClCompile Include="G2G3code.cpp" />
     <ClCompile Include="G4test.cpp" />
     <ClCompile Include="Gcode.cpp" />
@@ -162,6 +163,7 @@
     <ClCompile Include="motion.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="convert_float_to_hex.h" />
     <ClInclude Include="G2G3code.h" />
     <ClInclude Include="G4test.h" />
     <ClInclude Include="Gcode.h" />

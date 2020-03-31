@@ -50,11 +50,6 @@ namespace SomeTools
         private Function.ConvertPulseToUnit convertPulseToUnit = new ConvertPulseToUnit();
 
         /// <summary>
-        /// 生成曲线位置点
-        /// </summary>
-        private Function.GenerateCurve generateCurve = new GenerateCurve();
-
-        /// <summary>
         /// 转换字符串和Ascii代码
         /// </summary>
         private Function.ConvertStringToAscii convertStringToAscii = new ConvertStringToAscii();
@@ -84,9 +79,9 @@ namespace SomeTools
             {
                 int index = FunctionMenuListBox.SelectedIndex;
 
-                if (FunctionShow_Grid.Children != null)
+                if (FunctionShowGrid.Children != null)
                 {
-                    FunctionShow_Grid.Children.Clear();
+                    FunctionShowGrid.Children.Clear();
                 }
 
                 UIElement ui;
@@ -114,18 +109,14 @@ namespace SomeTools
                         break;
 
                     case 5:
-                        ui = generateCurve;
-                        break;
-
-                    case 6:
                         ui = convertStringToAscii;
                         break;
 
-                    case 7:
+                    case 6:
                         ui = serialCommunication;
                         break;
 
-                    case 8:
+                    case 7:
                         ui = socketCommunication;
                         break;
 
@@ -134,8 +125,13 @@ namespace SomeTools
                         break;
                 }
 
-                FunctionShow_Grid.Children.Add(ui);
+                FunctionShowGrid.Children.Add(ui);
             }
+        }
+
+        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            FunctionMenuListBox.SelectedIndex = 0;
         }
     }
 }

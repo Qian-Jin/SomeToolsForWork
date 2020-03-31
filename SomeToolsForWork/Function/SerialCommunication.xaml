@@ -5,9 +5,33 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:SomeTools.Function"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Margin="10"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    Loaded="SerialCommunication_OnLoaded"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="AcceptsReturn" Value="False" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -15,58 +39,50 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Label
+            <TextBlock
                 Grid.Row="0"
                 Grid.Column="0"
-                Margin="5"
-                VerticalContentAlignment="Center"
-                Content="波特率"
-                FontSize="20" />
-            <Label
+                Text="波特率" />
+            <TextBlock
                 Grid.Row="1"
                 Grid.Column="0"
                 Margin="5"
-                VerticalContentAlignment="Center"
-                Content="数据长度"
-                FontSize="20" />
-            <Label
+                Text="数据长度" />
+            <TextBlock
                 Grid.Row="2"
                 Grid.Column="0"
                 Margin="5"
-                VerticalContentAlignment="Center"
-                Content="校验位"
-                FontSize="20" />
-            <Label
+                Text="校验位" />
+            <TextBlock
                 Grid.Row="3"
                 Grid.Column="0"
                 Margin="5"
-                VerticalContentAlignment="Center"
-                Content="停止位"
-                FontSize="20" />
-            <Label
+                Text="停止位" />
+            <TextBlock
                 Grid.Row="4"
                 Grid.Column="0"
                 Margin="5"
-                VerticalContentAlignment="Center"
-                Content="模式"
-                FontSize="20" />
+                Text="模式" />
+            <TextBlock
+                Grid.Row="5"
+                Grid.Column="0"
+                Margin="5"
+                Text="端口号" />
             <ComboBox
+                x:Name="BaudRateComboBox"
                 Grid.Row="0"
                 Grid.Column="1"
-                Margin="5"
-                FontSize="20"
                 SelectedIndex="0">
                 <ComboBoxItem FontSize="18">9600</ComboBoxItem>
                 <ComboBoxItem FontSize="18">19200</ComboBoxItem>
@@ -75,50 +91,71 @@
                 <ComboBoxItem FontSize="18">115200</ComboBoxItem>
             </ComboBox>
             <ComboBox
+                x:Name="DataBitsComboBox"
                 Grid.Row="1"
                 Grid.Column="1"
-                Margin="5"
-                FontSize="20"
                 SelectedIndex="0">
                 <ComboBoxItem FontSize="18">7</ComboBoxItem>
                 <ComboBoxItem FontSize="18">8</ComboBoxItem>
             </ComboBox>
             <ComboBox
+                x:Name="ParityComboBox"
                 Grid.Row="2"
                 Grid.Column="1"
-                Margin="5"
-                FontSize="20"
                 SelectedIndex="1">
                 <ComboBoxItem FontSize="18">奇校验(O)</ComboBoxItem>
                 <ComboBoxItem FontSize="18">偶校验(E)</ComboBoxItem>
                 <ComboBoxItem FontSize="18">无校验(N)</ComboBoxItem>
             </ComboBox>
             <ComboBox
+                x:Name="StopBitsComboBox"
                 Grid.Row="3"
                 Grid.Column="1"
-                Margin="5"
-                FontSize="20"
                 SelectedIndex="1">
                 <ComboBoxItem FontSize="18">0</ComboBoxItem>
                 <ComboBoxItem FontSize="18">1</ComboBoxItem>
             </ComboBox>
             <ComboBox
+                x:Name="ModeComboBox"
                 Grid.Row="4"
                 Grid.Column="1"
-                Margin="5"
-                FontSize="20"
                 SelectedIndex="0">
-                <ComboBoxItem FontSize="18">ASCII</ComboBoxItem>
-                <ComboBoxItem FontSize="18">RTU</ComboBoxItem>
+                <ComboBoxItem FontSize="18" ToolTip="自带LRC校验">ASCII</ComboBoxItem>
+                <ComboBoxItem FontSize="18" ToolTip="自带CRC校验">RTU</ComboBoxItem>
             </ComboBox>
-            <Button
-                x:Name="ButtonOpenCom"
+            <ComboBox
+                x:Name="CommPortComboBox"
                 Grid.Row="5"
-                Grid.Column="0"
-                Margin="5"
+                Grid.Column="1" />
+        </Grid>
+        <Grid Grid.Column="1" Margin="20,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="8*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="InputTextBlock" Grid.Row="0" />
+            <Button
+                x:Name="SendDataButton"
+                Grid.Row="0"
+                Grid.Column="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
-                Content="打开串口"
-                FontSize="20" />
+                Click="OpenCommButton_OnClick"
+                FontSize="20">
+                <TextBlock Margin="5" Text="发送数据" />
+            </Button>
+            <TextBox
+                x:Name="OutputTextBlock"
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                IsReadOnly="True" />
         </Grid>
     </Grid>
 </UserControl>

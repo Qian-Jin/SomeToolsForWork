@@ -8,116 +8,60 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="AcceptsReturn" Value="False" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+        </Style>
+    </UserControl.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="10" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
-        <Grid
-            Grid.Row="1"
-            Grid.RowSpan="2"
-            Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <RadioButton
-                x:Name="RadioButton2_1"
-                Grid.Row="0"
-                Grid.Column="0"
-                Margin="5"
-                Padding="0"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Center"
-                Content="REAL"
-                FontSize="20"
-                IsChecked="True" />
-            <RadioButton
-                x:Name="RadioButton2_2"
-                Grid.Row="1"
-                Grid.Column="0"
-                Margin="5"
-                Padding="0"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Center"
-                Content="LREAL"
-                FontSize="20" />
-        </Grid>
-        <Grid
-            Grid.Row="1"
-            Grid.RowSpan="2"
-            Grid.Column="2">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <RadioButton
-                x:Name="RadioButton2_3"
-                Grid.Row="0"
-                Grid.Column="0"
-                Margin="5"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Center"
-                Content="十进制"
-                FontSize="20"
-                IsChecked="True" />
-            <RadioButton
-                x:Name="RadioButton2_4"
-                Grid.Row="1"
-                Grid.Column="0"
-                Margin="5"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Center"
-                Content="十六进制"
-                FontSize="20" />
-        </Grid>
-        <TextBox
-            x:Name="TextBox2_1"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="0"
+            Text="32位浮点数" />
+        <TextBlock
             Grid.Row="3"
-            Grid.Column="3"
-            Margin="5"
-            AcceptsReturn="False"
-            BorderBrush="Aqua"
-            FontSize="20" />
+            Grid.Column="0"
+            Text="64位浮点数" />
+
         <TextBox
-            x:Name="TextBox2_2"
+            x:Name="Bit32FloatTextBox"
+            Grid.Row="0"
+            Grid.Column="1"
+            TextChanged="Bit32FloatTextBox_OnTextChanged" />
+        <TextBlock
+            x:Name="Bit32FloatTextBlock"
+            Grid.Row="1"
+            Grid.Column="1" />
+        <TextBox
+            x:Name="Bit64FloatTextBox"
+            Grid.Row="3"
+            Grid.Column="1"
+            TextChanged="Bit64FloatTextBox_OnTextChanged" />
+        <TextBlock
+            x:Name="Bit64FloatTextBlock"
             Grid.Row="4"
-            Grid.Column="3"
-            Margin="5"
-            BorderBrush="Aqua"
-            FontSize="20"
-            IsReadOnly="True" />
-        <Button
-            x:Name="Button2_1"
-            Grid.Row="5"
-            Grid.Column="3"
-            MinWidth="50"
-            MinHeight="20"
-            MaxWidth="100"
-            MaxHeight="40"
-            Margin="5"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Click="Button2_1_OnClick"
-            Content="转换"
-            FontSize="18"
-            IsDefault="True" />
+            Grid.Column="1" />
     </Grid>
 </UserControl>

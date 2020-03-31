@@ -25,17 +25,33 @@ namespace SomeTools.Function
             InitializeComponent();
         }
 
-        private void Cal_motionvel(object sender, RoutedEventArgs e)
+        private void CalculateButton_OnClick(object sender, RoutedEventArgs e)
         {
-            double ppr = Convert.ToDouble(TextBox5_1.Text);
-            double gearin = Convert.ToDouble(TextBox5_2.Text);
-            double gearout = Convert.ToDouble(TextBox5_3.Text);
-            double setvel = Convert.ToDouble(TextBox5_4.Text);
-            double setservovel = Convert.ToDouble(TextBox5_7.Text);
+            try
+            {
+                double ppr = Convert.ToDouble(PprTextBox.Text);
+                double gearin = Convert.ToDouble(GearInTextBox.Text);
+                double gearout = Convert.ToDouble(GearOutTextBox.Text);
+                double setvel = Convert.ToDouble(SetSpeedTextBox.Text);
+                double setservovel = Convert.ToDouble(SetMotorSpeedMinTextBox.Text);
 
-            TextBox5_5.Text = Convert.ToString(setvel / ppr * 60 / gearout * gearin);
-            TextBox5_6.Text = Convert.ToString(setvel / ppr * 60 / gearout * gearin / 60);
-            TextBox5_8.Text = Convert.ToString(setservovel / gearin * gearout / 60 * ppr);
+                MotorSpeedMinTextBlock.Text = Convert.ToString(setvel / ppr * 60 / gearout * gearin);
+                MotorSpeedSecTextBlock.Text = Convert.ToString(setvel / ppr * 60 / gearout * gearin / 60);
+                UnitSpeedTextBlock.Text = Convert.ToString(setservovel / gearin * gearout / 60 * ppr);
+            }
+            catch
+            {
+                MotorSpeedMinTextBlock.Text = "Error: 计算错误，数据输入有误";
+                MotorSpeedSecTextBlock.Text = "Error: 计算错误，数据输入有误";
+                UnitSpeedTextBlock.Text = "Error: 计算错误，数据输入有误";
+            }
+        }
+
+        private void TextBoxKeyDownEventSetter_OnHandler(object sender, KeyEventArgs e)
+        {
+            e.Handled = !((e.Key >= Key.D0 && e.Key <= Key.D9)
+                          || e.Key == Key.Decimal
+                          || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9));
         }
     }
 }
