@@ -7,9 +7,9 @@ EXPORTS
 	convert_double_to_int64 @ 4
 	calculate_acceleration_time @ 5
 	calculate_motion_time @ 6
-	gcodefileoutput @ 7
-	outfunction @ 8
-	gcodecirclefileoutput @ 9
-	gCodeMixFileOutput @ 10
-	g4testFileOutput @ 11
-	makeGfile @ 12
+	output_curve_point_g1_file @ 7
+	output_curve_point_value @ 8
+	output_gcode_circle_file @ 9
+	output_right_up_8_graph_g_code_file @ 10
+	output_g4_file @ 11
+	output_blend_gcode_file @ 12

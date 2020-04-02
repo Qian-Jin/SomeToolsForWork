@@ -30,7 +30,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
-    <CLRSupport>true</CLRSupport>
+    <CLRSupport>false</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -154,28 +154,27 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="convert_float_to_hex.cpp" />
-    <ClCompile Include="G2G3code.cpp" />
-    <ClCompile Include="G4test.cpp" />
-    <ClCompile Include="Gcode.cpp" />
-    <ClCompile Include="GcodeFun.cpp" />
-    <ClCompile Include="Gcodemix.cpp" />
-    <ClCompile Include="MakeGFile.cpp" />
+    <ClCompile Include="output_g2_g3_file.cpp" />
+    <ClCompile Include="ouput_g4_file.cpp" />
+    <ClCompile Include="output_curve_point.cpp" />
+    <ClCompile Include="curve_func.cpp" />
+    <ClCompile Include="ouput_right_up_8_graph.cpp" />
+    <ClCompile Include="output_blend_gcode_file.cpp" />
     <ClCompile Include="motion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="convert_float_to_hex.h" />
-    <ClInclude Include="G2G3code.h" />
-    <ClInclude Include="G4test.h" />
-    <ClInclude Include="Gcode.h" />
-    <ClInclude Include="GcodeFun.h" />
-    <ClInclude Include="Gcodemix.h" />
-    <ClInclude Include="MakeGFile.h" />
+    <ClInclude Include="curve_func.h" />
+    <ClInclude Include="output_g2_g3_file.h" />
+    <ClInclude Include="output_g4_file.h" />
+    <ClInclude Include="output_curve_point.h" />
+    <ClInclude Include="ouput_right_up_8_graph.h" />
+    <ClInclude Include="output_blend_gcode_file.h" />
     <ClInclude Include="motion.h" />
     <ClInclude Include="spline.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AppFun.def" />
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

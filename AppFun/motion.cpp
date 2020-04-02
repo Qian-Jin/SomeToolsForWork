@@ -1,4 +1,4 @@
-#include <math.h>
+#include <cmath>
 #include "motion.h"
 
 /// <summary>
@@ -20,11 +20,10 @@ int calculate_acceleration_time(const double vel_start, const double vel_max, co
         return -1;
     }
 
-    double del_v, v_1;
-    double vel_time, vel_t1, vel_t2, vel_t3;
-    del_v = vel_max - vel_start;
-    vel_t1 = vel_acc / vel_jerk;
-    v_1 = vel_jerk * pow(vel_t1, 2);
+    double vel_time, vel_t2, vel_t3;
+    double del_v = vel_max - vel_start;
+    double vel_t1 = vel_acc / vel_jerk;
+    double v_1 = vel_jerk * pow(vel_t1, 2);
     if (v_1 >= del_v)
     {
         vel_t1 = sqrt(del_v / vel_jerk);
@@ -82,7 +81,7 @@ int calculate_motion_time(const double pos_start, const double pos_end, const do
         return -1;
     }
 
-    double pos_time, pos_t1, pos_t2, pos_t3, pos_t4, pos_t5, pos_t6, pos_t7;
+    double pos_t1, pos_t2, pos_t3, pos_t4, pos_t5, pos_t6, pos_t7;
     double pos_d1, pos_d2, pos_d3, pos_d4, pos_d5, pos_d6, pos_d7;
     double del_acc_vel, del_dec_vel, del_pos;
     double pos_v1, pos_v2, pos_v3, pos_v4, pos_v5, pos_v6, pos_v7;
@@ -146,7 +145,6 @@ start:
     if (pos_d4 == 0.0)
     {
         pos_t4 = 0;
-        pos_time = pos_t1 + pos_t2 + pos_t3 + pos_t4 + pos_t5 + pos_t6 + pos_t7;
     }
     else
     {
@@ -161,7 +159,6 @@ start:
             if (vel_max >= high_vel - 0.1)
             {
                 pos_t4 = pos_d4 / vel_max;
-                pos_time = pos_t1 + pos_t2 + pos_t3 + pos_t4 + pos_t5 + pos_t6 + pos_t7;
             }
             else
             {

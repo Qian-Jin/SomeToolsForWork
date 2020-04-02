@@ -18,25 +18,25 @@
     <ClCompile Include="motion.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Gcode.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="GcodeFun.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="G2G3code.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Gcodemix.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="G4test.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="MakeGFile.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="convert_float_to_hex.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="output_g2_g3_file.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="output_blend_gcode_file.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ouput_g4_file.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="output_curve_point.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="curve_func.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ouput_right_up_8_graph.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,28 +44,28 @@
     <ClInclude Include="motion.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Gcode.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="GcodeFun.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="spline.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="G2G3code.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Gcodemix.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="G4test.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="MakeGFile.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="convert_float_to_hex.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="output_g2_g3_file.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="output_blend_gcode_file.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="output_g4_file.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="output_curve_point.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ouput_right_up_8_graph.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="curve_func.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -73,6 +73,5 @@
     <None Include="AppFun.def">
       <Filter>源文件</Filter>
     </None>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>
