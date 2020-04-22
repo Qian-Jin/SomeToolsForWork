@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
-using System.Net.NetworkInformation;
-using System.Net.Sockets;
-using System.Runtime.InteropServices;
-using System.Threading;
+﻿using SomeTools.Function;
+using SomeTools.Function.ConvertFloatToHex;
+using SomeTools.Function.ConvertNumberBase;
+using SomeTools.Function.ConvertPulseToUnit;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Threading;
-using System.Xml;
-using SomeTools.Function;
-using SomeTools.Function.ConvertFloatToHex;
-using SomeTools.Function.ConvertPulseToUnit;
 
 namespace SomeTools
 {
@@ -29,7 +20,7 @@ namespace SomeTools
         /// <summary>
         /// 进制转换页面
         /// </summary>
-        private Function.NumberBaseConversion numberBaseConversionGrid = new NumberBaseConversion();
+        private Function.ConvertNumberBase.ConvertNumberBaseView convertNumberBase = new ConvertNumberBaseView();
 
         /// <summary>
         /// 浮点数和十六进制转换
@@ -91,7 +82,7 @@ namespace SomeTools
                 switch (index)
                 {
                     case 0:
-                        ui = numberBaseConversionGrid;
+                        ui = convertNumberBase;
                         break;
 
                     case 1:

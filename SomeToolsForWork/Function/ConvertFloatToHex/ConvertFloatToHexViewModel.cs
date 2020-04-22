@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SomeTools.Function.ConvertFloatToHex
 {
-    public class ConvertFloatToHexViewModel
+    internal class ConvertFloatToHexViewModel
     {
         public DelegateCommand Convent32BitsCommand { get; set; }
         public DelegateCommand Convent64BitsCommand { get; set; }

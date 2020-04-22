@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SomeTools.Function.ConvertFloatToHex
 {
-    public class ConvertFloatToHexModel : NotificationObject
+    internal class ConvertFloatToHexModel : NotificationObject
     {
         //浮点数转换
         [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "convert_int32_to_float",

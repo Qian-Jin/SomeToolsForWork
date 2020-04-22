@@ -90,7 +90,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Function\ConvertNumberBase.xaml">
+    <Page Include="Function\ConvertNumberBase\ConvertNumberBaseView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -130,9 +130,11 @@
     </Compile>
     <Compile Include="Function\ConvertFloatToHex\ConvertFloatToHexModel.cs" />
     <Compile Include="Function\ConvertFloatToHex\ConvertFloatToHexViewModel.cs" />
-    <Compile Include="Function\ConvertNumberBase.xaml.cs">
-      <DependentUpon>ConvertNumberBase.xaml</DependentUpon>
+    <Compile Include="Function\ConvertNumberBase\ConvertNumberBaseModel.cs" />
+    <Compile Include="Function\ConvertNumberBase\ConvertNumberBaseView.xaml.cs">
+      <DependentUpon>ConvertNumberBaseView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Function\ConvertNumberBase\ConvertNumberBaseViewModel.cs" />
     <Compile Include="Function\ConvertPulseToUnit\ConvertPulseToUnitModel.cs" />
     <Compile Include="Function\ConvertPulseToUnit\ConvertPulseToUnitView.xaml.cs">
       <DependentUpon>ConvertPulseToUnitView.xaml</DependentUpon>
