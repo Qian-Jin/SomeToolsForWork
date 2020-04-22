@@ -86,7 +86,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Function\ConvertFloatToHex.xaml">
+    <Page Include="Function\ConvertFloatToHex\ConvertFloatToHexView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -118,15 +118,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DelegateCommand.cs" />
     <Compile Include="Function\CalculateMotionAccelerationTime.xaml.cs">
       <DependentUpon>CalculateMotionAccelerationTime.xaml</DependentUpon>
     </Compile>
     <Compile Include="Function\CalculateMotionTime.xaml.cs">
       <DependentUpon>CalculateMotionTime.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Function\ConvertFloatToHex.xaml.cs">
-      <DependentUpon>ConvertFloatToHex.xaml</DependentUpon>
+    <Compile Include="Function\ConvertFloatToHex\ConvertFloatToHexView.xaml.cs">
+      <DependentUpon>ConvertFloatToHexView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Function\ConvertFloatToHex\ConvertFloatToHexModel.cs" />
+    <Compile Include="Function\ConvertFloatToHex\ConvertFloatToHexViewModel.cs" />
     <Compile Include="Function\ConvertNumberBase.xaml.cs">
       <DependentUpon>ConvertNumberBase.xaml</DependentUpon>
     </Compile>
@@ -148,6 +151,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NotificationObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -201,6 +205,7 @@
       <Name>Comm</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

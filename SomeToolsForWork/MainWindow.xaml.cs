@@ -11,6 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Threading;
 using System.Xml;
 using SomeTools.Function;
+using SomeTools.Function.ConvertFloatToHex;
 
 namespace SomeTools
 {
@@ -32,7 +33,7 @@ namespace SomeTools
         /// <summary>
         /// 浮点数和十六进制转换
         /// </summary>
-        private Function.ConvertFloatToHex convertFloatToHex = new ConvertFloatToHex();
+        private Function.ConvertFloatToHex.ConvertFloatToHexView convertFloatToHex = new ConvertFloatToHexView();
 
         /// <summary>
         /// 计算位置加速时间

@@ -1,19 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
-using System.Windows.Controls;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace SomeTools.Function
+namespace SomeTools.Function.ConvertFloatToHex
 {
-    /// <summary>
-    /// ConvertFloatToHex.xaml 的交互逻辑
-    /// </summary>
-    public partial class ConvertFloatToHex : UserControl
+    public class ConvertFloatToHexModel : NotificationObject
     {
-        public ConvertFloatToHex()
-        {
-            InitializeComponent();
-        }
-
         //浮点数转换
         [DllImport("AppFun.dll", CharSet = CharSet.Unicode, EntryPoint = "convert_int32_to_float",
             CallingConvention = CallingConvention.Cdecl)]
@@ -31,51 +26,101 @@ namespace SomeTools.Function
             CallingConvention = CallingConvention.Cdecl)]
         private static extern Int64 ConvertDoubleToInt64(double value);
 
-        private void Bit32FloatTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                var value = ConvertStringToNumber(Bit32FloatTextBox.Text, typeof(Int32));
+        private string _input32BitsString = String.Empty;
 
-                if (value is Int32)
-                {
-                    Bit32FloatTextBlock.Text = ConvertInt32ToFloat(Convert.ToInt32(value)).ToString();
-                }
-                else
-                {
-                    Bit32FloatTextBlock.Text = "0x" + ConvertFloatToInt32(Convert.ToSingle(value)).ToString("X");
-                }
-            }
-            catch
+        public string Input32BitsString
+        {
+            get { return _input32BitsString; }
+            set
             {
-                Bit32FloatTextBlock.Text = "Error.";
+                _input32BitsString = value;
+                Convent32Bits(_input32BitsString);
+                this.RaisePropertyChanged("Input32BitsString");
             }
         }
 
-        private void Bit64FloatTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
+        private string _output32BitsString = String.Empty;
+
+        public string Output32BitsString
+        {
+            get { return _output32BitsString; }
+            set
+            {
+                _output32BitsString = value;
+                this.RaisePropertyChanged("Output32BitsString");
+            }
+        }
+
+        private string _input64BitsString = String.Empty;
+
+        public string Input64BitsString
+        {
+            get { return _input64BitsString; }
+            set
+            {
+                _input64BitsString = value;
+                Convent64Bits(_input64BitsString);
+                this.RaisePropertyChanged("Input64BitsString");
+            }
+        }
+
+        private string _output64BitsString = String.Empty;
+
+        public string Output64BitsString
+        {
+            get { return _output64BitsString; }
+            set
+            {
+                _output64BitsString = value;
+                this.RaisePropertyChanged("Output64BitsString");
+            }
+        }
+
+        public void Convent32Bits(object obj)
         {
             try
             {
-                var value = ConvertStringToNumber(Bit64FloatTextBox.Text, typeof(Int64));
+                var value = ConvertStringToNumber(this._input32BitsString, typeof(Int32));
 
-                if (value is Int64)
+                if (value is Int32)
                 {
-                    Bit64FloatTextBlock.Text = ConvertInt64ToDouble(Convert.ToInt64(value)).ToString();
+                    this.Output32BitsString = ConvertInt32ToFloat(Convert.ToInt32(value)).ToString();
                 }
                 else
                 {
-                    Bit64FloatTextBlock.Text = "0x" + ConvertDoubleToInt64(Convert.ToDouble(value)).ToString("X");
+                    this.Output32BitsString = "0x" + ConvertFloatToInt32(Convert.ToSingle(value)).ToString("X");
                 }
             }
             catch
             {
-                Bit64FloatTextBlock.Text = "Error.";
+                this.Output32BitsString = "Error.";
+            }
+        }
+
+        public void Convent64Bits(object obj)
+        {
+            try
+            {
+                var value = ConvertStringToNumber(this._input64BitsString, typeof(Int64));
+
+                if (value is Int64)
+                {
+                    this.Output64BitsString = ConvertInt64ToDouble(Convert.ToInt64(value)).ToString();
+                }
+                else
+                {
+                    this.Output64BitsString = "0x" + ConvertDoubleToInt64(Convert.ToDouble(value)).ToString("X");
+                }
+            }
+            catch
+            {
+                this.Output64BitsString = "Error.";
             }
         }
 
         private Object ConvertStringToNumber(string str, Type type)
         {
-            if (str[0] == '0' && str[1] == 'x')
+            if (str[0] == '0' && (str[1] == 'x' || str[1] == 'X'))
             {
                 if (!str.Contains("."))
                 {
