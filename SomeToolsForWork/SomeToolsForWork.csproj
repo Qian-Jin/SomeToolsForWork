@@ -98,7 +98,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Function\ConvertStringToAscii.xaml">
+    <Page Include="Function\ConvertStringToAscii\ConvertStringToAsciiView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -140,9 +140,11 @@
       <DependentUpon>ConvertPulseToUnitView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Function\ConvertPulseToUnit\ConvertPulseToUnitViewModel.cs" />
-    <Compile Include="Function\ConvertStringToAscii.xaml.cs">
-      <DependentUpon>ConvertStringToAscii.xaml</DependentUpon>
+    <Compile Include="Function\ConvertStringToAscii\ConvertStringToAsciiModel.cs" />
+    <Compile Include="Function\ConvertStringToAscii\ConvertStringToAsciiView.xaml.cs">
+      <DependentUpon>ConvertStringToAsciiView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Function\ConvertStringToAscii\ConvertStringToAsciiViewModel.cs" />
     <Compile Include="Function\SerialCommunication.xaml.cs">
       <DependentUpon>SerialCommunication.xaml</DependentUpon>
     </Compile>

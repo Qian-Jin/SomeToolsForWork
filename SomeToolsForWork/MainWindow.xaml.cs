@@ -4,6 +4,7 @@ using SomeTools.Function.ConvertNumberBase;
 using SomeTools.Function.ConvertPulseToUnit;
 using System.Windows;
 using System.Windows.Controls;
+using SomeTools.Function.ConvertStringToAscii;
 
 namespace SomeTools
 {
@@ -45,7 +46,7 @@ namespace SomeTools
         /// <summary>
         /// 转换字符串和Ascii代码
         /// </summary>
-        private Function.ConvertStringToAscii convertStringToAscii = new ConvertStringToAscii();
+        private Function.ConvertStringToAscii.ConvertStringToAsciiView convertStringToAscii = new ConvertStringToAsciiView();
 
         /// <summary>
         /// 串口通讯
