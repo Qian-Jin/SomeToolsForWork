@@ -1,9 +1,9 @@
 ﻿<UserControl
-    x:Class="SomeTools.Function.ConvertPulseToUnit"
+    x:Class="SomeTools.Function.ConvertPulseToUnit.ConvertPulseToUnitView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:SomeTools.Function"
+    xmlns:local="clr-namespace:SomeTools.Function.ConvertPulseToUnit"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Margin="5"
     d:DesignHeight="450"
@@ -91,37 +91,43 @@
         <TextBox
             x:Name="PprTextBox"
             Grid.Row="1"
-            Grid.Column="1" />
+            Grid.Column="1"
+            Text="{Binding Path=Model.PprString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBox
             x:Name="GearInTextBox"
             Grid.Row="2"
-            Grid.Column="1" />
+            Grid.Column="1"
+            Text="{Binding Path=Model.GearInString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBox
             x:Name="GearOutTextBox"
             Grid.Row="3"
-            Grid.Column="1" />
+            Grid.Column="1"
+            Text="{Binding Path=Model.GearOutString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBox
             x:Name="SetSpeedTextBox"
             Grid.Row="4"
             Grid.Column="1"
-            Text="0" />
+            Text="{Binding Path=Model.SetSpeedString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock
             x:Name="MotorSpeedMinTextBlock"
             Grid.Row="6"
-            Grid.Column="1" />
+            Grid.Column="1"
+            Text="{Binding Path=Model.MotorSpeedMinString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock
             x:Name="MotorSpeedSecTextBlock"
             Grid.Row="7"
-            Grid.Column="1" />
+            Grid.Column="1"
+            Text="{Binding Path=Model.MotorSpeedSecString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBox
             x:Name="SetMotorSpeedMinTextBox"
             Grid.Row="4"
             Grid.Column="3"
-            Text="0" />
+            Text="{Binding Path=Model.SetMotorSpeedString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock
             x:Name="UnitSpeedTextBlock"
             Grid.Row="6"
-            Grid.Column="3" />
+            Grid.Column="3"
+            Text="{Binding Path=Model.UnitSpeedSecString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         <Button
             x:Name="CalculateButton"
@@ -132,7 +138,7 @@
             VerticalAlignment="Center"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
-            Click="CalculateButton_OnClick"
+            Command="{Binding CalculateCommand}"
             FontSize="20">
             <TextBlock Margin="20,5" Text="计算" />
         </Button>

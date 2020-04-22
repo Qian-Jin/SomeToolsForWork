@@ -94,7 +94,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Function\ConvertPulseToUnit.xaml">
+    <Page Include="Function\ConvertPulseToUnit\ConvertPulseToUnitView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -133,9 +133,11 @@
     <Compile Include="Function\ConvertNumberBase.xaml.cs">
       <DependentUpon>ConvertNumberBase.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Function\ConvertPulseToUnit.xaml.cs">
-      <DependentUpon>ConvertPulseToUnit.xaml</DependentUpon>
+    <Compile Include="Function\ConvertPulseToUnit\ConvertPulseToUnitModel.cs" />
+    <Compile Include="Function\ConvertPulseToUnit\ConvertPulseToUnitView.xaml.cs">
+      <DependentUpon>ConvertPulseToUnitView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Function\ConvertPulseToUnit\ConvertPulseToUnitViewModel.cs" />
     <Compile Include="Function\ConvertStringToAscii.xaml.cs">
       <DependentUpon>ConvertStringToAscii.xaml</DependentUpon>
     </Compile>
@@ -182,7 +184,7 @@
     <Resource Include="tool14.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Function\ConvertPulseToUnitLow.png" />
+    <Resource Include="Function\ConvertPulseToUnit\ConvertPulseToUnitLow.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="tools.ico" />

@@ -12,6 +12,7 @@ using System.Windows.Threading;
 using System.Xml;
 using SomeTools.Function;
 using SomeTools.Function.ConvertFloatToHex;
+using SomeTools.Function.ConvertPulseToUnit;
 
 namespace SomeTools
 {
@@ -48,7 +49,7 @@ namespace SomeTools
         /// <summary>
         /// 转换脉冲到单元
         /// </summary>
-        private Function.ConvertPulseToUnit convertPulseToUnit = new ConvertPulseToUnit();
+        private Function.ConvertPulseToUnit.ConvertPulseToUnitView convertPulseToUnit = new ConvertPulseToUnitView();
 
         /// <summary>
         /// 转换字符串和Ascii代码
