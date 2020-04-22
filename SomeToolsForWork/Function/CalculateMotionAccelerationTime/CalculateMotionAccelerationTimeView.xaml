@@ -1,9 +1,9 @@
 ﻿<UserControl
-    x:Class="SomeTools.Function.CalculateMotionAccelerationTime"
+    x:Class="SomeTools.Function.CalculateMotionAccelerationTime.CalculateMotionAccelerationTimeView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:SomeTools.Function"
+    xmlns:local="clr-namespace:SomeTools.Function.CalculateMotionAccelerationTime"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Margin="10"
     d:DesignHeight="450"
@@ -49,7 +49,8 @@
         <TextBox
             x:Name="StartVelocityTextBox"
             Grid.Row="0"
-            Grid.Column="1" />
+            Grid.Column="1"
+            Text="{Binding Path=Model.StartVelocityString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock
             Grid.Row="1"
             Grid.Column="0"
@@ -57,7 +58,8 @@
         <TextBox
             x:Name="MaxVelocityTextBox"
             Grid.Row="1"
-            Grid.Column="1" />
+            Grid.Column="1"
+            Text="{Binding Path=Model.MaxVelocityString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock
             Grid.Row="2"
             Grid.Column="0"
@@ -65,7 +67,8 @@
         <TextBox
             x:Name="MaxAccelerationTextBox"
             Grid.Row="2"
-            Grid.Column="1" />
+            Grid.Column="1"
+            Text="{Binding Path=Model.AccelerationString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock
             Grid.Row="3"
             Grid.Column="0"
@@ -74,7 +77,8 @@
         <TextBox
             x:Name="MaxJerkTextBox"
             Grid.Row="3"
-            Grid.Column="1" />
+            Grid.Column="1"
+            Text="{Binding Path=Model.JerkString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <Button
             x:Name="CalculateButton"
             Grid.Row="4"
@@ -83,7 +87,7 @@
             VerticalAlignment="Center"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
-            Click="CalculateButton_OnClick"
+            Command="{Binding CalculateCommand}"
             FontSize="20">
             <TextBlock Margin="20,5" Text="计算" />
         </Button>
@@ -95,7 +99,8 @@
             x:Name="TotalTimeTextBlock"
             Grid.Row="5"
             Grid.Column="1"
-            HorizontalAlignment="Left" />
+            HorizontalAlignment="Left"
+            Text="{Binding Path=Model.TotalTimeString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock
             Grid.Row="6"
             Grid.Column="0"
@@ -104,7 +109,8 @@
             x:Name="FirstStageTextBox"
             Grid.Row="6"
             Grid.Column="1"
-            HorizontalAlignment="Left" />
+            HorizontalAlignment="Left"
+            Text="{Binding Path=Model.Stage1TimeString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock
             Grid.Row="7"
             Grid.Column="0"
@@ -113,7 +119,8 @@
             x:Name="SecondStageTextBlock"
             Grid.Row="7"
             Grid.Column="1"
-            HorizontalAlignment="Left" />
+            HorizontalAlignment="Left"
+            Text="{Binding Path=Model.Stage2TimeString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock
             Grid.Row="8"
             Grid.Column="0"
@@ -122,6 +129,7 @@
             x:Name="ThirdStageTextBlock"
             Grid.Row="8"
             Grid.Column="1"
-            HorizontalAlignment="Left" />
+            HorizontalAlignment="Left"
+            Text="{Binding Path=Model.Stage3TimeString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </Grid>
 </UserControl>

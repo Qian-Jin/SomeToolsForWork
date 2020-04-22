@@ -1,9 +1,9 @@
 ﻿<UserControl
-    x:Class="SomeTools.Function.CalculateMotionTime"
+    x:Class="SomeTools.Function.CalculateMotionTime.CalculateMotionTimeView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:SomeTools.Function"
+    xmlns:local="clr-namespace:SomeTools.Function.CalculateMotionTime"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Margin="10"
     d:DesignHeight="450"
@@ -128,35 +128,43 @@
         <TextBox
             x:Name="StartPositionTextBox"
             Grid.Row="0"
-            Grid.Column="1" />
+            Grid.Column="1"
+            Text="{Binding Path=Model.StartPositionString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBox
             x:Name="EndPositionTextBox"
             Grid.Row="1"
-            Grid.Column="1" />
+            Grid.Column="1"
+            Text="{Binding Path=Model.EndPositionString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBox
             x:Name="StartVelocityTextBox"
             Grid.Row="2"
-            Grid.Column="1" />
+            Grid.Column="1"
+            Text="{Binding Path=Model.StartVelocityString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBox
             x:Name="MaxVelocityTextBox"
             Grid.Row="3"
-            Grid.Column="1" />
+            Grid.Column="1"
+            Text="{Binding Path=Model.MaxVelocityString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBox
             x:Name="EndVelocityTextBox"
             Grid.Row="4"
-            Grid.Column="1" />
+            Grid.Column="1"
+            Text="{Binding Path=Model.EndVelocityString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBox
             x:Name="AccelerationTextBox"
             Grid.Row="5"
-            Grid.Column="1" />
+            Grid.Column="1"
+            Text="{Binding Path=Model.AccelerationString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBox
             x:Name="DecelerationTextBox"
             Grid.Row="6"
-            Grid.Column="1" />
+            Grid.Column="1"
+            Text="{Binding Path=Model.DecelerationString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBox
             x:Name="JerkTextBox"
             Grid.Row="7"
-            Grid.Column="1" />
+            Grid.Column="1"
+            Text="{Binding Path=Model.JerkString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         <Button
             x:Name="CalculateButton"
@@ -166,7 +174,7 @@
             VerticalAlignment="Center"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
-            Click="CalculateButton_OnClick"
+            Command="{Binding CalculateCommand}"
             FontSize="20">
             <TextBlock Margin="20,5" Text="计算" />
         </Button>
@@ -174,66 +182,82 @@
         <TextBlock
             x:Name="Stage1TimeTextBlock"
             Grid.Row="1"
-            Grid.Column="4" />
+            Grid.Column="4"
+            Text="{Binding Path=Model.Stage1TimeString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock
             x:Name="Stage2TimeTextBlock"
             Grid.Row="2"
-            Grid.Column="4" />
+            Grid.Column="4"
+            Text="{Binding Path=Model.Stage2TimeString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock
             x:Name="Stage3TimeTextBlock"
             Grid.Row="3"
-            Grid.Column="4" />
+            Grid.Column="4"
+            Text="{Binding Path=Model.Stage3TimeString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock
             x:Name="Stage4TimeTextBlock"
             Grid.Row="4"
-            Grid.Column="4" />
+            Grid.Column="4"
+            Text="{Binding Path=Model.Stage4TimeString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock
             x:Name="Stage5TimeTextBlock"
             Grid.Row="5"
-            Grid.Column="4" />
+            Grid.Column="4"
+            Text="{Binding Path=Model.Stage5TimeString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock
             x:Name="Stage6TimeTextBlock"
             Grid.Row="6"
-            Grid.Column="4" />
+            Grid.Column="4"
+            Text="{Binding Path=Model.Stage6TimeString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock
             x:Name="Stage7TimeTextBlock"
             Grid.Row="7"
-            Grid.Column="4" />
+            Grid.Column="4"
+            Text="{Binding Path=Model.Stage7TimeString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock
             x:Name="StageTotalTimeTextBlock"
             Grid.Row="8"
-            Grid.Column="4" />
+            Grid.Column="4"
+            Text="{Binding Path=Model.StageTotalTimeString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock
             x:Name="Stage1DistanceTextBlock"
             Grid.Row="1"
-            Grid.Column="5" />
+            Grid.Column="5"
+            Text="{Binding Path=Model.Stage1DistanceString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock
             x:Name="Stage2DistanceTextBlock"
             Grid.Row="2"
-            Grid.Column="5" />
+            Grid.Column="5"
+            Text="{Binding Path=Model.Stage2DistanceString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock
             x:Name="Stage3DistanceTextBlock"
             Grid.Row="3"
-            Grid.Column="5" />
+            Grid.Column="5"
+            Text="{Binding Path=Model.Stage3DistanceString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock
             x:Name="Stage4DistanceTextBlock"
             Grid.Row="4"
-            Grid.Column="5" />
+            Grid.Column="5"
+            Text="{Binding Path=Model.Stage4DistanceString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock
             x:Name="Stage5DistanceTextBlock"
             Grid.Row="5"
-            Grid.Column="5" />
+            Grid.Column="5"
+            Text="{Binding Path=Model.Stage5DistanceString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock
             x:Name="Stage6DistanceTextBlock"
             Grid.Row="6"
-            Grid.Column="5" />
+            Grid.Column="5"
+            Text="{Binding Path=Model.Stage6DistanceString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock
             x:Name="Stage7DistanceTextBlock"
             Grid.Row="7"
-            Grid.Column="5" />
+            Grid.Column="5"
+            Text="{Binding Path=Model.Stage7DistanceString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock
             x:Name="StageTotalDistanceTextBlock"
             Grid.Row="8"
-            Grid.Column="5" />
+            Grid.Column="5"
+            Text="{Binding Path=Model.StageTotalDistanceString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </Grid>
 </UserControl>

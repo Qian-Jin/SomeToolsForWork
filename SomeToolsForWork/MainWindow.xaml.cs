@@ -4,6 +4,8 @@ using SomeTools.Function.ConvertNumberBase;
 using SomeTools.Function.ConvertPulseToUnit;
 using System.Windows;
 using System.Windows.Controls;
+using SomeTools.Function.CalculateMotionAccelerationTime;
+using SomeTools.Function.CalculateMotionTime;
 using SomeTools.Function.ConvertStringToAscii;
 
 namespace SomeTools
@@ -31,12 +33,12 @@ namespace SomeTools
         /// <summary>
         /// 计算位置加速时间
         /// </summary>
-        private Function.CalculateMotionAccelerationTime calculateMotionAccelerationTime = new CalculateMotionAccelerationTime();
+        private Function.CalculateMotionAccelerationTime.CalculateMotionAccelerationTimeView calculateMotionAccelerationTime = new CalculateMotionAccelerationTimeView();
 
         /// <summary>
         /// 计算位移时间
         /// </summary>
-        private Function.CalculateMotionTime calculateMotionTime = new CalculateMotionTime();
+        private Function.CalculateMotionTime.CalculateMotionTimeView calculateMotionTime = new CalculateMotionTimeView();
 
         /// <summary>
         /// 转换脉冲到单元

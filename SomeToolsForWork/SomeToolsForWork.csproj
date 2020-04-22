@@ -78,11 +78,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Function\CalculateMotionAccelerationTime.xaml">
+    <Page Include="Function\CalculateMotionAccelerationTime\CalculateMotionAccelerationTimeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Function\CalculateMotionTime.xaml">
+    <Page Include="Function\CalculateMotionTime\CalculateMotionTimeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -119,12 +119,16 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DelegateCommand.cs" />
-    <Compile Include="Function\CalculateMotionAccelerationTime.xaml.cs">
-      <DependentUpon>CalculateMotionAccelerationTime.xaml</DependentUpon>
+    <Compile Include="Function\CalculateMotionAccelerationTime\CalculateMotionAccelerationTimeModel.cs" />
+    <Compile Include="Function\CalculateMotionAccelerationTime\CalculateMotionAccelerationTimeView.xaml.cs">
+      <DependentUpon>CalculateMotionAccelerationTimeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Function\CalculateMotionTime.xaml.cs">
-      <DependentUpon>CalculateMotionTime.xaml</DependentUpon>
+    <Compile Include="Function\CalculateMotionAccelerationTime\CalculateMotionAccelerationTimeViewModel.cs" />
+    <Compile Include="Function\CalculateMotionTime\CalculateMotionTimeView.xaml.cs">
+      <DependentUpon>CalculateMotionTimeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Function\CalculateMotionTime\CalculateMotionTimeModel.cs" />
+    <Compile Include="Function\CalculateMotionTime\CalculateMotionTimeViewModel.cs" />
     <Compile Include="Function\ConvertFloatToHex\ConvertFloatToHexView.xaml.cs">
       <DependentUpon>ConvertFloatToHexView.xaml</DependentUpon>
     </Compile>
